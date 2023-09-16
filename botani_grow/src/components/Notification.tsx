@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import LocalFloristTwoToneIcon from '@mui/icons-material/LocalFloristTwoTone';
 import IconButton from '@mui/material/IconButton';
-import e from 'express';
 
 export const Notification = () => {
   const [open, setOpen] = useState(false);
@@ -38,16 +37,11 @@ export const Notification = () => {
             }}
           >
             <LocalFloristTwoToneIcon
-              // onClick={() => setOpen(!open)}
               type="checkbox"
               className="cursor-pointer w-full h-full font-medium text-lime-600"
             />
           </IconButton>
         </div>
-        {/* <input
-            type="checkbox"
-            className="w-full h-full cursor-pointer appearance-none"
-          /> */}
 
         <div className="absolute -top-1 -right-1 bg-red-500 w-5 h-5 rounded-full flex justify-center items-center text-white ">
           4

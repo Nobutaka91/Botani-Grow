@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Notification } from './Notification';
 
 type PlantInfo = {
@@ -17,9 +17,16 @@ type PlantProps = {
 };
 
 export const Navbar: React.FC<PlantProps> = ({ plantsData }) => {
+  const location = useLocation(); // 現在のURLのパスを取得
+  console.log(location.pathname);
+
   const [open, setOpen] = useState(false);
   const imgRef = useRef<HTMLImageElement | null>(null);
   const menuRef = useRef<HTMLDivElement | null>(null);
+
+  const isActive = (path: string) => {
+    return location.pathname === path;
+  };
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -61,30 +68,34 @@ export const Navbar: React.FC<PlantProps> = ({ plantsData }) => {
                     <Link
                       to="/"
                       onClick={() => setOpen(!open)}
-                      className="p-2 text-lg block rounded-lg hover:bg-blue-100"
+                      className="p-2 text-lg  rounded-lg hover:bg-blue-100 flex justify-between"
                     >
-                      Home
+                      <span>Home</span>
+                      {isActive('/') && <span>✔️</span>}
                     </Link>
                     <Link
                       to="/Plants"
                       onClick={() => setOpen(!open)}
-                      className="p-2 text-lg block rounded-lg hover:bg-blue-100"
+                      className="p-2 text-lg  rounded-lg hover:bg-blue-100 flex justify-between"
                     >
-                      Plants
+                      <span>Plants</span>
+                      {isActive('/Plants') && <span>✔️</span>}
                     </Link>
                     <Link
                       to="/FeedBack"
                       onClick={() => setOpen(!open)}
-                      className="p-2 text-lg block rounded-lg hover:bg-blue-100"
+                      className="p-2 text-lg  rounded-lg hover:bg-blue-100 flex justify-between"
                     >
-                      FeedBack
+                      <span>FeedBack</span>
+                      {isActive('/FeedBack') && <span>✔️</span>}
                     </Link>
                     <Link
                       to="/Login"
                       onClick={() => setOpen(!open)}
-                      className="p-2 text-lg block rounded-lg hover:bg-blue-100"
+                      className="p-2 text-lg  rounded-lg hover:bg-blue-100 flex justify-between"
                     >
-                      Login
+                      <span>Login</span>
+                      {isActive('/Login') && <span>✔️</span>}
                     </Link>
                   </ul>
                 </nav>
