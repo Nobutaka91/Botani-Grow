@@ -1,24 +1,37 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-type PlantsData = {
+// type PlantsData = {
+//   id: number;
+//   name: string;
+//   // 後で「生育開始日」等も追加する
+// };
+
+type PlantInfo = {
   id: number;
   name: string;
-  // 後で「生育開始日」等も追加する
+  startDate: Date;
+  wateringAmount: string; // 水やりの量(多, ふつう, 少)
+  leafCount: number;
+  waterFrequency: number; // 水やりの頻度(日数)
+  previousCondition: string; // 前回の状態(良, ふつう, 微妙)
 };
 
-export const Info: React.FC = () => {
+type InfoProps = {
+  plantsData: PlantInfo[];
+};
+
+export const Info: React.FC<InfoProps> = ({ plantsData }) => {
   const { id } = useParams<{ id: string }>();
 
   if (!id) {
     return <p>IDが指定されていません。</p>;
   }
 
-  // 仮のデータ(実際にはAPIからデータをfetchする)
-  const plantsData: PlantsData[] = [
-    { id: 1, name: 'Rose' },
-    { id: 2, name: 'Tulip' },
-  ];
+  // // 仮のデータ(実際にはAPIからデータをfetchする)
+  // const plantsData: PlantInfo[] = [
+  //   // { id: 1, name: 'Rose' },
+  // ];
 
   // idに基づいて選ばれた植物のデータを取得する
   const plant = plantsData.find((plant) => plant.id === parseInt(id, 10));

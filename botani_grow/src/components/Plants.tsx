@@ -1,14 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export const Plants = () => {
-  const plantsData = [
-    { id: 1, name: 'Rose' },
-    { id: 2, name: 'Tulip' },
-    // ... その他の植物データ
-  ];
-  console.log(plantsData);
+type PlantInfo = {
+  id: number;
+  name: string;
+  startDate: Date;
+  wateringAmount: string; // 水やりの量(多, ふつう, 少)
+  leafCount: number;
+  waterFrequency: number; // 水やりの頻度(日数)
+  previousCondition: string; // 前回の状態(良, ふつう, 微妙)
+};
 
+type PlantProps = {
+  plantsData: PlantInfo[];
+};
+
+export const Plants: React.FC<PlantProps> = ({ plantsData }) => {
   return (
     <div>
       <h1>Plant List</h1>
