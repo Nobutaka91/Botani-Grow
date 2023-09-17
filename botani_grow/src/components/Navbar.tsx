@@ -66,12 +66,12 @@ export const Navbar: React.FC<PlantProps> = ({ plantsData }) => {
                 <nav>
                   <ul>
                     <Link
-                      to="/"
+                      to="/Home"
                       onClick={() => setOpen(!open)}
                       className="p-2 text-lg  rounded-lg hover:bg-blue-100 flex justify-between"
                     >
                       <span>Home</span>
-                      {isActive('/') && <span>✔️</span>}
+                      {isActive('/Home') && <span>✔️</span>}
                     </Link>
                     <Link
                       to="/Plants"
