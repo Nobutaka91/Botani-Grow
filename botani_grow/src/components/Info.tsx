@@ -1,11 +1,6 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
-
-// type PlantsData = {
-//   id: number;
-//   name: string;
-//   // 後で「生育開始日」等も追加する
-// };
+import { useModal } from './hooks/useModal';
 
 type PlantInfo = {
   id: number;
@@ -23,6 +18,7 @@ type InfoProps = {
 
 export const Info: React.FC<InfoProps> = ({ plantsData }) => {
   const { id } = useParams<{ id: string }>();
+  const { Modal, openModal, closeModal } = useModal();
 
   if (!id) {
     return <p>IDが指定されていません。</p>;
@@ -41,6 +37,27 @@ export const Info: React.FC<InfoProps> = ({ plantsData }) => {
       {plant ? (
         <>
           <p>{plant.name}</p>
+          <div className="m-8">
+            <div>
+              <button
+                onClick={openModal}
+                className="border rounded-lg border-emerald-400"
+              >
+                Open
+              </button>
+            </div>
+            <Modal>
+              <div className="bg-white w-80 h-64 p-4 rounded-3xl">
+                <h2>Sign in</h2>
+                <button
+                  onClick={closeModal}
+                  className="border rounded-lg border-emerald-400"
+                >
+                  Close
+                </button>
+              </div>
+            </Modal>
+          </div>
           <Link to="/Plants">前に戻る</Link>
         </>
       ) : (
