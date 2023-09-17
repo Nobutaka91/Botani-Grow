@@ -1,9 +1,12 @@
 import React from 'react';
 
 export const Login = () => {
+  // Eメールアドレスとパスワードでログイン
+  const loginWithEmailAndPassword = () => {};
+
   return (
     <>
-      <h2>ログイン画面です</h2>
+      <h2>ログインして始める</h2>
     </>
   );
 };
