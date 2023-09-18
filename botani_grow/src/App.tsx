@@ -47,7 +47,7 @@ function App() {
       <div className="z-50 ">
         <Navbar plantsData={plantsData} />
       </div>
-      <div className="mt-2 mb-28 overflow-y-auto">
+      <div className="mt-2 mb-80 overflow-y-auto">
         <Routes>
           <Route path="/Home" element={<Home />} />
           <Route path="/Plants" element={<Plants plantsData={plantsData} />} />
@@ -60,8 +60,8 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
-      <div className="fixed bottom-0 z-50 w-full inset-x-0">
-        <div className="max-w-4xl mx-auto px-6">
+      <div className="bottom-0 z-50 w-full inset-x-0">
+        <div className="max-w-4xl mx-auto px-6 bottom-0">
           <Footer />
         </div>
       </div>
