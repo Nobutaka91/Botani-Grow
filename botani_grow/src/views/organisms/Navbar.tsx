@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Notification } from './Notification';
+import { Notification } from '../molecules/Notification';
+import myImage from '../../img/plant.png';
 
 type PlantInfo = {
   id: number;
@@ -23,6 +24,7 @@ export const Navbar: React.FC<PlantProps> = ({ plantsData }) => {
   const [open, setOpen] = useState(false);
   const imgRef = useRef<HTMLImageElement | null>(null);
   const menuRef = useRef<HTMLDivElement | null>(null);
+  const [isLogin, setIsLogin] = useState<boolean>(false);
 
   const isActive = (path: string) => {
     return location.pathname === path;
@@ -54,7 +56,7 @@ export const Navbar: React.FC<PlantProps> = ({ plantsData }) => {
             <img
               ref={imgRef}
               onClick={() => setOpen(!open)}
-              src="/img/plant.png"
+              src={myImage}
               alt="icon"
               className="h-20 w-20 object-cover border-4 border-lime-100 bg-lime-400 rounded-full cursor-pointer"
             />
@@ -66,12 +68,12 @@ export const Navbar: React.FC<PlantProps> = ({ plantsData }) => {
                 <nav>
                   <ul>
                     <Link
-                      to="/Home"
+                      to="/"
                       onClick={() => setOpen(!open)}
                       className="p-2 text-lg  rounded-lg hover:bg-blue-100 flex justify-between"
                     >
-                      <span>Home</span>
-                      {isActive('/Home') && <span>✔️</span>}
+                      <span>Top</span>
+                      {isActive('/') && <span>✔️</span>}
                     </Link>
                     <Link
                       to="/Plants"
@@ -82,21 +84,38 @@ export const Navbar: React.FC<PlantProps> = ({ plantsData }) => {
                       {isActive('/Plants') && <span>✔️</span>}
                     </Link>
                     <Link
-                      to="/FeedBack"
+                      to="/History"
                       onClick={() => setOpen(!open)}
                       className="p-2 text-lg  rounded-lg hover:bg-blue-100 flex justify-between"
                     >
-                      <span>FeedBack</span>
-                      {isActive('/FeedBack') && <span>✔️</span>}
+                      <span>History</span>
+                      {isActive('/History') && <span>✔️</span>}
                     </Link>
-                    <Link
-                      to="/Login"
-                      onClick={() => setOpen(!open)}
-                      className="p-2 text-lg  rounded-lg hover:bg-blue-100 flex justify-between"
-                    >
-                      <span>Login</span>
-                      {isActive('/Login') && <span>✔️</span>}
-                    </Link>
+                    {isLogin ? (
+                      <Link
+                        to="/Logout"
+                        onClick={() => {
+                          setOpen(!open);
+                          setIsLogin(false); // ログアウト処理
+                        }}
+                        className="p-2 text-lg  rounded-lg hover:bg-blue-100 flex justify-between"
+                      >
+                        <span>Logout</span>
+                        {isActive('/Logout') && <span>✔️</span>}
+                      </Link>
+                    ) : (
+                      <Link
+                        to="/Login"
+                        onClick={() => {
+                          setOpen(!open);
+                          setIsLogin(true); // ログイン処理
+                        }}
+                        className="p-2 text-lg  rounded-lg hover:bg-blue-100 flex justify-between"
+                      >
+                        <span>Login</span>
+                        {isActive('/Login') && <span>✔️</span>}
+                      </Link>
+                    )}
                   </ul>
                 </nav>
               </div>
