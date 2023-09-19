@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { useModal } from './hooks/useModal';
+import { useModal } from '../hooks/useModal';
 
 import NaturePeopleIcon from '@mui/icons-material/NaturePeople';
 
@@ -18,7 +18,7 @@ type InfoProps = {
   plantsData: PlantInfo[];
 };
 
-export const Info: React.FC<InfoProps> = ({ plantsData }) => {
+export const Setup: React.FC<InfoProps> = ({ plantsData }) => {
   const { id } = useParams<{ id: string }>();
   const { Modal, openModal, closeModal } = useModal();
 

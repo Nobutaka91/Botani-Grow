@@ -1,15 +1,17 @@
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
-import { Home } from './components/Home';
-import { Plants } from './components/Plants';
-import { FeedBack } from './components/FeedBack';
-import { NotFound } from './components/NotFound';
-import { Login } from './components/Login';
-import { Info } from './components/Info';
-import { Navbar } from './components/Navbar';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import { Top } from './pages/Top';
+import { Plants } from './pages/Plants';
+import { History } from './pages/History';
+import { NotFound } from './pages/NotFound';
+// import { Login } from './components/Login';
+import { Setup } from './pages/Setup';
+import { Navbar } from './views/organisms/Navbar';
 
 import { useEffect, useState } from 'react';
-import { Footer } from './components/Footer';
+import { Footer } from './views/organisms/Footer';
+import { Login } from './pages/Login';
+import { Reset } from './pages/Reset';
 
 type PlantInfo = {
   id: number;
@@ -23,6 +25,8 @@ type PlantInfo = {
 
 function App() {
   const [plantsData, setPlantsData] = useState<PlantInfo[]>([]);
+  const location = useLocation(); // 現在のページのパスを取得
+  const isTopPage = location.pathname === '/';
 
   // データをフェッチする処理(後でFirebaseと連携)
   useEffect(() => {
@@ -44,27 +48,32 @@ function App() {
 
   return (
     <div className="max-w-4xl mx-auto px-6">
-      <div className="z-50 ">
-        <Navbar plantsData={plantsData} />
-      </div>
+      {!isTopPage && (
+        <div className="z-50 ">
+          <Navbar plantsData={plantsData} />
+        </div>
+      )}
       <div className="mt-2 mb-80 overflow-y-auto">
         <Routes>
-          <Route path="/Home" element={<Home />} />
-          <Route path="/Plants" element={<Plants plantsData={plantsData} />} />
+          <Route path="/" element={<Top />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/plants" element={<Plants plantsData={plantsData} />} />
           <Route
-            path="/Plants/:id"
-            element={<Info plantsData={plantsData} />}
+            path="/plants/:id"
+            element={<Setup plantsData={plantsData} />}
           />
-          <Route path="/FeedBack" element={<FeedBack />} />
-          <Route path="/Login" element={<Login />} />
+          <Route path="/History" element={<History />} />
+          <Route path="/Reset" element={<Reset />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
-      <div className="bottom-0 z-50 w-full inset-x-0">
-        <div className="max-w-4xl mx-auto px-6 bottom-0">
-          <Footer />
+      {!isTopPage && (
+        <div className="bottom-0 z-50 w-full inset-x-0">
+          <div className="max-w-4xl mx-auto px-6 bottom-0">
+            <Footer />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
