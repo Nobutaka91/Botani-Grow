@@ -47,6 +47,7 @@ export const Login: React.FC<LoginProps> = ({ isLogin, setIsLogin }) => {
     try {
       const userCredential = await signInAnonymously(auth);
       console.log(userCredential);
+      setIsLogin(true);
     } catch (error) {
       console.log('Guest Login Failed', error);
     }
@@ -66,6 +67,7 @@ export const Login: React.FC<LoginProps> = ({ isLogin, setIsLogin }) => {
       if (userCredential.user) {
         navigate('/Plants');
       }
+      setIsLogin(true);
     } catch (error: unknown) {
       console.log(error);
       if (error instanceof Error) {

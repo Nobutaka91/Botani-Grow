@@ -101,7 +101,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     </Link>
                     {isLogin ? (
                       <Link
-                        to="/Logout"
+                        to="/"
                         onClick={() => {
                           setOpen(!open);
                           setIsLogin(false); // ログアウト処理
@@ -116,7 +116,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                         to="/"
                         onClick={() => {
                           setOpen(!open);
-                          setIsLogin(true); // ログイン処理
                         }}
                         className="p-2 text-lg  rounded-lg hover:bg-blue-100 flex justify-between"
                       >
