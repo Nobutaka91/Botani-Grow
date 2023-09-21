@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Notification } from '../molecules/Notification';
-import myImage from '../../img/plant.png';
+import myImage from '../../LoginAssets/leaf-logo.png';
 
 type PlantInfo = {
   id: number;
@@ -17,14 +17,22 @@ type PlantProps = {
   plantsData: PlantInfo[];
 };
 
-export const Navbar: React.FC<PlantProps> = ({ plantsData }) => {
+type NavbarProps = {
+  isLogin: boolean;
+  setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
+} & PlantProps;
+
+export const Navbar: React.FC<NavbarProps> = ({
+  plantsData,
+  isLogin,
+  setIsLogin,
+}) => {
   const location = useLocation(); // 現在のURLのパスを取得
   console.log(location.pathname);
 
   const [open, setOpen] = useState(false);
   const imgRef = useRef<HTMLImageElement | null>(null);
   const menuRef = useRef<HTMLDivElement | null>(null);
-  const [isLogin, setIsLogin] = useState<boolean>(false);
 
   const isActive = (path: string) => {
     return location.pathname === path;
@@ -105,7 +113,7 @@ export const Navbar: React.FC<PlantProps> = ({ plantsData }) => {
                       </Link>
                     ) : (
                       <Link
-                        to="/Login"
+                        to="/"
                         onClick={() => {
                           setOpen(!open);
                           setIsLogin(true); // ログイン処理
