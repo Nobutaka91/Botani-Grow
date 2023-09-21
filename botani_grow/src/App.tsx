@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import { Footer } from './views/organisms/Footer';
 import { Login } from './pages/Login';
 import { Reset } from './pages/Reset';
+import ResetSuccess from './pages/ResetSuccess';
 
 type PlantInfo = {
   id: number;
@@ -24,10 +25,17 @@ type PlantInfo = {
 };
 
 function App() {
+  const [isLogin, setIsLogin] = useState<boolean>(false);
   const [plantsData, setPlantsData] = useState<PlantInfo[]>([]);
   const location = useLocation(); // 現在のページのパスを取得
-  const isTopPage = location.pathname === '/';
+  console.log('Current path:', location.pathname);
+  const isTopPageOrLoginPage =
+    location.pathname === '/' ||
+    location.pathname === '/Login' ||
+    location.pathname === '/Reset' ||
+    location.pathname === '/Reset-Success';
 
+  console.log('Is Top or Login Page:', isTopPageOrLoginPage);
   // データをフェッチする処理(後でFirebaseと連携)
   useEffect(() => {
     // 仮のデータ
@@ -48,15 +56,22 @@ function App() {
 
   return (
     <div className="max-w-4xl mx-auto px-6">
-      {!isTopPage && (
+      {!isTopPageOrLoginPage && (
         <div className="z-50 ">
-          <Navbar plantsData={plantsData} />
+          <Navbar
+            plantsData={plantsData}
+            isLogin={isLogin}
+            setIsLogin={setIsLogin}
+          />
         </div>
       )}
       <div className="mt-2 mb-80 overflow-y-auto">
         <Routes>
-          <Route path="/" element={<Top />} />
-          <Route path="/login" element={<Login />} />
+          {/* <Route path="/" element={<Top />} /> */}
+          <Route
+            path="/"
+            element={<Login isLogin={isLogin} setIsLogin={setIsLogin} />}
+          />
           <Route path="/plants" element={<Plants plantsData={plantsData} />} />
           <Route
             path="/plants/:id"
@@ -64,10 +79,12 @@ function App() {
           />
           <Route path="/History" element={<History />} />
           <Route path="/Reset" element={<Reset />} />
+          <Route path="/Reset-Success" element={<ResetSuccess />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
-      {!isTopPage && (
+
+      {!isTopPageOrLoginPage && (
         <div className="bottom-0 z-50 w-full inset-x-0">
           <div className="max-w-4xl mx-auto px-6 bottom-0">
             <Footer />
