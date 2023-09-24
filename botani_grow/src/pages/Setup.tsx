@@ -10,8 +10,8 @@ type PlantInfo = {
   startDate: Date;
   wateringAmount: string; // 水やりの量(多, ふつう, 少)
   leafCount: number;
-  waterFrequency: number; // 水やりの頻度(日数)
-  previousCondition: string; // 前回の状態(良, ふつう, 微妙)
+  wateringCycle: number; // 水やりの頻度(日数)
+  condition: string; // 前回の状態(良, ふつう, 微妙)
 };
 
 type InfoProps = {
@@ -20,7 +20,7 @@ type InfoProps = {
 
 export const Setup: React.FC<InfoProps> = ({ plantsData }) => {
   const { id } = useParams<{ id: string }>();
-  const { Modal, openModal, closeModal } = useModal();
+  const { Modal, openModal, closeModal, show } = useModal();
 
   if (!id) {
     return <p>IDが指定されていません。</p>;
@@ -48,7 +48,7 @@ export const Setup: React.FC<InfoProps> = ({ plantsData }) => {
                 Open
               </button>
             </div>
-            <Modal>
+            <Modal show={show}>
               <div>
                 <div className="bg-white max-w-full max-h-full w-full h-full p-4 rounded-3xl">
                   <div className="w-80 flex flex-col border  bg-sky-400 rounded-3xl items-center mx-auto">

@@ -193,6 +193,30 @@ video {
       .headerDiv {
         text-align: center;
         padding: 1.5rem 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .icon-container {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          align-items: center;
+          border: 2px solid var(--inputColor);
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+          cursor: pointer;
+          margin-top: 50px;
+          overflow: hidden;
+        }
+        .icon {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -45%);
+        }
 
         img {
           width: 60px;
@@ -221,6 +245,30 @@ video {
             border: none;
             width: 200px;
           }
+
+          // input:invalid {
+          //   border: solid 1px red;
+          // }
+
+          .number-input::-webkit-outer-spin-button,
+          .number-input::-webkit-inner-spin-button {
+            background-color: white;
+            background: white;
+            width: 50px;
+            // -webkit-appearance: none;
+            margin: 0;
+          }
+
+          // .leaf-slider {
+          //   accent-color: var(--primaryColor);
+          //   // accent-color: hsl(328 100% 80%);
+          //   // background-color: Canvas !important;
+          // }
+
+          // .leaf-slider::-webkit-slider-thumb {
+          //   // background-color: transparent;
+          //   // box-shadow: 0px 5px 10px -2px rgba(0, 0, 0, 0.3);
+          // }
 
           label {
             color: var(--blackColor);
@@ -383,6 +431,30 @@ video {
       .formDiv {
         .headerDiv {
           padding: 1.5rem 0;
+          display: flex;
+          // flex-direction: column;
+          // align-items: center;
+
+          .icon-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid var(--inputColor);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            margin-top: 50px;
+            overflow: hidden;
+          }
+          .icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -45%);
+          }
 
           h3 {
             font-size: 20px;

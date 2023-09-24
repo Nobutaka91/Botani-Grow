@@ -4,7 +4,7 @@ import {
   getAuth,
   // signInWithEmailAndPassword,
 } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore, addDoc, collection } from 'firebase/firestore';
 
 // 構成オブジェクトを作成
 const firebaseConfig = {
@@ -17,8 +17,8 @@ const firebaseConfig = {
   appId: '1:711308008244:web:12774ef6639713ca5f6361',
 };
 
-const app = initializeApp(firebaseConfig); // firebaseオブジェクトを作成(フロントエンドReactとバックエンドfirebaseが接続される )
+const app = initializeApp(firebaseConfig); // firebaseの初期化
 const auth = getAuth(app); // 認証の初期化
-const db = getFirestore(app); // dbの初期化
+const db = getFirestore(app); // firestoreのインスタンス取得
 
-export { auth, db };
+export { app, auth, db };
