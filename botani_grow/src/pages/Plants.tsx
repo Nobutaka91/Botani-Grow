@@ -26,21 +26,21 @@ type PlantProps = {
 };
 
 export const Plants: React.FC<PlantProps> = React.memo(({ plantsData }) => {
-  const [name, setName] = useState('');
-  const [size, setSize] = useState('S');
-  const [leafCount, setLeafCount] = useState(0);
-  const [wateringCycle, setWateringCycle] = useState(0);
+  // const [name, setName] = useState('');
+  // const [size, setSize] = useState('S');
+  // const [leafCount, setLeafCount] = useState(0);
+  // const [wateringCycle, setWateringCycle] = useState(0);
 
   // const { Modal, openModal, closeModal, show } = useModal();
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // TODO: 新規データを登録する処理
-  };
+  // const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   // TODO: 新規データを登録する処理
+  // };
 
   return (
     <div>
-      <h1>Plant List</h1>
+      <h1>Plants</h1>
       <ul>
         {plantsData.map((plant) => (
           <li key={plant.id}>
