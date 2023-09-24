@@ -9,8 +9,8 @@ type PlantInfo = {
   startDate: Date;
   wateringAmount: string; // 水やりの量(多, ふつう, 少)
   leafCount: number;
-  waterFrequency: number; // 水やりの頻度(日数)
-  previousCondition: string; // 前回の状態(良, ふつう, 微妙)
+  wateringCycle: number; // 水やりの頻度(日数)
+  condition: string; // 前回の状態(良, ふつう, 微妙)
 };
 
 type PlantProps = {

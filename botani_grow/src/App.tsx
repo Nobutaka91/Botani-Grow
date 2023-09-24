@@ -4,7 +4,7 @@ import { Top } from './pages/Top';
 import { Plants } from './pages/Plants';
 import { History } from './pages/History';
 import { NotFound } from './pages/NotFound';
-// import { Login } from './components/Login';
+import { NewPlantForm } from './pages/newPlantForm';
 import { Setup } from './pages/Setup';
 import { Navbar } from './views/organisms/Navbar';
 
@@ -20,8 +20,8 @@ type PlantInfo = {
   startDate: Date;
   wateringAmount: string; // 水やりの量(多, ふつう, 少)
   leafCount: number;
-  waterFrequency: number; // 水やりの頻度(日数)
-  previousCondition: string; // 前回の状態(良, ふつう, 微妙)
+  wateringCycle: number; // 水やりの頻度(日数)
+  condition: string; // 前回の状態(良, ふつう, 微妙)
 };
 
 function App() {
@@ -46,8 +46,8 @@ function App() {
         startDate: new Date(),
         wateringAmount: '多',
         leafCount: 11,
-        waterFrequency: 14,
-        previousCondition: '良',
+        wateringCycle: 14,
+        condition: '良',
       },
       // ... Firebaseから取得するデータ形式
     ];
@@ -80,17 +80,18 @@ function App() {
           <Route path="/History" element={<History />} />
           <Route path="/Reset" element={<Reset />} />
           <Route path="/Reset-Success" element={<ResetSuccess />} />
+          <Route path="/create-plant" element={<NewPlantForm />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
 
-      {!isTopPageOrLoginPage && (
+      {/* {!isTopPageOrLoginPage && (
         <div className="bottom-0 z-50 w-full inset-x-0">
           <div className="max-w-4xl mx-auto px-6 bottom-0">
             <Footer />
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

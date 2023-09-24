@@ -47,7 +47,7 @@ export const Login: React.FC<LoginProps> = ({ isLogin, setIsLogin }) => {
     try {
       const userCredential = await signInAnonymously(auth);
       console.log(userCredential);
-      setIsLogin(true);
+      setIsLogin(false);
     } catch (error) {
       console.log('Guest Login Failed', error);
     }
@@ -105,7 +105,8 @@ export const Login: React.FC<LoginProps> = ({ isLogin, setIsLogin }) => {
             </div>
 
             <div className="footerDiv flex">
-              <span className="text">Don't you have an account?</span>
+              <span className="text">Browse Without Account</span>
+
               <Link to={'/Plants'}>
                 <button className="btn flex" onClick={onGuestLogin}>
                   <span>Guest</span>
