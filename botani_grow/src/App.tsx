@@ -29,13 +29,14 @@ function App() {
   const [plantsData, setPlantsData] = useState<PlantInfo[]>([]);
   const location = useLocation(); // 現在のページのパスを取得
   console.log('Current path:', location.pathname);
-  const isTopPageOrLoginPage =
+  const isNavbarHiddenPage =
     location.pathname === '/' ||
     location.pathname === '/Login' ||
     location.pathname === '/Reset' ||
-    location.pathname === '/Reset-Success';
+    location.pathname === '/Reset-Success' ||
+    location.pathname === '/create-plant';
 
-  console.log('Is Top or Login Page:', isTopPageOrLoginPage);
+  // console.log('Is Top or Login Page:', isNavbarHiddenPage);
   // データをフェッチする処理(後でFirebaseと連携)
   useEffect(() => {
     // 仮のデータ
@@ -56,7 +57,7 @@ function App() {
 
   return (
     <div className="max-w-4xl mx-auto px-6">
-      {!isTopPageOrLoginPage && (
+      {!isNavbarHiddenPage && (
         <div className="z-50 ">
           <Navbar
             plantsData={plantsData}

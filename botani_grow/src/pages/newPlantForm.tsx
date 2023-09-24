@@ -16,13 +16,14 @@ import {
   getDownloadURL,
 } from 'firebase/storage';
 import { dividerClasses } from '@mui/material';
+import { useNavigate } from 'react-router';
 
 type PlantInfo = {
   id: number;
   icon: string;
   name: string;
   startDate: Date;
-  leafCount: string;
+  leafCount: number;
   wateringCycle: number; // 水やりの頻度(日数)
   wateringAmount: string; // 水やりの量(多, ふつう, 少)
   condition: string; // 前回の状態(良, ふつう, 微妙)
@@ -35,7 +36,7 @@ type PlantProps = {
 export const NewPlantForm: React.FC<PlantProps> = () => {
   const [name, setName] = useState('');
   const [size, setSize] = useState('S');
-  const [leafCount, setLeafCount] = useState('0');
+  const [leafCount, setLeafCount] = useState(0);
   const [doNotCount, setDoNotCount] = useState(false);
   const [wateringCycle, setWateringCycle] = useState(0);
   const [iconUrl, setIconUrl] = useState<string | null>(null);
@@ -48,6 +49,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
   const [uploadError, setUploadError] = useState<string | null>(null);
 
   const storage = getStorage(app); // getStorageでStorageのインスタンスを取得
+  const navigate = useNavigate();
 
   const handleFileUpload = async (file: File) => {
     const storageRef = ref(storage, 'images/' + file.name); // アップロードするパスを指定
@@ -60,13 +62,12 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
       },
       (error) => {
         // エラーハンドリング
-        setUploadError('*Upload failed.Retry.');
       },
       () => {
         // アップロード開始
         setUploadError(null);
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          console.log('File available at', getDownloadURL);
+          console.log('File available at', downloadURL);
           setIconUrl(downloadURL); // Firebase StorageのURLを設定
         });
       }
@@ -87,7 +88,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
     setNameError(null);
     setLeafCountError(null);
     setWateringCycleError(null);
-    // setIconUrlError(null);
+    setUploadError(null);
 
     let hasError = false;
 
@@ -96,7 +97,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
       hasError = true;
     }
 
-    if (Number(leafCount) < 0 || Number(leafCount) > 100) {
+    if (!doNotCount && (leafCount < 0 || leafCount > 100)) {
       setLeafCountError('*Leaf count: 0 - 100');
       hasError = true;
     }
@@ -106,11 +107,16 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
       hasError = true;
     }
 
+    if (!iconUrl) {
+      setUploadError('*Upload failed. Please Retry.');
+      hasError = true;
+    }
+
     if (hasError) return;
 
     // TODO: 新規データを登録する処理
     try {
-      const docRef = await addDoc(collection(db, 'plants'), {
+      const plantDocRef = await addDoc(collection(db, 'plants'), {
         iconUrl,
         startDate: new Date(),
         name,
@@ -118,7 +124,20 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
         leafCount: Number(leafCount),
         wateringCycle,
       });
-      console.log('Document written with ID: ', docRef.id);
+
+      // plantDocRef.idでドキュメントid(植物id)を取得できる
+      console.log('Plant Document written with ID: ', plantDocRef.id);
+
+      const wateredDate = new Date(); // 現在の日時
+      const nextWateringDate = new Date(wateredDate);
+      nextWateringDate.setDate(wateredDate.getDate() + wateringCycle);
+      await addDoc(collection(db, 'watrings'), {
+        plantId: plantDocRef.id, // 植物IDをplantIdとして保存
+        nextWateringDate,
+      });
+      console.log('Watering Document written for Plant ID:', plantDocRef.id);
+
+      navigate('/Plants');
     } catch (e) {
       console.error('Error adding document: ', e);
     }
@@ -152,7 +171,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                 onChange={handleFileSelect}
               />
               {uploadError && (
-                <label className="error-message">{uploadError}</label>
+                <label className="text-red-500 text-sm">{uploadError}</label>
               )}
             </div>
             <form action="" className="form grid" onSubmit={onSubmit}>
@@ -169,12 +188,12 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                     type="text"
                     id="name"
                     name="name"
-                    placeholder="Enter Plant Name"
+                    placeholder="plant name"
                     value={name}
                     onChange={(e: ChangeEvent<HTMLInputElement>) => {
                       setName(e.target.value);
                     }}
-                    required
+                    // required
                   />
                 </div>
               </div>
@@ -190,9 +209,8 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                     onChange={(e: ChangeEvent<HTMLSelectElement>) => {
                       setSize(e.target.value);
                     }}
-                    required
+                    // required
                   >
-                    <option value="-">-</option>
                     <option value="S">S</option>
                     <option value="M">M</option>
                     <option value="L">L</option>
@@ -216,16 +234,16 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                       id="leaf"
                       type="number"
                       name="leafCount"
-                      min="0"
-                      max="100"
+                      // min="0"
+                      // max="100"
                       step="1"
                       // value={leafCount}
                       onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                        if (!doNotCount) setLeafCount(e.target.value);
+                        if (!doNotCount) setLeafCount(Number(e.target.value));
                       }}
                       disabled={doNotCount}
-                      placeholder="0"
-                      required
+                      // placeholder="0"
+                      // required
                     />
                   </div>
                   <div>
@@ -262,7 +280,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                     onChange={(e: ChangeEvent<HTMLInputElement>) => {
                       setWateringCycle(Number(e.target.value));
                     }}
-                    required
+                    // required
                   />
                   <div>{wateringCycle} days to water</div>
                 </div>
