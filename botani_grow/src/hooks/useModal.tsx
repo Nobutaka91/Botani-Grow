@@ -20,22 +20,24 @@ interface ModalProps {
 export const useModal = () => {
   const [show, setShow] = useState(false); // モーダルの表示・非表示
 
-  const openModal = useCallback(() => {
+  const openModal = () => {
     setShow(true);
-  }, []);
+  };
 
-  const closeModal = useCallback(() => {
+  const closeModal = () => {
     setShow(false);
-  }, []);
-
-  const element = document.getElementById('modal-root');
+  };
 
   const Modal: React.FC<ModalProps> = React.memo(({ children, show }) => {
     const contentRef = useRef(null);
 
     useEffect(() => {
+      if (contentRef.current === null) return;
+
       if (show) {
-        disableBodyScroll(contentRef.current);
+        disableBodyScroll(contentRef.current, {
+          reserveScrollBarGap: true,
+        });
       } else {
         enableBodyScroll(contentRef.current);
       }
@@ -46,21 +48,16 @@ export const useModal = () => {
     }, [show, contentRef]);
 
     if (!show) return null;
-    if (!element) return null;
+    const element = document.getElementById('modal-root');
+    if (!element) {
+      // console.log('modal-root element is not found.');
+      return null;
+    }
 
     return createPortal(
-      // <div className="fixed inset-0 flex justify-center items-center">
-      //   <div className="fixed inset-0 bg-gray-600 opacity-50"></div>
-      //   <div className="relative  rounded-lg shadow-lg w-11/12 md:w-1/2 max-w-lg">
-      //     {children}
-      //   </div>
-      // </div>
-      <div className="fixed inset-0 flex justify-center items-center">
-        <div className="fixed inset-0 bg-gray-600 opacity-50"></div>
-        <div
-          className="relative  rounded-lg shadow-lg w-11/12 md:w-1/2"
-          ref={contentRef}
-        >
+      <div className="delete">
+        <div className="delete-background"></div>
+        <div className="relative" ref={contentRef}>
           {children}
         </div>
       </div>,

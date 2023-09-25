@@ -68,20 +68,19 @@ function App() {
       )}
       <div className="mt-2 mb-80 overflow-y-auto">
         <Routes>
-          {/* <Route path="/" element={<Top />} /> */}
           <Route
             path="/"
             element={<Login isLogin={isLogin} setIsLogin={setIsLogin} />}
           />
-          <Route path="/plants" element={<Plants plantsData={plantsData} />} />
+          <Route path="/Plants" element={<Plants plantsData={plantsData} />} />
           <Route
-            path="/plants/:id"
+            path="/Plants/:id"
             element={<Setup plantsData={plantsData} />}
           />
           <Route path="/History" element={<History />} />
           <Route path="/Reset" element={<Reset />} />
           <Route path="/Reset-Success" element={<ResetSuccess />} />
-          <Route path="/create-plant" element={<NewPlantForm />} />
+          <Route path="/AddNewPlant" element={<NewPlantForm />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

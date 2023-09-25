@@ -341,6 +341,35 @@ video {
   }
 }
 
+.delete {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete-background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: gray;
+  opacity: 0.5;
+}
+
+.modal {
+  background: var(--whiteColor);
+  width: 300px;
+  height: 200px;
+  padding: 1em;
+  border-radius: 15px;
+}
+
 // Queies for the login components
 @media screen and (max-width: 602px) {
   .loginPage {
