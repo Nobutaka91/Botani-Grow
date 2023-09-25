@@ -293,7 +293,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
               {/* <span className="forgotPassword"></span> */}
               <span className="flex">
                 <AiOutlineSwapLeft className="icon text-red-800" />
-                <a href="/plants">back</a>
+                <a href="/Plants">back</a>
               </span>
             </form>
           </div>

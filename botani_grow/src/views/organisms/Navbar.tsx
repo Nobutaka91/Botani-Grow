@@ -35,6 +35,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const menuRef = useRef<HTMLDivElement | null>(null);
 
   const isActive = (path: string) => {
+    console.log(path);
     return location.pathname === path;
   };
 

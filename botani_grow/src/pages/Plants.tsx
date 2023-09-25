@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
-// import { useModal } from '../hooks/useModal';
+import { useModal } from '../hooks/useModal';
 import { Link } from 'react-router-dom';
 import '../App.scss';
 
@@ -8,6 +8,7 @@ import logo from '../LoginAssets/leaf-logo.png';
 import { AiOutlineSwapRight } from 'react-icons/ai';
 import { IoIosAddCircleOutline } from 'react-icons/io';
 import { PiPottedPlantDuotone, PiLeafDuotone } from 'react-icons/pi';
+import { TbPlantOff } from 'react-icons/tb';
 // import { FirebaseError } from 'firebase/app';
 // import { signInAnonymously } from 'firebase/auth';
 
@@ -31,7 +32,7 @@ export const Plants: React.FC<PlantProps> = React.memo(({ plantsData }) => {
   // const [leafCount, setLeafCount] = useState(0);
   // const [wateringCycle, setWateringCycle] = useState(0);
 
-  // const { Modal, openModal, closeModal, show } = useModal();
+  const { Modal, openModal, closeModal, show } = useModal();
 
   // const onSubmit = (e: FormEvent<HTMLFormElement>) => {
   //   e.preventDefault();
@@ -48,18 +49,26 @@ export const Plants: React.FC<PlantProps> = React.memo(({ plantsData }) => {
           </li>
         ))}
       </ul>
+
       <div className="m-8">
         <div>
-          <button
-            // onClick={openModal}
-            className="border rounded-lg border-emerald-400"
-          >
-            <Link to="/create-plant">
+          <button className="">
+            <Link to="/AddNewPlant">
               <IoIosAddCircleOutline className="icon" />
             </Link>
           </button>
         </div>
-        {/* <Modal show={show}></Modal> */}
+        <div>
+          <button onClick={openModal} className="">
+            <TbPlantOff className="icon" />
+          </button>
+        </div>
+        <Modal show={show}>
+          <div className="modal">
+            <h2>削除しますか？</h2>
+            <button onClick={closeModal}>close</button>
+          </div>
+        </Modal>
       </div>
     </div>
   );
