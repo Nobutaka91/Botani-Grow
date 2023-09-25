@@ -5,12 +5,14 @@ import { useModal } from '../hooks/useModal';
 import NaturePeopleIcon from '@mui/icons-material/NaturePeople';
 
 type PlantInfo = {
-  id: number;
+  id: string;
+  iconUrl: string | null;
   name: string;
-  startDate: Date;
-  wateringAmount: string; // 水やりの量(多, ふつう, 少)
+  size: string;
   leafCount: number;
   wateringCycle: number; // 水やりの頻度(日数)
+  startDate: Date;
+  wateringAmount: string; // 水やりの量(多, ふつう, 少)
   condition: string; // 前回の状態(良, ふつう, 微妙)
 };
 
@@ -32,7 +34,8 @@ export const Setup: React.FC<InfoProps> = ({ plantsData }) => {
   // ];
 
   // idに基づいて選ばれた植物のデータを取得する
-  const plant = plantsData.find((plant) => plant.id === parseInt(id, 10));
+  console.log(plantsData);
+  const plant = plantsData.find((plant) => plant.id === id);
 
   return (
     <div>
@@ -87,7 +90,7 @@ export const Setup: React.FC<InfoProps> = ({ plantsData }) => {
               </div>
             </Modal>
           </div>
-          <Link to="/Plants">前に戻る</Link>
+          <Link to="/Plants">back</Link>
         </>
       ) : (
         <p>植物が見つかりません</p>
