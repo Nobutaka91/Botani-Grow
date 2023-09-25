@@ -14,13 +14,18 @@ import { Login } from './pages/Login';
 import { Reset } from './pages/Reset';
 import ResetSuccess from './pages/ResetSuccess';
 
+import { db } from './config/Firebase';
+import { collection, getDocs } from 'firebase/firestore';
+
 type PlantInfo = {
-  id: number;
+  id: string;
+  iconUrl: string | null;
   name: string;
-  startDate: Date;
-  wateringAmount: string; // 水やりの量(多, ふつう, 少)
+  size: string;
   leafCount: number;
   wateringCycle: number; // 水やりの頻度(日数)
+  startDate: Date;
+  wateringAmount: string; // 水やりの量(多, ふつう, 少)
   condition: string; // 前回の状態(良, ふつう, 微妙)
 };
 
@@ -36,23 +41,32 @@ function App() {
     location.pathname === '/Reset-Success' ||
     location.pathname === '/create-plant';
 
-  // console.log('Is Top or Login Page:', isNavbarHiddenPage);
-  // データをフェッチする処理(後でFirebaseと連携)
   useEffect(() => {
-    // 仮のデータ
-    const fetchedData: PlantInfo[] = [
-      {
-        id: 1,
-        name: 'Ficus Bambino',
-        startDate: new Date(),
-        wateringAmount: '多',
-        leafCount: 11,
-        wateringCycle: 14,
-        condition: '良',
-      },
-      // ... Firebaseから取得するデータ形式
-    ];
-    setPlantsData(fetchedData);
+    const fetchPlantData = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'plants'));
+        const plants: PlantInfo[] = [];
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          plants.push({
+            id: doc.id,
+            iconUrl: data.iconUrl,
+            name: data.name,
+            size: data.size,
+            leafCount: data.leafCount,
+            wateringCycle: data.wateringCycle,
+            startDate: data.startDate?.toDate(),
+            wateringAmount: data.wateringAmount,
+            condition: data.condition,
+          });
+        });
+        console.log(plants);
+        setPlantsData(plants);
+      } catch (error) {
+        console.log('Error fetching plants data:', error);
+      }
+    };
+    fetchPlantData();
   }, []);
 
   return (

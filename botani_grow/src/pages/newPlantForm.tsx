@@ -131,7 +131,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
       const wateredDate = new Date(); // 現在の日時
       const nextWateringDate = new Date(wateredDate);
       nextWateringDate.setDate(wateredDate.getDate() + wateringCycle);
-      await addDoc(collection(db, 'watrings'), {
+      await addDoc(collection(db, 'waterings'), {
         plantId: plantDocRef.id, // 植物IDをplantIdとして保存
         nextWateringDate,
       });
