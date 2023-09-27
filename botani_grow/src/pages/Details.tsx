@@ -3,6 +3,14 @@ import { Link, useParams } from 'react-router-dom';
 import { useModal } from '../hooks/useModal';
 
 import NaturePeopleIcon from '@mui/icons-material/NaturePeople';
+import { VscCloudUpload } from 'react-icons/vsc';
+
+import { TbPlantOff } from 'react-icons/tb';
+import { FaRegSadCry } from 'react-icons/fa';
+import { IoMdNotifications } from 'react-icons/io';
+import { IoIosAddCircleOutline } from 'react-icons/io';
+
+import './Details.scss';
 
 type PlantInfo = {
   id: string;
@@ -20,18 +28,13 @@ type InfoProps = {
   plantsData: PlantInfo[];
 };
 
-export const Setup: React.FC<InfoProps> = ({ plantsData }) => {
+export const Details: React.FC<InfoProps> = ({ plantsData }) => {
   const { id } = useParams<{ id: string }>();
   const { Modal, openModal, closeModal, show } = useModal();
 
   if (!id) {
-    return <p>IDが指定されていません。</p>;
+    return <p>ID Not Specified</p>;
   }
-
-  // // 仮のデータ(実際にはAPIからデータをfetchする)
-  // const plantsData: PlantInfo[] = [
-  //   // { id: 1, name: 'Rose' },
-  // ];
 
   // idに基づいて選ばれた植物のデータを取得する
   console.log(plantsData);
@@ -40,8 +43,16 @@ export const Setup: React.FC<InfoProps> = ({ plantsData }) => {
   return (
     <div>
       {plant ? (
-        <>
-          <p>{plant.name}</p>
+        <div>
+          {plant.iconUrl ? (
+            <img src={plant.iconUrl} alt={plant.name} className="img" />
+          ) : null}
+          <h1 id="title">{plant.name}</h1>
+          <div className="flex icons">
+            <FaRegSadCry className="fa-solid fa-sad" />
+            <IoIosAddCircleOutline className="fa-solid fa-plus" />
+            <TbPlantOff className="fa-solid fa-delete" />
+          </div>
           <div className="m-8">
             <div>
               <button
@@ -76,7 +87,7 @@ export const Setup: React.FC<InfoProps> = ({ plantsData }) => {
                     <div className="flex justify-between w-full">
                       <div></div>
                       <div className="cursor-pointer text-xs">
-                        <span>Forgot Password?</span>
+                        <span className="setup__span">Forgot Password?</span>
                       </div>
                     </div>
                   </div>
@@ -91,9 +102,9 @@ export const Setup: React.FC<InfoProps> = ({ plantsData }) => {
             </Modal>
           </div>
           <Link to="/Plants">back</Link>
-        </>
+        </div>
       ) : (
-        <p>植物が見つかりません</p>
+        <p className="setup__p">Plant Not Found</p>
       )}
     </div>
   );

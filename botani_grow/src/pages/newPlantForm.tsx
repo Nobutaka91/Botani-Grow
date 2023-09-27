@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 
-import '../App.scss';
+import './newPlantForm.scss';
 
 import { AiOutlineSwapLeft } from 'react-icons/ai';
 import { TbRotateClockwise } from 'react-icons/tb';

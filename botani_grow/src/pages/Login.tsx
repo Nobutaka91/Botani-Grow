@@ -5,7 +5,7 @@ import { auth } from '../config/Firebase';
 
 import React from 'react';
 
-import '../App.scss';
+import './Login.scss';
 
 // @ts-ignore
 import video from '../LoginAssets/water.mp4';

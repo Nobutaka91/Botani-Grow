@@ -5,7 +5,7 @@ import { Plants } from './pages/Plants';
 import { History } from './pages/History';
 import { NotFound } from './pages/NotFound';
 import { NewPlantForm } from './pages/newPlantForm';
-import { Setup } from './pages/Setup';
+import { Details } from './pages/Details';
 import { Navbar } from './views/organisms/Navbar';
 
 import { useEffect, useState } from 'react';
@@ -70,7 +70,7 @@ function App() {
   }, []);
 
   return (
-    <div className="max-w-4xl mx-auto px-6">
+    <div className="max-w-6xl mx-auto px-6">
       {!isNavbarHiddenPage && (
         <div className="z-50 ">
           <Navbar
@@ -89,7 +89,7 @@ function App() {
           <Route path="/Plants" element={<Plants plantsData={plantsData} />} />
           <Route
             path="/Plants/:id"
-            element={<Setup plantsData={plantsData} />}
+            element={<Details plantsData={plantsData} />}
           />
           <Route path="/History" element={<History />} />
           <Route path="/Reset" element={<Reset />} />

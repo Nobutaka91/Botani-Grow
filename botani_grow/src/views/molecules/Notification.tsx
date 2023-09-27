@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import LocalFloristTwoToneIcon from '@mui/icons-material/LocalFloristTwoTone';
 import IconButton from '@mui/material/IconButton';
-import { RiPlantFill } from 'react-icons/ri';
+import { IoMdNotifications } from 'react-icons/io';
 
 export const Notification = () => {
   const [open, setOpen] = useState(false);
@@ -37,7 +37,7 @@ export const Notification = () => {
               setOpen(!open);
             }}
           >
-            <RiPlantFill
+            <IoMdNotifications
               type="checkbox"
               className="cursor-pointer w-full h-full font-medium text-lime-600"
             />
