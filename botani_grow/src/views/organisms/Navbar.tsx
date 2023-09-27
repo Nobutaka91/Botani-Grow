@@ -132,7 +132,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             )}
           </div>
         </div>
-        <div className="mr-7 -mb-32">
+        <div className="mr-7 -mb-8">
           <Notification />
         </div>
       </div>

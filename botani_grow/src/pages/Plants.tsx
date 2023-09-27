@@ -1,9 +1,14 @@
 import { useModal } from '../hooks/useModal';
 import { Link } from 'react-router-dom';
-import '../App.scss';
+// import '../App.scss';
+import './Plants.scss';
 
 import { IoIosAddCircleOutline } from 'react-icons/io';
 import { TbPlantOff } from 'react-icons/tb';
+import { FaRegSadCry } from 'react-icons/fa';
+import { IoMdNotifications } from 'react-icons/io';
+
+import { Card } from '../views/organisms/Card';
 
 type PlantInfo = {
   id: string;
@@ -28,29 +33,35 @@ export const Plants: React.FC<PlantProps> = ({ plantsData }) => {
 
   return (
     <div>
-      <h1>Plants</h1>
-      <ul>
-        {plantsData.map((plant) => (
-          <Link to={`/Plants/${plant.id}`} key={plant.id}>
-            <div className="plant-card">
-              {plant.iconUrl ? (
-                <img src={plant.iconUrl} alt={plant.name} />
-              ) : null}
-              <p>Name: {plant.name}</p>
-              <p>{plant.wateringCycle} days left</p>
-            </div>
+      <h1 id="title">Plants</h1>
+      <div className="flex plants__icons">
+        {/* <IoIosAddCircleOutline className="fa-solid fa-plus" /> */}
+        <button className="plants">
+          <Link to="/AddNewPlant">
+            <IoIosAddCircleOutline className="icon fa-solid fa-plus" />
           </Link>
+        </button>
+      </div>
+      <div className="plantCardContainer">
+        {plantsData.map((plant) => (
+          <Card
+            key={plant.id}
+            id={plant.id}
+            iconUrl={plant.iconUrl}
+            name={plant.name}
+            wateringCycle={plant.wateringCycle}
+          />
         ))}
-      </ul>
+      </div>
 
       <div className="m-8">
-        <div>
+        {/* <div>
           <button className="">
             <Link to="/AddNewPlant">
               <IoIosAddCircleOutline className="icon" />
             </Link>
           </button>
-        </div>
+        </div> */}
         <div>
           <button onClick={openModal} className="">
             <TbPlantOff className="icon" />
@@ -63,6 +74,54 @@ export const Plants: React.FC<PlantProps> = ({ plantsData }) => {
           </div>
         </Modal>
       </div>
+
+      {/* 練習 */}
+      {/* <main>
+        <h1 id="title">
+          Fulfill your dream of <span>World Tour</span>
+        </h1>
+        <div className="flex icons">
+          <FaRegSadCry className="fa-solid fa-sad" />
+          <IoIosAddCircleOutline className="fa-solid fa-plus" />
+          <TbPlantOff className="fa-solid fa-delete" />
+        </div>
+        <div className="main-container">
+          <div className="containers first">
+            <div className="content">
+              <h1>TOKYO</h1>
+              <span className="flex">
+                JP <FaRegSadCry className="fa-solid fa-location-dot" />
+              </span>
+              <p>
+                前回水が少し残ってたから、次回は少なめにして様子を確認してみる
+              </p>
+              <button className="bookBtn">Book Tour</button>
+            </div>
+          </div>
+
+          <div className="containers second">
+            <div className="content">
+              <h1>HOKKAIDO</h1>
+              <span className="flex">
+                JP <FaRegSadCry className="fa-solid fa-location-dot" />
+              </span>
+              <p>葉落ちがひどいから水やり無しで、霧吹きのみで。</p>
+              <button className="bookBtn">Book Tour</button>
+            </div>
+          </div>
+
+          <div className="containers third">
+            <div className="content">
+              <h1>SHIZUOKA</h1>
+              <span className="flex">
+                USA <FaRegSadCry className="fa-solid fa-location-dot" />
+              </span>
+              <p>結構水吸うから水多めで</p>
+              <button className="bookBtn">Book Tour</button>
+            </div>
+          </div>
+        </div>
+      </main> */}
     </div>
   );
 };
