@@ -9,7 +9,9 @@ import { TbPlantOff } from 'react-icons/tb';
 import { FaRegSadCry } from 'react-icons/fa';
 import { IoMdNotifications } from 'react-icons/io';
 import { IoIosAddCircleOutline } from 'react-icons/io';
-
+import { AiOutlineSwapLeft } from 'react-icons/ai';
+import { PiLeafDuotone } from 'react-icons/pi';
+import { GiWateringCan } from 'react-icons/gi';
 import './Details.scss';
 
 type PlantInfo = {
@@ -45,63 +47,57 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
       {plant ? (
         <div>
           {plant.iconUrl ? (
-            <img src={plant.iconUrl} alt={plant.name} className="img" />
+            <img src={plant.iconUrl} alt={plant.name} className="plant_img" />
           ) : null}
-          <h1 id="title">{plant.name}</h1>
-          <div className="flex icons">
-            <FaRegSadCry className="fa-solid fa-sad" />
-            <IoIosAddCircleOutline className="fa-solid fa-plus" />
-            <TbPlantOff className="fa-solid fa-delete" />
+          <h1 id="plant__title">{plant.name}</h1>
+          <div className="flex plant__details">
+            <div className="startDate">
+              <span className="">Start Date</span>
+              <p>{plant.startDate.toLocaleDateString()}</p>
+            </div>
+            <div className="lastWatering">
+              <span className="flex">Last Watering</span>
+              <p className="flex">
+                2023/9/28
+                <GiWateringCan
+                  className="fa-solid fa-location-dot"
+                  color="skyblue"
+                />
+              </p>
+            </div>
+            <div className="leafCount">
+              <span className="">Leaf Count</span>
+              <p className="flex">
+                {plant.leafCount}
+                <PiLeafDuotone className="icon" color="green" />
+              </p>
+            </div>
+          </div>
+          <div className="lastCondition">
+            <span className="condition_expression">😊</span>
+            <p className="condition_memo">
+              前回水が少し残ってたから、次回は少なめにして様子を確認してみる
+            </p>
+          </div>
+          <Link to={'/Plants'}>
+            <button className="back__btn flex">
+              <span>Back</span>
+              <AiOutlineSwapLeft className="icon" />
+            </button>
+          </Link>
+          <div className="flex delete__icon">
+            <button className="delete__button" onClick={openModal}>
+              <TbPlantOff className="icon fa-solid fa-plus" />
+            </button>
           </div>
           <div className="m-8">
-            <div>
-              <button
-                onClick={openModal}
-                className="border rounded-lg border-emerald-400"
-              >
-                Open
-              </button>
-            </div>
             <Modal show={show}>
-              <div>
-                <div className="bg-white max-w-full max-h-full w-full h-full p-4 rounded-3xl">
-                  <div className="w-80 flex flex-col border  bg-sky-400 rounded-3xl items-center mx-auto">
-                    <p className="font-sans	text-xl font-medium text-white">
-                      Login To Account
-                    </p>
-                    <div className="flex flex-col w-10/12">
-                      <input
-                        className="my-2 px-2 py-2 outline-none border-none  rounded-3xl text-base font-medium tracking-wide indent-7"
-                        type="text"
-                        placeholder="📧 Email"
-                      />
-                      <input
-                        className="my-2 px-2 py-2 outline-none border-none  rounded-3xl text-base font-medium tracking-wide indent-7"
-                        type="password"
-                        placeholder="🔑 Password"
-                      />
-                      <button className="my-2 px-2 py-2 outline-none border-none  rounded-3xl text-base bg-sky-600 hover:bg-sky-700 text-white font-medium uppercase cursor-pointer">
-                        Sign In
-                      </button>
-                    </div>
-                    <div className="flex justify-between w-full">
-                      <div></div>
-                      <div className="cursor-pointer text-xs">
-                        <span className="setup__span">Forgot Password?</span>
-                      </div>
-                    </div>
-                  </div>
-                  <button
-                    onClick={closeModal}
-                    className="border rounded-lg border-emerald-400"
-                  >
-                    Close
-                  </button>
-                </div>
+              <div className="modal">
+                <h2>削除しますか？</h2>
+                <button onClick={closeModal}>close</button>
               </div>
             </Modal>
           </div>
-          <Link to="/Plants">back</Link>
         </div>
       ) : (
         <p className="setup__p">Plant Not Found</p>
