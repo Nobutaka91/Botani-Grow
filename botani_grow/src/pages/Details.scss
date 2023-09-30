@@ -56,8 +56,8 @@
 // }
 
 .plant_img {
-  width: 280px;
-  height: 290px;
+  width: 230px;
+  height: 230px;
   box-shadow: 2px 6px 10px 3px #777777;
   box-shadow: rgb(0, 0, 0, 0.3) 3px 3px 6px 0px inset,
     rgba(0, 0, 0, 0.3) -3px -3px 6px 1px inset;
@@ -73,12 +73,23 @@
   margin-top: 20px;
 }
 
-#plant__title {
+#plant__name {
   // done
   font-size: 25px;
   text-align: center;
   margin-top: 5px;
   color: var(--blackColor);
+}
+
+.plant__name_flex {
+  display: flex;
+  align-items: baseline; // テキストの底が揃う
+  justify-content: center;
+  gap: 5px;
+
+  span {
+    font-size: 15px;
+  }
 }
 
 .delete__icon {
@@ -116,10 +127,10 @@
   align-items: center;
 }
 
-.startDate {
+.lastWateringDay {
 }
 
-.lastWatering {
+.thisMonth_Watering_times {
   margin-left: 30px;
   margin-right: 30px;
 }

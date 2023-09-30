@@ -4,6 +4,7 @@ import { useModal } from '../hooks/useModal';
 
 import NaturePeopleIcon from '@mui/icons-material/NaturePeople';
 import { VscCloudUpload } from 'react-icons/vsc';
+import { WaterChart } from './WaterChart';
 
 import { TbPlantOff } from 'react-icons/tb';
 import { FaRegSadCry } from 'react-icons/fa';
@@ -13,6 +14,7 @@ import { AiOutlineSwapLeft } from 'react-icons/ai';
 import { PiLeafDuotone } from 'react-icons/pi';
 import { GiWateringCan } from 'react-icons/gi';
 import './Details.scss';
+// import { WateringHeatmap } from './WateringHeatmap';
 
 type PlantInfo = {
   id: string;
@@ -49,24 +51,30 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
           {plant.iconUrl ? (
             <img src={plant.iconUrl} alt={plant.name} className="plant_img" />
           ) : null}
-          <h1 id="plant__title">{plant.name}</h1>
+          <div id="plant__name" className="plant__name_flex">
+            <h1>{plant.name}</h1>
+            <span>({plant.startDate.toLocaleDateString()} ～ )</span>
+          </div>
           <div className="flex plant__details">
-            <div className="startDate">
-              <span className="">Start Date</span>
-              <p>{plant.startDate.toLocaleDateString()}</p>
-            </div>
-            <div className="lastWatering">
-              <span className="flex">Last Watering</span>
+            <div className="lastWateringDay">
+              <span className="flex">Watered</span>
               <p className="flex">
-                2023/9/28
-                <GiWateringCan
+                2023/9/28 {/*後で「水やりした日」をいれる*/}
+                {/* <GiWateringCan
                   className="fa-solid fa-location-dot"
                   color="skyblue"
-                />
+                /> */}
+              </p>
+            </div>
+            <div className="thisMonth_Watering_times">
+              <span className="">This Month</span>
+              <p className="flex">
+                4 {/*後で「今月の水やり回数」をいれる*/}
+                <GiWateringCan className="icon" color="blue" />
               </p>
             </div>
             <div className="leafCount">
-              <span className="">Leaf Count</span>
+              <span className="">Leaves</span>
               <p className="flex">
                 {plant.leafCount}
                 <PiLeafDuotone className="icon" color="green" />
@@ -79,6 +87,8 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
               前回水が少し残ってたから、次回は少なめにして様子を確認してみる
             </p>
           </div>
+          <WaterChart />
+
           <Link to={'/Plants'}>
             <button className="back__btn flex">
               <span>Back</span>
