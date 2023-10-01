@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useModal } from '../hooks/useModal';
 
 import NaturePeopleIcon from '@mui/icons-material/NaturePeople';
 import { VscCloudUpload } from 'react-icons/vsc';
-import { WaterChart } from './WaterChart';
 
 import { TbPlantOff } from 'react-icons/tb';
 import { FaRegSadCry } from 'react-icons/fa';
@@ -14,6 +13,8 @@ import { AiOutlineSwapLeft } from 'react-icons/ai';
 import { PiLeafDuotone } from 'react-icons/pi';
 import { GiWateringCan } from 'react-icons/gi';
 import './Details.scss';
+import { WaterChart } from './WaterChart';
+import { LeafChart } from './LeafChart';
 // import { WateringHeatmap } from './WateringHeatmap';
 
 type PlantInfo = {
@@ -35,13 +36,14 @@ type InfoProps = {
 export const Details: React.FC<InfoProps> = ({ plantsData }) => {
   const { id } = useParams<{ id: string }>();
   const { Modal, openModal, closeModal, show } = useModal();
+  const [open, setOpen] = useState(false);
 
   if (!id) {
     return <p>ID Not Specified</p>;
   }
 
   // idに基づいて選ばれた植物のデータを取得する
-  console.log(plantsData);
+  // console.log(plantsData);
   const plant = plantsData.find((plant) => plant.id === id);
 
   return (
@@ -87,19 +89,47 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
               前回水が少し残ってたから、次回は少なめにして様子を確認してみる
             </p>
           </div>
-          <WaterChart />
-
-          <Link to={'/Plants'}>
-            <button className="back__btn flex">
-              <span>Back</span>
-              <AiOutlineSwapLeft className="icon" />
-            </button>
-          </Link>
-          <div className="flex delete__icon">
+          <div>
+            <LeafChart />
+            {/* <WaterChart /> */}
+          </div>
+          {/* <div className="flex delete__icon">
             <button className="delete__button" onClick={openModal}>
               <TbPlantOff className="icon fa-solid fa-plus" />
             </button>
+          </div> */}
+          <div className="flex  delete__icon">
+            <button className="delete__button" onClick={() => setOpen(!open)}>
+              <TbPlantOff className="icon fa-solid fa-plus relative" />
+            </button>
+            {open && (
+              <div className="action_navbar">
+                <nav className="Navbar">
+                  <ul>
+                    <li
+                      onClick={() => setOpen(!open)}
+                      className="p-2 text-lg  rounded-lg hover:bg-blue-100 flex justify-between"
+                    >
+                      <span className="Top-button">Count</span>
+                    </li>
+                    <li
+                      onClick={() => setOpen(!open)}
+                      className="p-2 text-lg  rounded-lg hover:bg-blue-100 flex justify-between"
+                    >
+                      <span className="Plants-button">Watering</span>
+                    </li>
+                    <li
+                      onClick={() => setOpen(!open)}
+                      className="p-2 text-lg  rounded-lg hover:bg-blue-100 flex justify-between"
+                    >
+                      <span className="History-button">Delete</span>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            )}
           </div>
+
           <div className="m-8">
             <Modal show={show}>
               <div className="modal">
@@ -108,6 +138,12 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
               </div>
             </Modal>
           </div>
+          <Link to={'/Plants'}>
+            <button className="back__btn flex">
+              <span>Back</span>
+              <AiOutlineSwapLeft className="icon" />
+            </button>
+          </Link>
         </div>
       ) : (
         <p className="setup__p">Plant Not Found</p>

@@ -4,6 +4,7 @@ import 'chartjs-chart-matrix';
 
 import 'chartjs-plugin-datalabels';
 import 'chartjs-adapter-moment';
+import 'chart.js/auto';
 
 import {
   Chart,
@@ -30,6 +31,7 @@ export const WaterChart = () => {
   const chartRef = useRef(null); // チャートのインスタンスを保持するためのref
   const canvasRef = useRef(null);
   const chartInstance = useRef(null);
+
   useEffect(() => {
     if (canvasRef.current) {
       const context = canvasRef.current.getContext('2d');
@@ -250,7 +252,7 @@ export const WaterChart = () => {
       <div className="chartMenu"></div>
       <div className="chartCard">
         <div className="chartBox">
-          <Line data={data} options={options} ref={chartRef} />
+          <Line data={data} options={options} ref={canvasRef} />
         </div>
       </div>
     </div>
