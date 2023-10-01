@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Notification } from '../molecules/Notification';
 import myImage from '../../LoginAssets/leaf-logo.png';
+import './Navbar.scss';
 
 type PlantInfo = {
   id: string;
@@ -30,7 +31,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   setIsLogin,
 }) => {
   const location = useLocation(); // 現在のURLのパスを取得
-  console.log(location.pathname);
+  // console.log(location.pathname);
 
   const [open, setOpen] = useState(false);
   const imgRef = useRef<HTMLImageElement | null>(null);
@@ -76,14 +77,14 @@ export const Navbar: React.FC<NavbarProps> = ({
                 ref={menuRef}
                 className="bg-white p-4 w-52 shadow-lg absolute -left-14 top-24 rounded-lg"
               >
-                <nav>
+                <nav className="Navbar">
                   <ul>
                     <Link
                       to="/"
                       onClick={() => setOpen(!open)}
                       className="p-2 text-lg  rounded-lg hover:bg-blue-100 flex justify-between"
                     >
-                      <span>Top</span>
+                      <span className="Top-button">Top</span>
                       {isActive('/') && <span>✔️</span>}
                     </Link>
                     <Link
@@ -91,7 +92,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       onClick={() => setOpen(!open)}
                       className="p-2 text-lg  rounded-lg hover:bg-blue-100 flex justify-between"
                     >
-                      <span>Plants</span>
+                      <span className="Plants-button">Plants</span>
                       {isActive('/Plants') && <span>✔️</span>}
                     </Link>
                     <Link
@@ -99,7 +100,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       onClick={() => setOpen(!open)}
                       className="p-2 text-lg  rounded-lg hover:bg-blue-100 flex justify-between"
                     >
-                      <span>History</span>
+                      <span className="History-button">History</span>
                       {isActive('/History') && <span>✔️</span>}
                     </Link>
                     {isLogin ? (
@@ -111,7 +112,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                         }}
                         className="p-2 text-lg  rounded-lg hover:bg-blue-100 flex justify-between"
                       >
-                        <span>Logout</span>
+                        <span className="Logout-button">Logout</span>
                         {isActive('/Logout') && <span>✔️</span>}
                       </Link>
                     ) : (

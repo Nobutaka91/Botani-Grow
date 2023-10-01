@@ -38,7 +38,6 @@ export const Card: React.FC<PlantInfo> = ({
           </span>
           {/* のちほどコメントも追加 */}
           {/* <p>{comment}</p> */}
-          <p>前回水が少し残ってたから、次回は少なめにして様子を確認してみる</p>
         </div>
       </div>
     </Link>

@@ -101,12 +101,24 @@
   display: flex;
   justify-content: end;
   align-items: center;
+  position: relative;
 
   .delete__button .fa-solid {
     font-size: 40px;
     color: var(--blackColor);
 
     transition: all 0.5s;
+
+    .action_navbar {
+      position: absolute;
+      right: 0px;
+      top: -100px;
+      background-color: white;
+      padding: 16px;
+      width: 210px;
+      border-radius: 8px;
+      // bg-white p-4 w-52 shadow-lg absolute left-10 top-100 rounded-lg
+    }
   }
 
   .fa-solid:hover {
