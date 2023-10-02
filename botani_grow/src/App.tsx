@@ -80,7 +80,7 @@ function App() {
           />
         </div>
       )}
-      <div className="mt-2 mb-80 overflow-y-auto">
+      <div className=" mb-80 overflow-y-auto">
         <Routes>
           <Route
             path="/"

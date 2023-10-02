@@ -10,7 +10,7 @@ import { FaRegSadCry } from 'react-icons/fa';
 import { IoMdNotifications } from 'react-icons/io';
 import { IoIosAddCircleOutline } from 'react-icons/io';
 import { AiOutlineSwapLeft } from 'react-icons/ai';
-import { PiLeafDuotone } from 'react-icons/pi';
+import { PiLeafDuotone, PiPottedPlantDuotone } from 'react-icons/pi';
 import { GiWateringCan } from 'react-icons/gi';
 import './Details.scss';
 import { WaterChart } from './WaterChart';
@@ -47,7 +47,7 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
   const plant = plantsData.find((plant) => plant.id === id);
 
   return (
-    <div>
+    <div className="pt-14">
       {plant ? (
         <div>
           {plant.iconUrl ? (
@@ -83,6 +83,7 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
               </p>
             </div>
           </div>
+
           <div className="lastCondition">
             <span className="condition_expression">😊</span>
             <p className="condition_memo">
@@ -98,31 +99,34 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
               <TbPlantOff className="icon fa-solid fa-plus" />
             </button>
           </div> */}
-          <div className="flex  delete__icon">
-            <button className="delete__button" onClick={() => setOpen(!open)}>
-              <TbPlantOff className="icon fa-solid fa-plus relative" />
+          <div className="relative  action__icon">
+            <button className="action__button" onClick={() => setOpen(!open)}>
+              <PiPottedPlantDuotone className=" icon fa-solid fa-plus" />
             </button>
             {open && (
-              <div className="action_navbar">
+              <div className="absolute bottom-full right-8 mt-2 shadow-lg action_navbar">
                 <nav className="Navbar">
                   <ul>
                     <li
                       onClick={() => setOpen(!open)}
-                      className="p-2 text-lg  rounded-lg hover:bg-blue-100 flex justify-between"
+                      className="p-2 text-lg  rounded-lg hover:bg-lime-100 flex gap-x-2"
                     >
-                      <span className="Top-button">Count</span>
+                      <PiLeafDuotone className="icon" color="green" />
+                      <span className="count-button">Count</span>
                     </li>
                     <li
                       onClick={() => setOpen(!open)}
-                      className="p-2 text-lg  rounded-lg hover:bg-blue-100 flex justify-between"
+                      className="p-2 text-lg  rounded-lg hover:bg-lime-100 flex gap-x-2"
                     >
-                      <span className="Plants-button">Watering</span>
+                      <GiWateringCan className="icon" color="blue" />
+                      <span className="watering-button">Watering</span>
                     </li>
                     <li
                       onClick={() => setOpen(!open)}
-                      className="p-2 text-lg  rounded-lg hover:bg-blue-100 flex justify-between"
+                      className="p-2 text-lg  rounded-lg hover:bg-lime-100 flex gap-x-2"
                     >
-                      <span className="History-button">Delete</span>
+                      <TbPlantOff className="icon" color="red" />
+                      <span className="delete-button">Delete</span>
                     </li>
                   </ul>
                 </nav>
@@ -140,8 +144,8 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
           </div>
           <Link to={'/Plants'}>
             <button className="back__btn flex">
-              <span>Back</span>
               <AiOutlineSwapLeft className="icon" />
+              <span>Back</span>
             </button>
           </Link>
         </div>

@@ -60,29 +60,29 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, []);
 
   return (
-    <header className="pt-4">
-      <div className="bg-gray-200 flex justify-between items-center align-items-center">
+    <header className="fixed w-full max-w-6xl mx-auto  inset-x-0">
+      <div className=" flex justify-between items-center align-items-center backdrop-filter backdrop-blur-lg">
         <div className="flex">
-          <h1>Botani-grow</h1>
+          <h1 className="pl-12">Botani-grow</h1>
           <div className="relative ml-4">
             <img
               ref={imgRef}
               onClick={() => setOpen(!open)}
               src={myImage}
               alt="icon"
-              className="h-20 w-20 object-cover border-4 border-lime-100 bg-lime-400 rounded-full cursor-pointer"
+              className="h-16 w-16 object-cover border-4 border-lime-100 bg-lime-400 rounded-full cursor-pointer"
             />
             {open && (
               <div
                 ref={menuRef}
-                className="bg-white p-4 w-52 shadow-lg absolute -left-14 top-24 rounded-lg"
+                className="bg-white p-4 w-52 shadow-lg absolute left-4 top-16 rounded-lg"
               >
                 <nav className="Navbar">
                   <ul>
                     <Link
                       to="/"
                       onClick={() => setOpen(!open)}
-                      className="p-2 text-lg  rounded-lg hover:bg-blue-100 flex justify-between"
+                      className="p-2 text-lg  rounded-lg hover:bg-lime-100 flex justify-between"
                     >
                       <span className="Top-button">Top</span>
                       {isActive('/') && <span>✔️</span>}
@@ -90,7 +90,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <Link
                       to="/Plants"
                       onClick={() => setOpen(!open)}
-                      className="p-2 text-lg  rounded-lg hover:bg-blue-100 flex justify-between"
+                      className="p-2 text-lg  rounded-lg hover:bg-lime-100 flex justify-between"
                     >
                       <span className="Plants-button">Plants</span>
                       {isActive('/Plants') && <span>✔️</span>}
@@ -98,7 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <Link
                       to="/History"
                       onClick={() => setOpen(!open)}
-                      className="p-2 text-lg  rounded-lg hover:bg-blue-100 flex justify-between"
+                      className="p-2 text-lg  rounded-lg hover:bg-lime-100 flex justify-between"
                     >
                       <span className="History-button">History</span>
                       {isActive('/History') && <span>✔️</span>}
@@ -110,7 +110,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                           setOpen(!open);
                           setIsLogin(false); // ログアウト処理
                         }}
-                        className="p-2 text-lg  rounded-lg hover:bg-blue-100 flex justify-between"
+                        className="p-2 text-lg  rounded-lg hover:bg-lime-100 flex justify-between"
                       >
                         <span className="Logout-button">Logout</span>
                         {isActive('/Logout') && <span>✔️</span>}
@@ -121,9 +121,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                         onClick={() => {
                           setOpen(!open);
                         }}
-                        className="p-2 text-lg  rounded-lg hover:bg-blue-100 flex justify-between"
+                        className="p-2 text-lg  rounded-lg hover:bg-lime-100 flex justify-between"
                       >
-                        <span>Login</span>
+                        <span className="Login-button">Login</span>
                         {isActive('/Login') && <span>✔️</span>}
                       </Link>
                     )}
@@ -133,7 +133,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             )}
           </div>
         </div>
-        <div className="mr-7 -mb-8">
+        <div className="mr-7 -mb-4">
           <Notification />
         </div>
       </div>

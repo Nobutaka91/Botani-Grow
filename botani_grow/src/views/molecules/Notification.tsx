@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import LocalFloristTwoToneIcon from '@mui/icons-material/LocalFloristTwoTone';
 import IconButton from '@mui/material/IconButton';
-import { IoMdNotifications } from 'react-icons/io';
+import { TbDropletQuestion } from 'react-icons/tb';
 
 export const Notification = () => {
   const [open, setOpen] = useState(false);
@@ -37,9 +37,9 @@ export const Notification = () => {
               setOpen(!open);
             }}
           >
-            <IoMdNotifications
+            <TbDropletQuestion
               type="checkbox"
-              className="cursor-pointer w-full h-full font-medium text-lime-600"
+              className="cursor-pointer w-full h-full font-medium text-blue-600"
             />
           </IconButton>
         </div>
@@ -59,16 +59,16 @@ export const Notification = () => {
               </p>
             </div>
             <div className="">
-              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-blue-100">
+              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100">
                 🥀Rose may be lacking water.
               </p>
-              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-blue-100">
+              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100">
                 🌿 Rose may be lacking water.
               </p>
-              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-blue-100">
+              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100">
                 😵 Rose may be lacking water.
               </p>
-              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-blue-100">
+              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100">
                 😵 Rose may be lacking water.
               </p>
             </div>
