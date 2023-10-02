@@ -29,7 +29,7 @@ export const Plants: React.FC<PlantProps> = ({ plantsData }) => {
   const { Modal, openModal, closeModal, show } = useModal(); // 後ほど, 新規登録フォームをmodalで表示させる
 
   return (
-    <div>
+    <div className="pt-14">
       <h1 id="title">Plants</h1>
       <div className="flex plants__icons">
         <button className="add_button">

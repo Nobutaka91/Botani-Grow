@@ -3,11 +3,8 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
-      // colors: {
-      //   green: '#86efac',
-      //   gray: {
-      //     100: '#ffffff2e',
-      //   },
+      // backgroundColor: {
+      //   'white-opacity-75': 'rgba(255, 255, 255, 0.7)',
       // },
     },
     fontFamily: {

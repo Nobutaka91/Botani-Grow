@@ -21,7 +21,7 @@
 
     .icon {
       color: var(--blackColor);
-      transform: translateX(5px);
+      transform: translateX(-5px);
     }
   }
 }
@@ -56,8 +56,8 @@
 // }
 
 .plant_img {
-  width: 230px;
-  height: 230px;
+  width: 180px;
+  height: 180px;
   box-shadow: 2px 6px 10px 3px #777777;
   box-shadow: rgb(0, 0, 0, 0.3) 3px 3px 6px 0px inset,
     rgba(0, 0, 0, 0.3) -3px -3px 6px 1px inset;
@@ -92,7 +92,7 @@
   }
 }
 
-.delete__icon {
+.action__icon {
   width: auto;
   height: 40px;
   margin-right: 40px;
@@ -101,32 +101,84 @@
   display: flex;
   justify-content: end;
   align-items: center;
-  position: relative;
-
-  .delete__button .fa-solid {
-    font-size: 40px;
-    color: var(--blackColor);
-
-    transition: all 0.5s;
-
-    .action_navbar {
-      position: absolute;
-      right: 0px;
-      top: -100px;
-      background-color: white;
-      padding: 16px;
-      width: 210px;
-      border-radius: 8px;
-      // bg-white p-4 w-52 shadow-lg absolute left-10 top-100 rounded-lg
-    }
-  }
-
-  .fa-solid:hover {
-    cursor: pointer;
-    color: #ff4c29;
-    transform: scale(1.1);
-  }
+  // position: relative;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
 }
+
+.action__button {
+  // position: fixed;
+  // bottom: 20px;
+  // right: 20px;
+}
+
+.action__button .fa-solid {
+  font-size: 25px;
+  color: var(--whiteColor);
+  background-color: var(--primaryColor);
+  border-radius: 50%;
+  padding: 8px;
+  width: 45px;
+  height: 45px;
+  transition: ease 0.3s;
+  align-items: center;
+  // justify-content: center;
+  // position: fixed;
+}
+
+.fa-solid:hover {
+  cursor: pointer;
+  background: var(--hoverColor);
+  color: var(--blackColor);
+  // transform: scale(1.1);
+}
+
+.action_navbar {
+  // position: absolute;
+
+  // top: -100px;
+  background-color: var(--whiteColor);
+  padding: 16px;
+  width: 210px;
+  border-radius: 12px;
+  // bg-white p-4 w-52 shadow-lg absolute left-10 top-100 rounded-lg
+  // position: fixed;
+  z-index: 10;
+  position: absolute;
+  bottom: calc(100% + 20px);
+  right: 10px;
+  // border: 0.5px solid var(--greyText);
+}
+//
+// .back__btn {
+//   width: auto;
+//   padding: 0.8rem;
+//   background: var(--primaryColor);
+//   border-radius: 10px;
+//   color: var(--whiteColor);
+//   align-items: center;
+//   justify-content: center;
+//   font-size: 16px;
+//   gap: 0.5rem;
+//   transition: 0.3s ease;
+
+//   .icon {
+//     font-size: 25px;
+//     transition: 0.3s ease;
+//   }
+
+//   &:hover {
+//     background: var(--hoverColor);
+//     color: var(--blackColor);
+
+//     .icon {
+//       color: var(--blackColor);
+//       transform: translateX(-5px);
+//     }
+//   }
+// }
+//
 
 .plant__details {
   width: auto;
