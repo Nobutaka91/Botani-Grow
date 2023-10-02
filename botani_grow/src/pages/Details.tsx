@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useModal } from '../hooks/useModal';
 
@@ -37,6 +37,33 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
   const { id } = useParams<{ id: string }>();
   const { Modal, openModal, closeModal, show } = useModal();
   const [open, setOpen] = useState(false);
+  const actionButtonRef = useRef<HTMLButtonElement | null>(null);
+  const navigationRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const targetElement = e.target as HTMLElement;
+
+      if (
+        actionButtonRef.current &&
+        actionButtonRef.current.contains(targetElement)
+      )
+        return;
+      if (
+        navigationRef.current &&
+        navigationRef.current.contains(targetElement)
+      )
+        return;
+
+      setOpen(false);
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   if (!id) {
     return <p>ID Not Specified</p>;
@@ -62,10 +89,6 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
               <span className="flex">Watered</span>
               <p className="flex">
                 2023/9/28 {/*後で「水やりした日」をいれる*/}
-                {/* <GiWateringCan
-                  className="fa-solid fa-location-dot"
-                  color="skyblue"
-                /> */}
               </p>
             </div>
             <div className="thisMonth_Watering_times">
@@ -94,17 +117,20 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
             <LeafChart />
             {/* <WaterChart /> */}
           </div>
-          {/* <div className="flex delete__icon">
-            <button className="delete__button" onClick={openModal}>
-              <TbPlantOff className="icon fa-solid fa-plus" />
-            </button>
-          </div> */}
+
           <div className="relative  action__icon">
-            <button className="action__button" onClick={() => setOpen(!open)}>
+            <button
+              className="action__button"
+              onClick={() => setOpen(!open)}
+              ref={actionButtonRef}
+            >
               <PiPottedPlantDuotone className=" icon fa-solid fa-plus" />
             </button>
             {open && (
-              <div className="absolute bottom-full right-8 mt-2 shadow-lg action_navbar">
+              <div
+                className="absolute bottom-full right-8 mt-2 shadow-lg action_navbar"
+                ref={navigationRef}
+              >
                 <nav className="Navbar">
                   <ul>
                     <li
