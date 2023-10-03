@@ -70,7 +70,7 @@ function App() {
   }, []);
 
   return (
-    <div className="max-w-6xl mx-auto px-6">
+    <div className="max-w-6xl mx-auto px-6 ">
       {!isNavbarHiddenPage && (
         <div className="z-50 ">
           <Navbar

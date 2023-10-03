@@ -1,11 +1,23 @@
 import React, { useMemo, useEffect, useRef } from 'react';
-import { Line } from 'react-chartjs-2';
+// import { Line } from 'react-chartjs-2';
 import 'chartjs-chart-matrix';
 
 import 'chartjs-plugin-datalabels';
 import 'chartjs-adapter-moment';
 import 'chart.js/auto';
 
+import { Chart as ChartComponent } from 'react-chartjs-2';
+import { MatrixController, MatrixElement } from 'chartjs-chart-matrix';
+
+// ↑component外、↓component内
+
+{
+  /* <ChartComponent
+    type="matrix"
+    data={data}
+    options={options}
+/> */
+}
 import {
   Chart,
   TimeScale,
@@ -24,7 +36,9 @@ Chart.register(
   LineElement,
   PointElement,
   Tooltip,
-  Legend
+  Legend,
+  MatrixController,
+  MatrixElement
 );
 
 export const WaterChart = () => {
@@ -186,7 +200,7 @@ export const WaterChart = () => {
         round: 'week',
         isoWeekDay: 1,
         displayFormats: {
-          week: 'MMM dd',
+          month: 'MMM',
         },
       },
       ticks: {
@@ -248,11 +262,18 @@ export const WaterChart = () => {
   };
 
   return (
-    <div>
-      <div className="chartMenu"></div>
-      <div className="chartCard">
-        <div className="chartBox">
-          <Line data={data} options={options} ref={canvasRef} />
+    <div className="waterChartContainer">
+      <div className="waterChartMenu">
+        <span>"x" waterings in the last year.</span>
+      </div>
+      <div className="waterChartCard">
+        <div className="waterChartBox">
+          <ChartComponent
+            type="matrix"
+            data={data}
+            options={options}
+            ref={canvasRef}
+          />
         </div>
       </div>
     </div>
