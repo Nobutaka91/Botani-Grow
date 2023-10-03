@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Bar } from 'react-chartjs-2';
-import 'chartjs-adapter-date-fns';
-import moment from 'moment';
+import 'chartjs-adapter-moment';
+// import moment from 'moment';
 import './LeafChart.scss';
 import { Chart } from 'chart.js';
 import 'chart.js/auto';

@@ -1,25 +1,38 @@
-.chartMenu {
-  width: 100vw;
-  height: 40px;
+.waterChartContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // width: 100vw;
+}
+
+.waterChartMenu {
+  width: 700px;
+  height: 1rem;
+  // margin-left: calc((100vw - 700px) / 2);
+  padding-top: 50px;
+  padding-bottom: 25px;
+  text-align: left;
   // background: #1a1a1a;
   // color: rgba(54, 162, 235, 1);
 }
-.chartMenu p {
-  padding: 0px;
-  font-size: 20px;
+
+.waterChartMenu p {
+  // padding: 0px;
+  // font-size: 1rem;
 }
-.chartCard {
+
+.waterChartCard {
   // height: calc(100vh - 40px);
   // background: rgba(54, 162, 235, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.chartBox {
+.waterChartBox {
   width: 700px;
   height: 110px; /* ← chartの高さを低くする */
-  padding: 10px;
+  padding: 15px;
   border-radius: 20px;
-  border: solid 3px rgba(54, 162, 235, 1);
-  //   background: white;
+  border: solid 3px var(--bgColor);
+  margin-bottom: 50px;
 }

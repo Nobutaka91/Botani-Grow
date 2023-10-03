@@ -114,11 +114,12 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
             </p>
           </div>
           <div>
+            <WaterChart />
             <LeafChart />
-            {/* <WaterChart /> */}
           </div>
 
-          <div className="relative  action__icon">
+          <div className="relative  action__icon flex flex-col items-center">
+            <div className="text-xs text-gray-500 mb-1">Plant Care</div>
             <button
               className="action__button"
               onClick={() => setOpen(!open)}
