@@ -9,6 +9,7 @@ import 'chart.js/auto';
 import { Chart as ChartComponent } from 'react-chartjs-2';
 import { MatrixController, MatrixElement } from 'chartjs-chart-matrix';
 
+import { BiSolidCheckbox } from 'react-icons/bi';
 // ↑component外、↓component内
 
 {
@@ -73,6 +74,9 @@ export const WaterChart = () => {
   function isoDayOfWeek(dt) {
     let wd = dt.getDay(); // 0-6(日-土)を取得し、wdに代入
     wd = ((wd + 6) % 7) + 1; // 1-7(月-日)に変換
+    // if (wd === 0) {
+    //   wd = 7; // 日曜日を7として扱う
+    // }
     return '' + wd; // wd(数値)を文字列として返すために ''と連結する
   }
   const data = useMemo(() => {
@@ -169,10 +173,10 @@ export const WaterChart = () => {
         unit: 'day',
         round: 'day',
         isoWeek: 1,
-        parser: 'i',
+        // parser: 'i',
         parser: 'YYYY-MM-DD',
         displayFormats: {
-          day: 'dd',
+          day: 'ddd',
         },
       },
       reverse: true,
@@ -182,8 +186,12 @@ export const WaterChart = () => {
         autoSkip: true,
         padding: 1,
         font: {
-          size: 7, // y軸のフォントサイズ
+          size: 10, // y軸のフォントサイズ
         },
+        // callbacks: function (value, index, values) {
+        //   const order = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        //   return order[index];
+        // },
       },
       grid: {
         display: false, // grid横線が消える
@@ -200,7 +208,7 @@ export const WaterChart = () => {
         round: 'week',
         isoWeekDay: 1,
         displayFormats: {
-          month: 'MMM',
+          month: 'MMMM',
         },
       },
       ticks: {
@@ -228,6 +236,22 @@ export const WaterChart = () => {
     plugins: {
       legend: {
         display: false, // 表題の表示をオフ
+        // position: 'bottom-right',
+        // labels: {
+        //   boxWidth: 10,
+        //   boxHeight: 10,
+        //   padding: 5,
+        //   font: {
+        //     size: 10,
+        //   },
+        //   generateLabels: function (chart) {
+        //     return [
+        //       { text: 'Much', fillStyle: 'rgba(61, 129, 228, 1)' },
+        //       { text: 'Much', fillStyle: 'rgba(84, 214, 228, 1)' },
+        //       { text: 'Much', fillStyle: 'rgba(187, 224, 228, 1)' },
+        //     ];
+        //   },
+        // },
       },
       tooltip: {
         enabled: true,
@@ -267,13 +291,43 @@ export const WaterChart = () => {
         <span>"x" waterings in the last year.</span>
       </div>
       <div className="waterChartCard">
-        <div className="waterChartBox">
+        <div className="waterChartBox flex">
           <ChartComponent
             type="matrix"
             data={data}
             options={options}
             ref={canvasRef}
           />
+          <div className="ml-8 border border-black-500 py-2 pr-12 rounded-md">
+            <span className="text-xs">Total Watering</span>
+            <p className="flex">
+              <span>
+                <BiSolidCheckbox
+                  className="icon"
+                  style={{ color: 'rgba(61, 129, 228, 1)' }}
+                />
+              </span>
+              :8
+            </p>
+            <p className="flex">
+              <span>
+                <BiSolidCheckbox
+                  className="icon"
+                  style={{ color: 'rgba(84, 214, 228, 1)' }}
+                />
+              </span>
+              :12
+            </p>
+            <p className="flex">
+              <span>
+                <BiSolidCheckbox
+                  className="icon"
+                  style={{ color: 'rgba(187, 224, 228, 1)' }}
+                />
+              </span>
+              :18
+            </p>
+          </div>
         </div>
       </div>
     </div>

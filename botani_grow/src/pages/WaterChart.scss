@@ -9,7 +9,7 @@
   width: 700px;
   height: 1rem;
   // margin-left: calc((100vw - 700px) / 2);
-  padding-top: 50px;
+  padding-top: 25px;
   padding-bottom: 25px;
   text-align: left;
   // background: #1a1a1a;
@@ -29,10 +29,11 @@
   justify-content: center;
 }
 .waterChartBox {
-  width: 700px;
-  height: 110px; /* ← chartの高さを低くする */
-  padding: 15px;
-  border-radius: 20px;
+  width: 650px;
+  height: 120px; /* ← chartの高さを低くする */
+  padding: 10px 0 10px 0;
+  margin: 15px;
+  border-radius: 10px;
   border: solid 3px var(--bgColor);
   margin-bottom: 50px;
 }

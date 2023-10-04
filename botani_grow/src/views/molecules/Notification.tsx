@@ -59,16 +59,16 @@ export const Notification = () => {
               </p>
             </div>
             <div className="">
-              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100">
+              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100 cursor-pointer">
                 🥀Rose may be lacking water.
               </p>
-              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100">
+              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100 cursor-pointer">
                 🌿 Rose may be lacking water.
               </p>
-              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100">
+              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100 cursor-pointer">
                 😵 Rose may be lacking water.
               </p>
-              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100">
+              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100 cursor-pointer">
                 😵 Rose may be lacking water.
               </p>
             </div>

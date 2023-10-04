@@ -70,15 +70,15 @@
   //   background-position: center;
   overflow: hidden;
   margin: auto;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 #plant__name {
   // done
-  font-size: 25px;
+  font-size: 15px;
   text-align: center;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   color: var(--blackColor);
 }
 
@@ -105,7 +105,7 @@
   // position: relative;
   position: fixed;
   top: 180px;
-  left: 150px;
+  left: 45px;
 }
 
 .action__button {
@@ -140,14 +140,14 @@
 
   // top: -100px;
   background-color: var(--whiteColor);
-  padding: 16px;
-  width: 210px;
+  padding: 10px;
+  width: 150px;
   border-radius: 12px;
   // bg-white p-4 w-52 shadow-lg absolute left-10 top-100 rounded-lg
   // position: fixed;
   z-index: 10;
   position: absolute;
-  bottom: calc(100% - 200px);
+  bottom: calc(100% - 240px);
   left: 10px;
   // border: 0.5px solid var(--greyText);
 }
@@ -188,7 +188,7 @@
   margin-bottom: 20px;
   margin-top: 20px;
   display: flex;
-  justify-content: center;
+  // justify-content: center;
   align-items: center;
 }
 
@@ -200,20 +200,20 @@
   margin-right: 30px;
 }
 
-.leafCount {
+.next_watering_day {
 }
 
 .lastCondition {
-  border-top: 1px solid var(--bgColor);
-  text-align: center;
+  // border-top: 1px solid var(--bgColor);
+  // text-align: center;
   margin-top: 10px;
-  padding-top: 10px;
+  padding: 10px 0 0 10px;
 
   .condition_expression {
     display: block;
     // margin-top: 10px;
     margin-bottom: 10px;
-    font-size: 24px;
+    font-size: 14px;
   }
 
   .condition_memo {
