@@ -48,7 +48,7 @@ export const LeafChart = () => {
     { x: Date.parse('2023-09-01 00:00:00 GMT+0900'), y: 15 },
     { x: Date.parse('2023-10-01 00:00:00 GMT+0900'), y: 16 },
     { x: Date.parse('2023-11-01 00:00:00 GMT+0900'), y: 9 },
-    { x: Date.parse('2023-12-01 00:00:00 GMT+0900'), y: 8 },
+    { x: Date.parse('2023-12-01 00:00:00 GMT+0900'), y: 24 },
   ];
 
   const data = {
@@ -110,6 +110,27 @@ export const LeafChart = () => {
     <div className="leafChartCard">
       <div className="leafChartBox">
         <Bar data={data} options={options} ref={canvasRef} />
+        {/* <div className="ml-8 border border-black-500 py-2 pr-12 rounded-md">
+          <span className="text-xs">Total Watering</span>
+          <p className="flex">
+            <span>
+              <BiSolidCheckbox
+                className="icon"
+                style={{ color: 'rgba(61, 129, 228, 1)' }}
+              />
+            </span>
+            :8
+          </p>
+          <p className="flex">
+            <span>
+              <BiSolidCheckbox
+                className="icon"
+                style={{ color: 'rgba(84, 214, 228, 1)' }}
+              />
+            </span>
+            :12
+          </p>
+        </div> */}
       </div>
     </div>
   );

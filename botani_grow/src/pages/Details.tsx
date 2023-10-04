@@ -7,11 +7,16 @@ import { VscCloudUpload } from 'react-icons/vsc';
 
 import { TbPlantOff } from 'react-icons/tb';
 import { FaRegSadCry } from 'react-icons/fa';
+import { FiEdit } from 'react-icons/fi';
+
 import { IoMdNotifications } from 'react-icons/io';
 import { IoIosAddCircleOutline } from 'react-icons/io';
 import { AiOutlineSwapLeft } from 'react-icons/ai';
 import { PiLeafDuotone, PiPottedPlantDuotone } from 'react-icons/pi';
 import { GiWateringCan } from 'react-icons/gi';
+import { MdWaterDrop } from 'react-icons/md';
+import { FcPlanner } from 'react-icons/fc';
+import { TiStopwatch } from 'react-icons/ti';
 import './Details.scss';
 import { WaterChart } from './WaterChart';
 import { LeafChart } from './LeafChart';
@@ -77,45 +82,75 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
     <div className="pt-14">
       {plant ? (
         <div>
-          {plant.iconUrl ? (
-            <img src={plant.iconUrl} alt={plant.name} className="plant_img" />
-          ) : null}
-          <div id="plant__name" className="plant__name_flex">
-            <h1>{plant.name}</h1>
-            <span>({plant.startDate.toLocaleDateString()} ～ )</span>
-          </div>
-          <div className="flex plant__details">
-            <div className="lastWateringDay">
-              <span className="flex">Watered</span>
-              <p className="flex">
-                2023/9/28 {/*後で「水やりした日」をいれる*/}
-              </p>
+          <div className="flex justify-center gap-12 border-b py-8">
+            <div className="condition_container">
+              <div className="flex plant__details">
+                <div className="lastWateringDay border-r border-gray-200 pr-4">
+                  <span className="flex gap-1">
+                    Watered
+                    <MdWaterDrop
+                      className="icon"
+                      style={{ color: '#add8e6' }}
+                    />
+                  </span>
+                  <p className="flex">
+                    2023/9/28 {/*後で「水やりした日」をいれる*/}
+                  </p>
+                </div>
+                <div className="thisMonth_Watering_times border-r border-gray-200 pr-4">
+                  <span className="flex gap-1">
+                    This Month
+                    <FcPlanner className="icon" />
+                  </span>
+                  <p className="">
+                    4 times {/*後で「今月の水やり回数」をいれる*/}
+                  </p>
+                </div>
+                <div className="next_watering_day">
+                  <span className="flex gap-1">
+                    Next
+                    <TiStopwatch className="icon" color="" />
+                  </span>
+                  <p className="">
+                    2023/10/03 {/*後で「次回の水やり日」をいれる*/}
+                  </p>
+                </div>
+              </div>
+              <div className="lastCondition">
+                <span className="condition_expression">Condition:😊</span>
+                <p className="condition_memo">
+                  前回水が少し残ってたから、次回は少なめにして
+                  <br />
+                  様子を確認してみる
+                </p>
+              </div>
             </div>
-            <div className="thisMonth_Watering_times">
-              <span className="">This Month</span>
-              <p className="flex">
-                4 {/*後で「今月の水やり回数」をいれる*/}
-                <GiWateringCan className="icon" color="blue" />
-              </p>
-            </div>
-            <div className="leafCount">
-              <span className="">Leaves</span>
-              <p className="flex">
-                {plant.leafCount}
-                <PiLeafDuotone className="icon" color="green" />
-              </p>
+            <div className="img_container">
+              <div id="plant__name" className="plant__name_flex">
+                <h1>{plant.name}</h1>
+                <span>({plant.startDate.toLocaleDateString()} ～ )</span>
+                <span className="flex">
+                  <PiLeafDuotone className="icon" color="green" />
+                  {plant.leafCount}
+                </span>
+              </div>
+              {plant.iconUrl ? (
+                <img
+                  src={plant.iconUrl}
+                  alt={plant.name}
+                  className="plant_img"
+                />
+              ) : null}
             </div>
           </div>
 
-          <div className="lastCondition">
-            <span className="condition_expression">😊</span>
-            <p className="condition_memo">
-              前回水が少し残ってたから、次回は少なめにして様子を確認してみる
-            </p>
-          </div>
           <div>
-            <WaterChart />
-            <LeafChart />
+            <div className="border-b py-8">
+              <WaterChart />
+            </div>
+            <div className="mt-4">
+              <LeafChart />
+            </div>
           </div>
 
           <div className="relative  action__icon flex flex-col items-center">
@@ -136,21 +171,31 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
                   <ul>
                     <li
                       onClick={() => setOpen(!open)}
-                      className="p-2 text-lg  rounded-lg hover:bg-lime-100 flex gap-x-2"
+                      className="p-2 text-lg  rounded-lg hover:bg-lime-100 flex gap-x-2 cursor-pointer"
                     >
                       <PiLeafDuotone className="icon" color="green" />
                       <span className="count-button">Count</span>
                     </li>
                     <li
                       onClick={() => setOpen(!open)}
-                      className="p-2 text-lg  rounded-lg hover:bg-lime-100 flex gap-x-2"
+                      className="p-2 text-lg  rounded-lg hover:bg-lime-100 flex gap-x-2 cursor-pointer"
                     >
                       <GiWateringCan className="icon" color="blue" />
                       <span className="watering-button">Watering</span>
                     </li>
                     <li
                       onClick={() => setOpen(!open)}
-                      className="p-2 text-lg  rounded-lg hover:bg-lime-100 flex gap-x-2"
+                      className="p-2 text-lg  rounded-lg hover:bg-lime-100 flex gap-x-2 cursor-pointer"
+                    >
+                      <FiEdit className="icon" color="" />
+                      <span className="delete-button">Edit</span>
+                    </li>
+                    <li
+                      onClick={() => {
+                        setOpen(!open);
+                        openModal();
+                      }}
+                      className="p-2 text-lg  rounded-lg hover:bg-lime-100 flex gap-x-2 cursor-pointer"
                     >
                       <TbPlantOff className="icon" color="red" />
                       <span className="delete-button">Delete</span>
