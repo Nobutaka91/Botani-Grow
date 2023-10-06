@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import LocalFloristTwoToneIcon from '@mui/icons-material/LocalFloristTwoTone';
 import IconButton from '@mui/material/IconButton';
 import { TbDropletQuestion } from 'react-icons/tb';
+import './Notification.scss';
 
 export const Notification = () => {
   const [open, setOpen] = useState(false);
@@ -30,7 +31,7 @@ export const Notification = () => {
   return (
     <div>
       <div className="m-0 p-0 box-border bg-blue-200  w-12 h-12 rounded-full flex justify-center items-center relative">
-        <div>
+        <div className="notification-btn">
           <IconButton
             onClick={(e) => {
               e.stopPropagation();

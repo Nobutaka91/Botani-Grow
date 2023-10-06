@@ -298,7 +298,7 @@ export const WaterChart = () => {
             options={options}
             ref={canvasRef}
           />
-          <div className="ml-8 border border-black-500 py-2 pr-12 rounded-md">
+          {/* <div className="ml-8 border border-black-500 py-2 pr-12 rounded-md">
             <span className="text-xs">Total Watering</span>
             <p className="flex">
               <span>
@@ -327,7 +327,7 @@ export const WaterChart = () => {
               </span>
               :18
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
