@@ -60,7 +60,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, []);
 
   return (
-    <header className="fixed w-full  mx-auto  inset-x-0 border-b border-t-1 border-gray-200 ">
+    <header className="fixed w-full  mx-auto  inset-x-0 border-b border-t-1 border-gray-200 z-50">
       <div className=" flex justify-between items-center align-items-center backdrop-filter backdrop-blur-lg">
         <div className="flex">
           <h1 className="pl-12">Botani-grow</h1>
