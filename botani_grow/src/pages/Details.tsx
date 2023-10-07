@@ -88,7 +88,9 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
   const plant = plantsData.find((plant) => plant.id === id);
 
   const toggleCommentSidebar = () => {
+    console.log('Before toggle', isSidebarOpen);
     setIsSidebarOpen(!isSidebarOpen);
+    console.log('After toggle', isSidebarOpen);
   };
 
   return (
@@ -113,7 +115,7 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
                 className="comment__button"
                 onClick={() => {
                   setOpen(!open);
-                  setIsSidebarOpen(!isSidebarOpen);
+                  toggleCommentSidebar();
                 }}
                 ref={actionButtonRef}
               >

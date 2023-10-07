@@ -8,17 +8,24 @@
   right: 0;
   width: 400px;
   height: 100%;
-  z-index: 40;
+  z-index: 60;
   background-color: var(--inputColor);
-  padding-top: 140px;
+  padding-top: 60px;
   overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+
+  &.open {
+    transform: translateX(0);
+  }
 
   .close-btn {
     background: none;
     font-size: 25px;
     cursor: pointer;
     position: absolute;
-    top: 80px;
+    top: 20px;
     right: 20px;
     // 追加↓
     color: var(--blackColor);
@@ -42,9 +49,8 @@
 
   .comment-input {
     position: relative;
-    // width: 80%;
     margin: auto;
-    // margin-right: auto;
+    padding-left: 0.5rem;
 
     textarea {
       outline: none;
@@ -58,25 +64,44 @@
       font-size: 0.8rem;
       transition: height 0.3s ease;
 
-      &:focus {
+      &.expanded {
         height: 8rem;
         width: 90%;
       }
     }
 
-    .submit-btn {
+    .addComment-btn {
       display: none;
+      // display: block;
       position: absolute;
       bottom: 0.9rem;
-      right: 4rem;
+      right: 3.5rem;
       background-color: var(--hoverColor);
       color: var(--blackColor);
-      padding: 0.5rem 1rem;
+      padding: 0.2rem 0.5rem;
       border-radius: 4px;
+    }
+  }
+
+  .past-comments {
+    margin-top: 20px;
+    border-top: 1px solid var(--bgColor);
+    max-height: 100vh;
+    overflow-y: auto;
+    padding: 0 15px;
+
+    .single-comment {
+      border-bottom: 1px solid var(--bgColor);
+      padding: 10px 10px;
+
+      &:last-child {
+        border-bottom: none;
+      }
     }
   }
 }
 
-.comment-input textarea:focus + .submit-btn {
+.comment-input textarea.expanded + .addComment-btn {
+  z-index: 100;
   display: block;
 }

@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect, useRef } from 'react';
+import React, { useMemo, useEffect, useRef, memo } from 'react';
 // import { Line } from 'react-chartjs-2';
 import 'chartjs-chart-matrix';
 
@@ -42,7 +42,7 @@ Chart.register(
   MatrixElement
 );
 
-export const WaterChart = () => {
+export const WaterChart = React.memo(() => {
   const chartRef = useRef(null); // チャートのインスタンスを保持するためのref
   const canvasRef = useRef(null);
   const chartInstance = useRef(null);
@@ -332,4 +332,4 @@ export const WaterChart = () => {
       </div>
     </div>
   );
-};
+});
