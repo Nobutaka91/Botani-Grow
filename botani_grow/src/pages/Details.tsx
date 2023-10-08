@@ -4,7 +4,7 @@ import { useModal } from '../hooks/useModal';
 
 import NaturePeopleIcon from '@mui/icons-material/NaturePeople';
 import { VscCloudUpload } from 'react-icons/vsc';
-import { TbPlantOff } from 'react-icons/tb';
+import { TbPlantOff, TbPlant } from 'react-icons/tb';
 import { FaRegSadCry } from 'react-icons/fa';
 import { FiEdit } from 'react-icons/fi';
 import { MdEditDocument } from 'react-icons/md';
@@ -22,6 +22,7 @@ import { WaterChart } from './WaterChart';
 import { CommentSidebar } from '../views/organisms/CommentSidebar';
 import { LeafSidebar } from '../views/organisms/LeafSidebar';
 import { PlantInfo } from '../types/plantInfo';
+import { PlantsLinks } from '../views/organisms/PlantsLinks';
 
 import './Details.scss';
 import '../views/organisms/ButtonContainer.scss';
@@ -88,8 +89,9 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
     <div className="pt-14 flex">
       {plant ? (
         <>
-          {/* サイドボタン 4つ　*/}
+          {/* Side-buttons + PlantsLinks　*/}
           <div className="buttonContainer flex-none h-full flex-col">
+            {/* Watering-button　*/}
             <div className="relative  watering__icon flex flex-col ">
               <div className="text-xs text-gray-500 mb-1">Watering</div>
               <button
@@ -100,6 +102,7 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
                 <MdWaterDrop className=" icon fa-solid fa-plus" />
               </button>
             </div>
+            {/* Leaf-button　*/}
             <div className="relative  leafCount__icon flex flex-col ">
               <div className="text-xs text-gray-500 mb-1">Leaf</div>
               <button
@@ -110,6 +113,7 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
                 <TiLeaf className=" icon fa-solid fa-plus" />
               </button>
             </div>
+            {/* Comment-button　*/}
             <div className="relative  comment__icon flex flex-col ">
               <div className="text-xs text-gray-500 mb-1">Memo</div>
               <button
@@ -123,6 +127,7 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
                 <FaRegCommentDots className="icon fa-solid fa-plus" />
               </button>
             </div>
+            {/* Edit-button　*/}
             <div className="relative  edit__icon flex flex-col ">
               <div className="text-xs text-gray-500 mb-1">Edit</div>
               <button
@@ -133,6 +138,9 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
                 <MdEditDocument className=" icon fa-solid fa-plus" />
               </button>
             </div>
+
+            {/* PlantsLinks　*/}
+            <PlantsLinks plantsData={plantsData} currentPlantId={id} />
           </div>
 
           {/* メイン画面 */}

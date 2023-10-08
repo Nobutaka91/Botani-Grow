@@ -1,0 +1,29 @@
+.plantsLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100vh;
+  overflow-y: auto;
+  margin-top: 50px;
+
+  .plantsList-title {
+    font-size: 15px;
+    border-top: 1px solid var(--bgColor);
+    margin: 0 10px;
+    padding: 10px;
+  }
+
+  a {
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: black;
+  }
+
+  .plantLinkIcon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}
