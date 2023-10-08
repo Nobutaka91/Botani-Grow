@@ -4,13 +4,11 @@ import { useModal } from '../hooks/useModal';
 
 import NaturePeopleIcon from '@mui/icons-material/NaturePeople';
 import { VscCloudUpload } from 'react-icons/vsc';
-
 import { TbPlantOff } from 'react-icons/tb';
 import { FaRegSadCry } from 'react-icons/fa';
 import { FiEdit } from 'react-icons/fi';
 import { MdEditDocument } from 'react-icons/md';
 import { FaRegCommentDots } from 'react-icons/fa6';
-
 import { IoMdNotifications } from 'react-icons/io';
 import { IoIosAddCircleOutline } from 'react-icons/io';
 import { AiOutlineSwapLeft } from 'react-icons/ai';
@@ -18,26 +16,15 @@ import { PiLeafDuotone, PiPottedPlantDuotone } from 'react-icons/pi';
 import { GiWateringCan } from 'react-icons/gi';
 import { MdWaterDrop } from 'react-icons/md';
 import { FcPlanner } from 'react-icons/fc';
-import { TiStopwatch } from 'react-icons/ti';
+import { TiStopwatch, TiLeaf } from 'react-icons/ti';
+
 import { WaterChart } from './WaterChart';
-import { LeafChart } from './LeafChart';
-// import { WateringHeatmap } from './WateringHeatmap';
 import { CommentSidebar } from '../views/organisms/CommentSidebar';
+import { LeafSidebar } from '../views/organisms/LeafSidebar';
+import { PlantInfo } from '../types/plantInfo';
 
 import './Details.scss';
 import '../views/organisms/ButtonContainer.scss';
-
-type PlantInfo = {
-  id: string;
-  iconUrl: string | null;
-  name: string;
-  size: string;
-  leafCount: number;
-  wateringCycle: number; // 水やりの頻度(日数)
-  startDate: Date;
-  wateringAmount: string; // 水やりの量(多, ふつう, 少)
-  condition: string; // 前回の状態(良, ふつう, 微妙)
-};
 
 type InfoProps = {
   plantsData: PlantInfo[];
@@ -53,6 +40,7 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
   const actionButtonRef = useRef<HTMLButtonElement | null>(null);
   const navigationRef = useRef<HTMLDivElement | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isLeafSidebarOpen, setIsLeafSidebarOpen] = useState(false);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -84,20 +72,23 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
   }
 
   // idに基づいて選ばれた植物のデータを取得する
-  // console.log(plantsData);
   const plant = plantsData.find((plant) => plant.id === id);
 
   const toggleCommentSidebar = () => {
-    console.log('Before toggle', isSidebarOpen);
     setIsSidebarOpen(!isSidebarOpen);
-    console.log('After toggle', isSidebarOpen);
+    if (isLeafSidebarOpen) setIsLeafSidebarOpen(false);
+  };
+
+  const toggleLeafSidebar = () => {
+    setIsLeafSidebarOpen(!isLeafSidebarOpen);
+    if (isSidebarOpen) setIsSidebarOpen(false);
   };
 
   return (
     <div className="pt-14 flex">
       {plant ? (
         <>
-          {/* サイドボタン 3つ　*/}
+          {/* サイドボタン 4つ　*/}
           <div className="buttonContainer flex-none h-full flex-col">
             <div className="relative  watering__icon flex flex-col ">
               <div className="text-xs text-gray-500 mb-1">Watering</div>
@@ -107,6 +98,16 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
                 ref={actionButtonRef}
               >
                 <MdWaterDrop className=" icon fa-solid fa-plus" />
+              </button>
+            </div>
+            <div className="relative  leafCount__icon flex flex-col ">
+              <div className="text-xs text-gray-500 mb-1">Leaf</div>
+              <button
+                className="leafCount__button"
+                onClick={toggleLeafSidebar}
+                ref={actionButtonRef}
+              >
+                <TiLeaf className=" icon fa-solid fa-plus" />
               </button>
             </div>
             <div className="relative  comment__icon flex flex-col ">
@@ -201,15 +202,12 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
                 ) : null}
               </div>
             </div>
-            {/* チャート 2つ　*/}
-            <div>
-              <div className="border-b py-8">
-                <WaterChart />
-              </div>
-              <div className="mt-4">
-                <LeafChart />
-              </div>
+            {/* Waterヒートマップ */}
+
+            <div className="border-b py-8">
+              <WaterChart />
             </div>
+
             {/* 削除ボタン　*/}
             <div className=" delete__icon ">
               <div className="text-xs text-gray-500 mb-1">Delete</div>
@@ -223,11 +221,20 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
             </div>
           </div>
 
-          {/* サイドバー　*/}
+          {/* Commentサイドバー　*/}
           {isSidebarOpen && (
             <CommentSidebar
               isSidebarOpen={isSidebarOpen}
               toggleCommentSidebar={toggleCommentSidebar}
+            />
+          )}
+
+          {/* Leafサイドバー　*/}
+          {isLeafSidebarOpen && (
+            <LeafSidebar
+              isLeafSidebarOpen={isLeafSidebarOpen}
+              toggleLeafSidebar={toggleLeafSidebar}
+              plant={plant}
             />
           )}
 

@@ -110,27 +110,6 @@ export const LeafChart = () => {
     <div className="leafChartCard">
       <div className="leafChartBox">
         <Bar data={data} options={options} ref={canvasRef} />
-        {/* <div className="ml-8 border border-black-500 py-2 pr-12 rounded-md">
-          <span className="text-xs">Total Watering</span>
-          <p className="flex">
-            <span>
-              <BiSolidCheckbox
-                className="icon"
-                style={{ color: 'rgba(61, 129, 228, 1)' }}
-              />
-            </span>
-            :8
-          </p>
-          <p className="flex">
-            <span>
-              <BiSolidCheckbox
-                className="icon"
-                style={{ color: 'rgba(84, 214, 228, 1)' }}
-              />
-            </span>
-            :12
-          </p>
-        </div> */}
       </div>
     </div>
   );

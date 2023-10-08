@@ -1,23 +1,11 @@
 import { useModal } from '../hooks/useModal';
 import { Link } from 'react-router-dom';
+import { IoIosAdd } from 'react-icons/io';
 // import '../App.scss';
+
 import './Plants.scss';
-
-import { IoIosAddCircleOutline } from 'react-icons/io';
-
 import { Card } from '../views/organisms/Card';
-
-type PlantInfo = {
-  id: string;
-  iconUrl: string | null;
-  name: string;
-  size: string;
-  leafCount: number;
-  wateringCycle: number; // 水やりの頻度(日数)
-  startDate: Date;
-  wateringAmount: string; // 水やりの量(多, ふつう, 少)
-  condition: string; // 前回の状態(良, ふつう, 微妙)
-};
+import { PlantInfo } from '../types/plantInfo';
 
 type PlantProps = {
   plantsData: PlantInfo[];
@@ -30,24 +18,21 @@ export const Plants: React.FC<PlantProps> = ({ plantsData }) => {
 
   return (
     <div className="pt-14">
-      <h1 id="title">Plants</h1>
-      <div className="flex plants__icons">
+      <div className="plants__icons h-full flex flex-col ">
+        <span className="text-xs text-gray-500 mb-1">New</span>
         <button className="add_button">
           <Link to="/AddNewPlant">
-            <IoIosAddCircleOutline className="icon fa-solid fa-plus" />
+            <IoIosAdd className="icon fa-solid fa-plus" />
           </Link>
         </button>
       </div>
-      <div className="plantCardContainer">
-        {plantsData.map((plant) => (
-          <Card
-            key={plant.id}
-            id={plant.id}
-            iconUrl={plant.iconUrl}
-            name={plant.name}
-            wateringCycle={plant.wateringCycle}
-          />
-        ))}
+      <div className="h-screen overflow-y-auto">
+        <h1 id="title">Plants</h1>
+        <div className="plantCardContainer">
+          {plantsData.map((plant) => (
+            <Card plant={plant} />
+          ))}
+        </div>
       </div>
     </div>
   );
