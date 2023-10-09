@@ -1,3 +1,5 @@
+import './useModal.scss';
+
 import React, {
   ReactNode,
   useCallback,
@@ -20,11 +22,20 @@ interface ModalProps {
 export const useModal = () => {
   const [show, setShow] = useState(false); // モーダルの表示・非表示
 
+  useEffect(() => {
+    if (show) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+    }
+  }, [show]);
+
   const openModal = () => {
     setShow(true);
   };
 
   const closeModal = () => {
+    console.log('Closing modal');
     setShow(false);
   };
 
@@ -50,13 +61,12 @@ export const useModal = () => {
     if (!show) return null;
     const element = document.getElementById('modal-root');
     if (!element) {
-      // console.log('modal-root element is not found.');
       return null;
     }
 
     return createPortal(
       <div className="delete">
-        <div className="delete-background"></div>
+        <div className="delete-background" onClick={closeModal}></div>
         <div className="relative" ref={contentRef}>
           {children}
         </div>

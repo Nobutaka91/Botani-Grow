@@ -49,7 +49,7 @@ export const Reset = () => {
           <div className="formDiv flex">
             <div className="headerDiv ">
               <img src={logo} alt="Logo" />
-              <h3>Reset password</h3>
+              <h3>Reset Password</h3>
             </div>
 
             <form action="" className="form grid" onSubmit={onSubmit}>
@@ -74,12 +74,12 @@ export const Reset = () => {
               </div>
 
               <button type="submit" className="btn flex">
-                <span>Email Reset Link</span>
+                <span>Send</span>
               </button>
 
               <span className="flex">
                 <AiOutlineSwapLeft className="icon text-red-800" />
-                <a href="/">Get back to login form</a>
+                <a href="/">back</a>
               </span>
             </form>
           </div>

@@ -105,7 +105,7 @@ export const Login: React.FC<LoginProps> = ({ isLogin, setIsLogin }) => {
             </div>
 
             <div className="footerDiv flex">
-              <span className="text">Browse Without Account</span>
+              <span className="text">Not a member?</span>
 
               <Link to={'/Plants'}>
                 <button className="btn flex" onClick={onGuestLogin}>

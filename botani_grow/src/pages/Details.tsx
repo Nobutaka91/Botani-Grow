@@ -9,8 +9,13 @@ import { FaRegSadCry } from 'react-icons/fa';
 import { FiEdit } from 'react-icons/fi';
 import { MdEditDocument } from 'react-icons/md';
 import { FaRegCommentDots } from 'react-icons/fa6';
-import { IoMdNotifications } from 'react-icons/io';
-import { IoIosAddCircleOutline } from 'react-icons/io';
+
+import {
+  IoMdNotifications,
+  IoIosClose,
+  IoIosAddCircleOutline,
+} from 'react-icons/io';
+
 import { AiOutlineSwapLeft } from 'react-icons/ai';
 import { PiLeafDuotone, PiPottedPlantDuotone } from 'react-icons/pi';
 import { GiWateringCan } from 'react-icons/gi';
@@ -221,7 +226,10 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
               <div className="text-xs text-gray-500 mb-1">Delete</div>
               <button
                 className="delete__button"
-                onClick={() => setOpen(!open)}
+                onClick={() => {
+                  openModal();
+                  setOpen(!open);
+                }}
                 ref={actionButtonRef}
               >
                 <TbPlantOff className="icon fa-solid fa-plus" />
@@ -246,15 +254,42 @@ export const Details: React.FC<InfoProps> = ({ plantsData }) => {
             />
           )}
 
-          {/* モーダル　*/}
-          {/* <div className="m-8">
+          {/* 削除モーダル　*/}
+          <div className="m-8">
             <Modal show={show}>
-              <div className="modal">
-                <h2>削除しますか？</h2>
-                <button onClick={closeModal}>close</button>
+              <div className="modal text-center w-56">
+                <button className="close-modal-btn" onClick={closeModal}>
+                  <IoIosClose className="close-icon" />
+                </button>
+                <TbPlantOff
+                  className="plant-delete-icon mx-auto mt-5 text-red-500"
+                  size={56}
+                />
+                <div className="mx-auto my-4 w-48">
+                  <h3 className="text-2xl font-black text-gray-800">
+                    Confirm Delete
+                  </h3>
+                  <p className="text-sm my-2 text-gray-500">
+                    Delete this plant data?
+                  </p>
+                </div>
+                <div className="flex gap-4">
+                  <button
+                    className="btn btn-danger w-full my-2"
+                    onClick={closeModal}
+                  >
+                    Delete
+                  </button>
+                  <button
+                    className="btn btn-light w-full my-2"
+                    onClick={closeModal}
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
             </Modal>
-          </div> */}
+          </div>
         </>
       ) : (
         <p className="setup__p">Plant Not Found</p>
