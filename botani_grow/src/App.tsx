@@ -17,17 +17,7 @@ import ResetSuccess from './pages/ResetSuccess';
 import { db } from './config/Firebase';
 import { collection, getDocs } from 'firebase/firestore';
 
-type PlantInfo = {
-  id: string;
-  iconUrl: string | null;
-  name: string;
-  size: string;
-  leafCount: number;
-  wateringCycle: number; // 水やりの頻度(日数)
-  startDate: Date;
-  wateringAmount: string; // 水やりの量(多, ふつう, 少)
-  condition: string; // 前回の状態(良, ふつう, 微妙)
-};
+import { PlantInfo } from './types/plantInfo';
 
 function App() {
   const [isLogin, setIsLogin] = useState<boolean>(false);
@@ -58,6 +48,7 @@ function App() {
             startDate: data.startDate?.toDate(),
             wateringAmount: data.wateringAmount,
             condition: data.condition,
+            isArchived: data.isArchived || false,
           });
         });
         console.log(plants);
@@ -89,7 +80,9 @@ function App() {
           <Route path="/Plants" element={<Plants plantsData={plantsData} />} />
           <Route
             path="/Plants/:id"
-            element={<Details plantsData={plantsData} />}
+            element={
+              <Details plantsData={plantsData} setPlantsData={setPlantsData} />
+            }
           />
           <Route path="/History" element={<History />} />
           <Route path="/Reset" element={<Reset />} />
