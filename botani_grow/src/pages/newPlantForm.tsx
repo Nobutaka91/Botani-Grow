@@ -18,16 +18,7 @@ import {
 import { dividerClasses } from '@mui/material';
 import { useNavigate } from 'react-router';
 
-type PlantInfo = {
-  id: number;
-  icon: string;
-  name: string;
-  startDate: Date;
-  leafCount: number;
-  wateringCycle: number; // 水やりの頻度(日数)
-  wateringAmount: string; // 水やりの量(多, ふつう, 少)
-  condition: string; // 前回の状態(良, ふつう, 微妙)
-};
+import { PlantInfo } from '../types/plantInfo';
 
 type PlantProps = {
   plantsData?: PlantInfo[];
@@ -123,6 +114,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
         size,
         leafCount: Number(leafCount),
         wateringCycle,
+        isArchived: false,
       });
 
       // plantDocRef.idでドキュメントid(植物id)を取得できる
