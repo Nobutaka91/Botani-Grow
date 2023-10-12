@@ -16,10 +16,8 @@ export const Card: React.FC<CardProps> = ({ plant }) => {
   return (
     <Link to={`/Plants/${plant.id}`}>
       <div className="card" style={style}>
-        <div></div>
         <div className="cardInfo">
-          <h3 className="name">{plant.name}</h3>
-          <span className="flex"></span>
+          <h3 className="name ">{plant.name}</h3>
         </div>
       </div>
     </Link>

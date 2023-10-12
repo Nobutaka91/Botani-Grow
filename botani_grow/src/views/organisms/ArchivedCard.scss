@@ -1,0 +1,40 @@
+.archived-plantCard {
+  display: inline-block; // 各植物を横に並べる
+  margin-right: 15px;
+  text-align: center;
+
+  .archived-card {
+    // done
+    width: 60px;
+    height: 60px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    transform: scale(0.98);
+
+    &:hover {
+      transform: scale(1);
+    }
+
+    .archived-cardInfo {
+      text-align: center;
+    }
+    .archived-name {
+      padding-top: 5px;
+    }
+  }
+}
+
+span.flex {
+  color: #f5eded;
+  font-size: 1rem;
+  text-align: center;
+  display: block;
+  display: flex;
+  justify-content: center;
+}
