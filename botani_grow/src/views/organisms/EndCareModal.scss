@@ -1,0 +1,62 @@
+.modal {
+  background: var(--whiteColor);
+  height: 280px;
+  width: 340px;
+  padding: 1em;
+  border-radius: 15px;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .close-modal-btn {
+    font-size: 25px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: var(--blackColor);
+    border-radius: 50%;
+    padding: 2px;
+    width: 25px;
+    height: 25px;
+    transition: ease 0.3s;
+    border: 1px solid var(--bgColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      cursor: pointer;
+      transform: translateY(2px);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .btn-danger {
+    background-color: #ff4c29;
+    color: var(--whiteColor);
+    transition: ease 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    &:hover {
+      background-color: var(--deleteColor);
+      color: var(--whiteColor);
+      cursor: pointer;
+      transform: translateY(2px);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .btn-light {
+    background-color: var(--whiteColor);
+    color: var(--blackColor);
+    transition: ease 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    &:hover {
+      background-color: var(--whiteColor);
+      color: var(--blackColor);
+      cursor: pointer;
+      transform: translateY(2px);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+  }
+}

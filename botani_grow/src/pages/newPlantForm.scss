@@ -313,14 +313,6 @@ video {
   }
 }
 
-.modal {
-  background: var(--whiteColor);
-  width: 300px;
-  height: 200px;
-  padding: 1em;
-  border-radius: 15px;
-}
-
 // Queies for the login components
 @media screen and (max-width: 602px) {
   .loginPage {
