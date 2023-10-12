@@ -5,6 +5,7 @@ import { IoIosAdd } from 'react-icons/io';
 
 import './Plants.scss';
 import { Card } from '../views/organisms/Card';
+import { ArchivedCard } from '../views/organisms/ArchivedCard';
 import { PlantInfo } from '../types/plantInfo';
 
 type PlantProps = {
@@ -29,9 +30,17 @@ export const Plants: React.FC<PlantProps> = ({ plantsData }) => {
       <div className="h-screen overflow-y-auto">
         <h1 id="title">Plants</h1>
         <div className="plantCardContainer">
-          {plantsData.map((plant) => (
-            <Card plant={plant} />
-          ))}
+          {plantsData
+            .filter((plant) => !plant.isArchived)
+            .map((plant) => (
+              <Card plant={plant} />
+            ))}
+        </div>
+        <h1 id="title">Archive</h1>
+        <div className="archived-plantCardContainer">
+          {plantsData.map(
+            (plant) => plant.isArchived && <ArchivedCard plant={plant} />
+          )}
         </div>
       </div>
     </div>
