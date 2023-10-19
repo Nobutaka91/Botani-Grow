@@ -9,6 +9,7 @@ type PlantLinksProps = {
     id: string;
     iconUrl: string | null;
     name: string;
+    isArchived: boolean;
   }>;
   currentPlantId: string;
 };
@@ -24,7 +25,7 @@ export const PlantsLinks: React.FC<PlantLinksProps> = ({
         Plant List
       </p>
       {plantsData
-        .filter((plant) => plant.id !== currentPlantId)
+        .filter((plant) => plant.id !== currentPlantId && !plant.isArchived)
         .map((plant) => (
           <Link to={`/Plants/${plant.id}`} key={plant.id}>
             <div className="flex gap-5">

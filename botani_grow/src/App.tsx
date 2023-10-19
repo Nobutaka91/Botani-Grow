@@ -60,6 +60,8 @@ function App() {
     fetchPlantData();
   }, []);
 
+  const activePlants = plantsData.filter((plant) => !plant.isArchived);
+
   return (
     <div className="max-w-6xl mx-auto px-6 ">
       {!isNavbarHiddenPage && (
@@ -75,7 +77,13 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Login isLogin={isLogin} setIsLogin={setIsLogin} />}
+            element={
+              <Login
+                isLogin={isLogin}
+                setIsLogin={setIsLogin}
+                numberOfActivePlants={activePlants.length}
+              />
+            }
           />
           <Route path="/Plants" element={<Plants plantsData={plantsData} />} />
           <Route
