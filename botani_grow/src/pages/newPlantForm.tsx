@@ -16,8 +16,9 @@ import {
   getDownloadURL,
 } from 'firebase/storage';
 import { dividerClasses } from '@mui/material';
+import { MdWaterDrop } from 'react-icons/md';
 import { useNavigate } from 'react-router';
-
+import { TbPlant } from 'react-icons/tb';
 import { PlantInfo } from '../types/plantInfo';
 
 type PlantProps = {
@@ -28,7 +29,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
   const [name, setName] = useState('');
   const [size, setSize] = useState('S');
   const [leafCount, setLeafCount] = useState(0);
-  const [doNotCount, setDoNotCount] = useState(false);
+  // const [doNotCount, setDoNotCount] = useState(false);
   const [wateringCycle, setWateringCycle] = useState(0);
   const [iconUrl, setIconUrl] = useState<string | null>(null);
 
@@ -88,7 +89,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
       hasError = true;
     }
 
-    if (!doNotCount && (leafCount < 0 || leafCount > 100)) {
+    if (leafCount < 0 || leafCount > 100) {
       setLeafCountError('*Leaf count: 0 - 100');
       hasError = true;
     }
@@ -137,36 +138,37 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
 
   return (
     <div>
-      <div className="loginPage flex">
-        <div className="container flex">
+      <div className="registerForm flex">
+        <div className="registerForm-container flex">
           <div className="formDiv flex">
-            <div className="headerDiv ">
-              <h3>New Plant Entry</h3>
-
-              <div
-                className="icon-container"
-                onClick={() => {
-                  document.getElementById('fileInput')?.click();
-                }}
-              >
-                {iconUrl ? (
-                  <img src={iconUrl} alt="uploaded_img" className="icon" />
-                ) : (
-                  <VscCloudUpload className="icon" />
+            <form action="" className="form grid" onSubmit={onSubmit}>
+              <div className="headerDiv">
+                {/* <h3>Register New Plant</h3> */}
+                <div
+                  className="icon-container"
+                  onClick={() => {
+                    document.getElementById('fileInput')?.click();
+                  }}
+                >
+                  {iconUrl ? (
+                    <img src={iconUrl} alt="uploaded_img" className="icon" />
+                  ) : (
+                    // <VscCloudUpload className="icon" />
+                    <TbPlant className="plant-picture-icon" color="green" />
+                  )}
+                </div>
+                <input
+                  type="file"
+                  id="fileInput"
+                  style={{ display: 'none' }}
+                  accept=".png, .jpg, .jpeg"
+                  onChange={handleFileSelect}
+                />
+                {uploadError && (
+                  <label className="text-red-500 text-sm">{uploadError}</label>
                 )}
               </div>
-              <input
-                type="file"
-                id="fileInput"
-                style={{ display: 'none' }}
-                accept=".png, .jpg, .jpeg"
-                onChange={handleFileSelect}
-              />
-              {uploadError && (
-                <label className="text-red-500 text-sm">{uploadError}</label>
-              )}
-            </div>
-            <form action="" className="form grid" onSubmit={onSubmit}>
+              {/* <form action="" className="form grid" onSubmit={onSubmit}> */}
               <div className="inputDiv">
                 <div className="flex space-x-4">
                   <label htmlFor="name">Name</label>
@@ -174,7 +176,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                     <label className="error-message">{nameError}</label>
                   )}
                 </div>
-                <div className="input flex">
+                <div className="name-input flex">
                   <PiPottedPlantDuotone className="icon" />
                   <input
                     type="text"
@@ -189,11 +191,12 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                   />
                 </div>
               </div>
+
               <div className="inputDiv">
                 <div className="flex space-x-4">
                   <label htmlFor="size">Size</label>
                 </div>
-                <div className="input flex">
+                <div className="size-input flex">
                   <select
                     id="size"
                     name="size"
@@ -209,10 +212,10 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                   </select>
                 </div>
               </div>
-
               <div className="inputDiv">
                 <div className="flex space-x-4">
-                  <label htmlFor="leaf" className="flex">
+                  <label htmlFor="leaf" className="flex gap-1">
+                    <span>Count</span>
                     <PiLeafDuotone className="icon" color="green" />
                   </label>
                   {leafCountError && (
@@ -220,38 +223,32 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                   )}
                 </div>
                 <div className="flex">
-                  <div className="input flex">
+                  <div className="leaf-input flex">
                     <input
                       className="number-input"
                       id="leaf"
                       type="number"
                       name="leafCount"
-                      // min="0"
-                      // max="100"
                       step="1"
                       // value={leafCount}
                       onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                        if (!doNotCount) setLeafCount(Number(e.target.value));
+                        setLeafCount(Number(e.target.value));
                       }}
-                      disabled={doNotCount}
-                      // placeholder="0"
+                      placeholder="0"
                       // required
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="doNotCount">Skip</label>
-                    <input
-                      type="checkbox"
-                      checked={doNotCount}
-                      onChange={(e) => setDoNotCount(e.target.checked)}
                     />
                   </div>
                 </div>
               </div>
               <div className="inputDiv">
                 <div className="flex space-x-4">
-                  <label htmlFor="wateringCycle">
-                    Watering Cycle (estimated)
+                  <label htmlFor="wateringCycle" className="pl-2 flex gap-1">
+                    Watering Cycle
+                    <MdWaterDrop
+                      className="icon"
+                      style={{ color: '#2253db' }}
+                    />
+                    <TbRotateClockwise className="icon" color="blue" />
                   </label>
                   {wateringCycleError && (
                     <label className="error-message">
@@ -259,8 +256,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                     </label>
                   )}
                 </div>
-                <div className="input flex">
-                  <TbRotateClockwise className="icon" color="blue" />
+                <div className="wateringCycle-input flex">
                   <input
                     type="range"
                     name="wateringCycle"
@@ -274,19 +270,21 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                     }}
                     // required
                   />
-                  <div>{wateringCycle} days to water</div>
+                  <div className="text-xs">{wateringCycle} days</div>
                 </div>
               </div>
 
-              <button type="submit" className="btn flex">
-                <span>Add Plant</span>
-              </button>
-
-              {/* <span className="forgotPassword"></span> */}
-              <span className="flex">
-                <AiOutlineSwapLeft className="icon text-red-800" />
-                <a href="/Plants">back</a>
-              </span>
+              <div className="flex gap-4 mt-1">
+                <button type="submit" className="add-plant-btn btn flex">
+                  <span>Submit</span>
+                </button>
+                <button
+                  className="cancel-btn btn flex"
+                  onClick={() => navigate('/Plants')}
+                >
+                  <span>Cancel</span>
+                </button>
+              </div>
             </form>
           </div>
         </div>

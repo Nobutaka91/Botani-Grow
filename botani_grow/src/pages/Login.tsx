@@ -1,5 +1,5 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/Firebase';
 
@@ -22,9 +22,14 @@ import { signInAnonymously } from 'firebase/auth';
 type LoginProps = {
   isLogin: boolean;
   setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
+  numberOfActivePlants: number;
 };
 
-export const Login: React.FC<LoginProps> = ({ isLogin, setIsLogin }) => {
+export const Login: React.FC<LoginProps> = ({
+  isLogin,
+  setIsLogin,
+  numberOfActivePlants,
+}) => {
   const [emailError, setEmailError] = useState<string | null>(null);
   const [passwordError, setPasswordError] = useState<string | null>(null);
 
@@ -51,6 +56,11 @@ export const Login: React.FC<LoginProps> = ({ isLogin, setIsLogin }) => {
     } catch (error) {
       console.log('Guest Login Failed', error);
     }
+  };
+
+  const handleGuestLogin = () => {
+    onGuestLogin();
+    navigate('/Plants');
   };
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -93,7 +103,7 @@ export const Login: React.FC<LoginProps> = ({ isLogin, setIsLogin }) => {
           <div className="videoDiv">
             <video
               src={video}
-              // className="h-auto w-full"
+              className="h-auto w-full"
               autoPlay
               muted
               loop
@@ -105,14 +115,13 @@ export const Login: React.FC<LoginProps> = ({ isLogin, setIsLogin }) => {
             </div>
 
             <div className="footerDiv flex">
-              <span className="text">Not a member?</span>
-
-              <Link to={'/Plants'}>
-                <button className="btn flex" onClick={onGuestLogin}>
-                  <span>Guest</span>
-                  <BsPersonCircle className="icon" />
-                </button>
-              </Link>
+              <div className="text">
+                Currently growing{' '}
+                <span className="text-xl text-rose-400 ">
+                  {numberOfActivePlants}
+                </span>{' '}
+                plants!
+              </div>
             </div>
           </div>
 
@@ -163,10 +172,16 @@ export const Login: React.FC<LoginProps> = ({ isLogin, setIsLogin }) => {
                 </div>
               </div>
 
-              <button type="submit" className="btn flex">
-                <span>Login</span>
-                <AiOutlineSwapRight className="icon" />
-              </button>
+              <div className="button flex">
+                <button className="guest-btn flex" onClick={handleGuestLogin}>
+                  <span>Guest</span>
+                  <BsPersonCircle className="icon" />
+                </button>
+                <button type="submit" className="btn flex">
+                  <span>Login</span>
+                  <AiOutlineSwapRight className="icon" />
+                </button>
+              </div>
 
               <span className="forgotPassword">
                 Forgot your password? <a href="/Reset">Click Here</a>

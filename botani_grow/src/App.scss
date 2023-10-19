@@ -11,6 +11,7 @@
   --hoverColor: hsl(93, 75%, 76%);
   --paleGreen: hsl(96, 75%, 89%);
   --whiteColor: hsl(0, 0%, 100%);
+  --darkWhiteColor: hsla(0, 0%, 100%, 0.391);
   --blackColor: hsl(0, 0%, 18%);
   --greyText: hsl(0, 0%, 75%);
   --bgColor: hsl(113, 11%, 85%);
@@ -97,7 +98,6 @@ video {
   background: var(--paleGreen);
 }
 
-/* Paging style */
 .loginPage {
   height: 100vh;
   width: 100%;
@@ -252,10 +252,6 @@ video {
             width: 200px;
           }
 
-          // input:invalid {
-          //   border: solid 1px red;
-          // }
-
           .number-input::-webkit-outer-spin-button,
           .number-input::-webkit-inner-spin-button {
             background-color: white;
@@ -264,17 +260,6 @@ video {
             // -webkit-appearance: none;
             margin: 0;
           }
-
-          // .leaf-slider {
-          //   accent-color: var(--primaryColor);
-          //   // accent-color: hsl(328 100% 80%);
-          //   // background-color: Canvas !important;
-          // }
-
-          // .leaf-slider::-webkit-slider-thumb {
-          //   // background-color: transparent;
-          //   // box-shadow: 0px 5px 10px -2px rgba(0, 0, 0, 0.3);
-          // }
 
           label {
             color: var(--blackColor);
@@ -505,7 +490,7 @@ body.modal-open {
 @media screen and (min-width: 928px) {
   .loginPage {
     .container {
-      width: 100%;
+      // width: 100%;
     }
   }
 }

@@ -36,7 +36,7 @@ export const Plants: React.FC<PlantProps> = ({ plantsData }) => {
               <Card plant={plant} />
             ))}
         </div>
-        <h1 id="title">Archive</h1>
+        <h1 id="archived-title">Archive</h1>
         <div className="archived-plantCardContainer">
           {plantsData.map(
             (plant) => plant.isArchived && <ArchivedCard plant={plant} />
