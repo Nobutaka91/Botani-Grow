@@ -41,29 +41,34 @@ img {
 
 /* Paging style */
 .registerForm {
-  position: fixed;
-  top: 60px;
-  left: 0;
-  right: 0;
-  // bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  // height: 100vh;
   width: 100%;
+  margin-top: 10%;
+  // margin: auto;
   border-radius: 10px;
+  overflow: hidden;
   // box-shadow: 0 7px 50px rgb(214, 223, 213);
 
   .registerForm-container {
-    margin-top: 60px;
-    width: 40%;
+    // height: 80vh;
+    width: 80%;
+    margin: auto;
+    justify-content: space-between;
     border-radius: 10px;
     background-color: hsl(0, 0%, 91%);
 
     .formDiv {
-      flex-basis: 50%;
-      margin: auto;
+      position: relative;
+      display: flex;
+      width: 70%;
+      // height: 100%;
+      padding: 0 1.5rem;
+      text-align: center;
+      justify-content: center;
       flex-direction: column;
-      gap: 1.5rem;
+      margin: auto;
+      border-radius: 10px;
+      overflow: hidden;
 
       .headerDiv {
         text-align: center;
@@ -99,8 +104,8 @@ img {
           top: 50%;
           left: 50%;
           transform: translate(-50%, -45%);
-          width: 40px;
-          height: 40px;
+          width: 30px;
+          height: 30px;
         }
 
         img {
@@ -122,24 +127,13 @@ img {
             background: none;
             outline: none;
             border: none;
-            // width: 200px;
           }
-
-          // .number-input::-webkit-outer-spin-button,
-          // .number-input::-webkit-inner-spin-button {
-          //   background-color: white;
-          //   background: white;
-          //   width: 50px;
-          //   // -webkit-appearance: none;
-          //   margin: 0;
-          // }
 
           label {
             color: var(--blackColor);
             font-weight: 400;
             font-size: 14px;
             padding-bottom: 0.5rem;
-            // display: block;
           }
 
           .error-message {
@@ -152,28 +146,26 @@ img {
 
           .name-input {
             gap: 0.5rem;
-            padding: 1rem;
+            padding: 0.7rem;
             background: var(--inputColor);
             border-radius: 10px;
           }
 
           .size-input {
             gap: 0.5rem;
-            padding: 1rem;
+            padding: 0.7rem;
             background: var(--inputColor);
             border-radius: 10px;
 
             select {
-              // margin-right: 10px;
               width: 180px;
               background-color: var(--inputColor);
             }
           }
 
           .leaf-input {
-            // width: 200px;
             gap: 0.5rem;
-            padding: 1rem;
+            padding: 0.7rem;
             background: var(--inputColor);
             border-radius: 10px;
 
@@ -184,12 +176,24 @@ img {
 
           .wateringCycle-input {
             gap: 0.5rem;
-            padding: 1rem;
+            padding: 0.9rem;
             background: var(--inputColor);
             border-radius: 10px;
           }
         }
+      }
+    }
 
+    .tagsInputDiv {
+      margin: auto;
+      margin-bottom: 10px;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      .btn-container {
+        // background: var(--inputColor);
+        padding: 0.7rem;
+        margin-top: 50px;
         .btn {
           padding: 0.8rem;
           background: var(--primaryColor);
@@ -252,7 +256,6 @@ img {
   }
 }
 
-// Queies for the login components
 // @media screen and (max-width: 602px) {
 //   .loginPage {
 //     .container {
@@ -299,8 +302,8 @@ img {
 //         .headerDiv {
 //           padding: 1.5rem 0;
 //           display: flex;
-//           // flex-direction: column;
-//           // align-items: center;
+//           flex-direction: column;
+//           align-items: center;
 
 //           .icon-container {
 //             position: relative;
