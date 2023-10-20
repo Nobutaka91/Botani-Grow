@@ -192,12 +192,8 @@ export const Details: React.FC<InfoProps> = ({ plantsData, setPlantsData }) => {
                   </div>
                 </div>
                 <div className="lastCondition">
-                  <span className="condition_expression">Condition:😊</span>
-                  <p className="condition_memo">
-                    前回水が少し残ってたから、次回は少なめにして
-                    <br />
-                    様子を確認してみる
-                  </p>
+                  <span className="condition_expression">Feature</span>
+                  <p className="condition_memo">タグが配置されるところ</p>
                 </div>
               </div>
 

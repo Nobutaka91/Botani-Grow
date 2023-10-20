@@ -15,10 +15,9 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from 'firebase/storage';
-import { dividerClasses } from '@mui/material';
 import { MdWaterDrop } from 'react-icons/md';
 import { useNavigate } from 'react-router';
-import { TbPlant, TbCameraPlus } from 'react-icons/tb';
+import { TbCameraPlus } from 'react-icons/tb';
 import { FaTags } from 'react-icons/fa';
 import { PlantInfo } from '../types/plantInfo';
 import { TagsInput } from '../views/molecules/TagsInput';
@@ -31,7 +30,6 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
   const [name, setName] = useState('');
   const [size, setSize] = useState('S');
   const [leafCount, setLeafCount] = useState(0);
-  // const [doNotCount, setDoNotCount] = useState(false);
   const [wateringCycle, setWateringCycle] = useState(0);
   const [iconUrl, setIconUrl] = useState<string | null>(null);
 
@@ -142,14 +140,14 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
     <div className="px-4 md:px-8 lg:px-16">
       <div className="registerForm flex flex-col md:flex-row">
         <div className="registerForm-container w-full">
-          <div className="formDiv flex flex-col md:flex-row">
+          <div className="formDiv flex justify-center flex-col md:flex-row">
             <form
               action=""
               className="form grid w-10/12 md:w-1/2"
               onSubmit={onSubmit}
             >
               <div className="headerDiv">
-                {/* <h3>Register New Plant</h3> */}
+                <h3>Register New Plant</h3>
                 <div
                   className="icon-container"
                   onClick={() => {
@@ -159,7 +157,6 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                   {iconUrl ? (
                     <img src={iconUrl} alt="uploaded_img" className="icon" />
                   ) : (
-                    // <VscCloudUpload className="icon" />
                     <TbCameraPlus
                       className="plant-picture-icon"
                       color="green"
@@ -177,7 +174,6 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                   <label className="text-red-500 text-sm">{uploadError}</label>
                 )}
               </div>
-              {/* <form action="" className="form grid" onSubmit={onSubmit}> */}
               <div className="inputDiv">
                 <div className="flex space-x-4">
                   <label htmlFor="name">Name</label>
@@ -256,7 +252,6 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                       className="icon"
                       style={{ color: '#2253db' }}
                     />
-                    {/* <TbRotateClockwise className="icon" color="blue" /> */}
                     Watering Cycle
                   </label>
                   {wateringCycleError && (
@@ -282,25 +277,26 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                   <div className="text-xs">{wateringCycle} days</div>
                 </div>
               </div>
-            </form>
-            <div className="tagsInputDiv w-10/12 md:w-1/2 mt-4 md:mt-0">
-              <h2 className="flex gap-1 mt-6">
+
+              <label className="flex gap-1 -mb-3">
                 <FaTags className="icon" />
                 <span>Tags</span>
-              </h2>
-              <TagsInput />
-              <div className="btn-container flex gap-4 mt-1">
-                <button type="submit" className="add-plant-btn btn flex">
-                  <span>Submit</span>
-                </button>
-                <button
-                  className="cancel-btn btn flex"
-                  onClick={() => navigate('/Plants')}
-                >
-                  <span>Cancel</span>
-                </button>
+              </label>
+              <div className="tagsInputDiv w-10/12 md:w-1/2 mt-4 md:mt-0 flex">
+                <TagsInput />
+                <div className="btn-container flex gap-4 mt-1">
+                  <button type="submit" className="add-plant-btn btn flex">
+                    <span>Submit</span>
+                  </button>
+                  <button
+                    className="cancel-btn btn flex"
+                    onClick={() => navigate('/Plants')}
+                  >
+                    <span>Cancel</span>
+                  </button>
+                </div>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
