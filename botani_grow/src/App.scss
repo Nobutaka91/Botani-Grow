@@ -9,6 +9,7 @@
 :root {
   --primaryColor: hsl(94, 55%, 56%);
   --hoverColor: hsl(93, 75%, 76%);
+  --tagsColor: hsl(99, 100%, 88%);
   --paleGreen: hsl(96, 75%, 89%);
   --whiteColor: hsl(0, 0%, 100%);
   --darkWhiteColor: hsla(0, 0%, 100%, 0.391);
@@ -490,7 +491,7 @@ body.modal-open {
 @media screen and (min-width: 928px) {
   .loginPage {
     .container {
-      // width: 100%;
+      width: 90%;
     }
   }
 }

@@ -18,8 +18,10 @@ import {
 import { dividerClasses } from '@mui/material';
 import { MdWaterDrop } from 'react-icons/md';
 import { useNavigate } from 'react-router';
-import { TbPlant } from 'react-icons/tb';
+import { TbPlant, TbCameraPlus } from 'react-icons/tb';
+import { FaTags } from 'react-icons/fa';
 import { PlantInfo } from '../types/plantInfo';
+import { TagsInput } from '../views/molecules/TagsInput';
 
 type PlantProps = {
   plantsData?: PlantInfo[];
@@ -137,11 +139,15 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
   };
 
   return (
-    <div>
-      <div className="registerForm flex">
-        <div className="registerForm-container flex">
-          <div className="formDiv flex">
-            <form action="" className="form grid" onSubmit={onSubmit}>
+    <div className="px-4 md:px-8 lg:px-16">
+      <div className="registerForm flex flex-col md:flex-row">
+        <div className="registerForm-container w-full">
+          <div className="formDiv flex flex-col md:flex-row">
+            <form
+              action=""
+              className="form grid w-10/12 md:w-1/2"
+              onSubmit={onSubmit}
+            >
               <div className="headerDiv">
                 {/* <h3>Register New Plant</h3> */}
                 <div
@@ -154,7 +160,10 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                     <img src={iconUrl} alt="uploaded_img" className="icon" />
                   ) : (
                     // <VscCloudUpload className="icon" />
-                    <TbPlant className="plant-picture-icon" color="green" />
+                    <TbCameraPlus
+                      className="plant-picture-icon"
+                      color="green"
+                    />
                   )}
                 </div>
                 <input
@@ -182,7 +191,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                     type="text"
                     id="name"
                     name="name"
-                    placeholder="plant name"
+                    placeholder="type here..."
                     value={name}
                     onChange={(e: ChangeEvent<HTMLInputElement>) => {
                       setName(e.target.value);
@@ -215,8 +224,8 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
               <div className="inputDiv">
                 <div className="flex space-x-4">
                   <label htmlFor="leaf" className="flex gap-1">
-                    <span>Count</span>
                     <PiLeafDuotone className="icon" color="green" />
+                    <span>Count</span>
                   </label>
                   {leafCountError && (
                     <label className="error-message">{leafCountError}</label>
@@ -242,13 +251,13 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
               </div>
               <div className="inputDiv">
                 <div className="flex space-x-4">
-                  <label htmlFor="wateringCycle" className="pl-2 flex gap-1">
-                    Watering Cycle
+                  <label htmlFor="wateringCycle" className=" flex gap-1">
                     <MdWaterDrop
                       className="icon"
                       style={{ color: '#2253db' }}
                     />
-                    <TbRotateClockwise className="icon" color="blue" />
+                    {/* <TbRotateClockwise className="icon" color="blue" /> */}
+                    Watering Cycle
                   </label>
                   {wateringCycleError && (
                     <label className="error-message">
@@ -273,8 +282,14 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                   <div className="text-xs">{wateringCycle} days</div>
                 </div>
               </div>
-
-              <div className="flex gap-4 mt-1">
+            </form>
+            <div className="tagsInputDiv w-10/12 md:w-1/2 mt-4 md:mt-0">
+              <h2 className="flex gap-1 mt-6">
+                <FaTags className="icon" />
+                <span>Tags</span>
+              </h2>
+              <TagsInput />
+              <div className="btn-container flex gap-4 mt-1">
                 <button type="submit" className="add-plant-btn btn flex">
                   <span>Submit</span>
                 </button>
@@ -285,7 +300,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                   <span>Cancel</span>
                 </button>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
