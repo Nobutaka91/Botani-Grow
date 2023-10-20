@@ -28,7 +28,7 @@ img {
 }
 
 .message {
-  display: none; /*後で反応を見る */
+  display: none;
 }
 
 .showMessage {
@@ -41,27 +41,21 @@ img {
 
 /* Paging style */
 .registerForm {
-  // height: 100vh;
   width: 100%;
   margin-top: 10%;
-  // margin: auto;
   border-radius: 10px;
   overflow: hidden;
-  // box-shadow: 0 7px 50px rgb(214, 223, 213);
 
   .registerForm-container {
-    // height: 80vh;
-    width: 80%;
+    width: 70%;
     margin: auto;
-    justify-content: space-between;
     border-radius: 10px;
     background-color: hsl(0, 0%, 91%);
 
     .formDiv {
       position: relative;
       display: flex;
-      width: 70%;
-      // height: 100%;
+
       padding: 0 1.5rem;
       text-align: center;
       justify-content: center;
@@ -149,6 +143,7 @@ img {
             padding: 0.7rem;
             background: var(--inputColor);
             border-radius: 10px;
+            width: 300px;
           }
 
           .size-input {
@@ -156,9 +151,10 @@ img {
             padding: 0.7rem;
             background: var(--inputColor);
             border-radius: 10px;
+            width: 300px;
 
             select {
-              width: 180px;
+              width: 290px;
               background-color: var(--inputColor);
             }
           }
@@ -168,9 +164,10 @@ img {
             padding: 0.7rem;
             background: var(--inputColor);
             border-radius: 10px;
+            width: 300px;
 
             .number-input {
-              width: 200px;
+              width: 290px;
             }
           }
 
@@ -179,6 +176,10 @@ img {
             padding: 0.9rem;
             background: var(--inputColor);
             border-radius: 10px;
+
+            input {
+              width: 210px;
+            }
           }
         }
       }
@@ -188,7 +189,8 @@ img {
       margin: auto;
       margin-bottom: 10px;
       flex-direction: column;
-      gap: 1.5rem;
+      // gap: 1.5rem;
+      margin: ri;
 
       .btn-container {
         // background: var(--inputColor);
@@ -255,112 +257,3 @@ img {
     }
   }
 }
-
-// @media screen and (max-width: 602px) {
-//   .loginPage {
-//     .container {
-//       height: 100%;
-//       width: 100%;
-//       flex-direction: column;
-//       padding: 1.5rem;
-
-//       .formDiv {
-//         gap: 1rem;
-//         transform: translateY(-0.5rem);
-
-//         .headerDiv {
-//           // padding: 1rem 0;
-
-//           img {
-//             width: 40px;
-//           }
-
-//           h3 {
-//             font-size: 20px;
-//             padding-top: 20px;
-//           }
-//         }
-
-//         .form {
-//           gap: 0.5rem;
-
-//           .inputDiv {
-//             input {
-//               width: 100%;
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-
-// @media screen and (max-width: 678px) {
-//   .loginPage {
-//     .container {
-//       .formDiv {
-//         .headerDiv {
-//           padding: 1.5rem 0;
-//           display: flex;
-//           flex-direction: column;
-//           align-items: center;
-
-//           .icon-container {
-//             position: relative;
-//             display: flex;
-//             align-items: center;
-//             justify-content: center;
-//             align-items: center;
-//             border: 2px solid var(--inputColor);
-//             border-radius: 50%;
-//             width: 40px;
-//             height: 40px;
-//             cursor: pointer;
-//             margin-top: 50px;
-//             overflow: hidden;
-//           }
-//           .icon {
-//             position: absolute;
-//             top: 50%;
-//             left: 50%;
-//             transform: translate(-50%, -45%);
-//           }
-
-//           h3 {
-//             font-size: 20px;
-//           }
-//         }
-
-//         .form {
-//           .inputDiv {
-//             input {
-//               width: 100%;
-//               max-width: 200px;
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-
-// @media screen and (max-width: 927px) {
-//   .loginPage {
-//     .container {
-//       width: 85%;
-//     }
-//   }
-// }
-
-// @media screen and (min-width: 928px) {
-//   .loginPage {
-//     .container {
-//       width: 100%;
-//     }
-//   }
-// }
-
-// // Hide scroll bar
-// ::-webkit-scrollbar {
-//   display: none;
-// }

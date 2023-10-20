@@ -43,7 +43,7 @@ export const TagsInput = () => {
     <>
       <div className="tags-input-container">
         {tags.map((tag, index) => (
-          <div className="tag-item" key={index}>
+          <div className="tag-item text-xs" key={index}>
             <span className="text">{tag}</span>
             <span className="close" onClick={() => removeTag(index)}>
               &times;
