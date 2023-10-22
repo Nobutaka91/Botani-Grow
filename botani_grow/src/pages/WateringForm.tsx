@@ -26,8 +26,8 @@ export const WateringForm: React.FC = () => {
 
         await addDoc(collection(db, 'waterings'), {
           plantId: plantDocRef.id,
-          wateredDate: wateredDate,
-          waterAmount: waterAmount, // ユーザーから入力された値
+          wateredDate,
+          waterAmount, // ユーザーから入力された値
           condition,
           leafCount,
           comment,

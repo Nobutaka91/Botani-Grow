@@ -4,17 +4,7 @@ import { Notification } from '../molecules/Notification';
 import myImage from '../../LoginAssets/leaf-logo.png';
 import './Navbar.scss';
 
-type PlantInfo = {
-  id: string;
-  iconUrl: string | null;
-  name: string;
-  size: string;
-  leafCount: number;
-  wateringCycle: number; // 水やりの頻度(日数)
-  startDate: Date;
-  wateringAmount: string; // 水やりの量(多, ふつう, 少)
-  condition: string; // 前回の状態(良, ふつう, 微妙)
-};
+import { PlantInfo } from '../../types/plantInfo';
 
 type PlantProps = {
   plantsData: PlantInfo[];

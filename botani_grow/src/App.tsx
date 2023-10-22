@@ -19,9 +19,17 @@ import { collection, getDocs } from 'firebase/firestore';
 
 import { PlantInfo } from './types/plantInfo';
 
+type wateringsInfo = {
+  plantId: string;
+  nextWateringDate: Date;
+  wateringCycle: number;
+  wateringAmount: number;
+};
+
 function App() {
   const [isLogin, setIsLogin] = useState<boolean>(false);
   const [plantsData, setPlantsData] = useState<PlantInfo[]>([]);
+  const [wateringsData, setWateringsData] = useState<wateringsInfo[]>([]);
   const location = useLocation(); // 現在のページのパスを取得
   console.log('Current path:', location.pathname);
   const isNavbarHiddenPage =
@@ -44,10 +52,10 @@ function App() {
             name: data.name,
             size: data.size,
             leafCount: data.leafCount,
-            wateringCycle: data.wateringCycle,
+            // wateringCycle: data.wateringCycle,
+            tags: data.tags,
             startDate: data.startDate?.toDate(),
             wateringAmount: data.wateringAmount,
-            condition: data.condition,
             isArchived: data.isArchived || false,
           });
         });
@@ -58,6 +66,27 @@ function App() {
       }
     };
     fetchPlantData();
+
+    const fetchWateringsData = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'waterings'));
+        const waterings: wateringsInfo[] = [];
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          waterings.push({
+            plantId: doc.id,
+            wateringCycle: data.wateringCycle,
+            nextWateringDate: data.nextWateringDate.toDate(),
+            wateringAmount: data.wateringAmount,
+          });
+        });
+        console.log(waterings);
+        setWateringsData(waterings);
+      } catch (error) {
+        console.log('Error fetching plants data:', error);
+      }
+    };
+    fetchWateringsData();
   }, []);
 
   const activePlants = plantsData.filter((plant) => !plant.isArchived);
@@ -89,7 +118,12 @@ function App() {
           <Route
             path="/Plants/:id"
             element={
-              <Details plantsData={plantsData} setPlantsData={setPlantsData} />
+              <Details
+                plantsData={plantsData}
+                setPlantsData={setPlantsData}
+                wateringsData={wateringsData}
+                setWateringsData={setWateringsData}
+              />
             }
           />
           <Route path="/History" element={<History />} />

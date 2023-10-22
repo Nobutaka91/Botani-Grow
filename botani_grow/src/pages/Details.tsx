@@ -41,7 +41,12 @@ type InfoProps = {
   setPlantsData: React.Dispatch<React.SetStateAction<PlantInfo[]>>;
 };
 
-export const Details: React.FC<InfoProps> = ({ plantsData, setPlantsData }) => {
+export const Details: React.FC<InfoProps> = ({
+  plantsData,
+  setPlantsData,
+  wateringsData,
+  setWateringsData,
+}) => {
   const { id } = useParams<{ id: string }>();
   const { Modal, openModal, closeModal, show } = useModal();
   const [modalType, setModalType] = useState<
@@ -183,7 +188,7 @@ export const Details: React.FC<InfoProps> = ({ plantsData, setPlantsData }) => {
                   </div>
                   <div className="next_watering_day">
                     <span className="flex gap-1">
-                      Next
+                      {}
                       <TiStopwatch className="icon" color="" />
                     </span>
                     <p className="">
