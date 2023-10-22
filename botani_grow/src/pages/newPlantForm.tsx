@@ -31,6 +31,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
   const [size, setSize] = useState('S');
   const [leafCount, setLeafCount] = useState(0);
   const [wateringCycle, setWateringCycle] = useState(0);
+  const [tags, setTags] = useState<string[] | null>(null);
   const [iconUrl, setIconUrl] = useState<string | null>(null);
 
   const [nameError, setNameError] = useState<string | null>(null);
@@ -114,18 +115,19 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
         name,
         size,
         leafCount: Number(leafCount),
-        wateringCycle,
+        tags,
         isArchived: false,
       });
 
       // plantDocRef.idでドキュメントid(植物id)を取得できる
       console.log('Plant Document written with ID: ', plantDocRef.id);
 
-      const wateredDate = new Date(); // 現在の日時
-      const nextWateringDate = new Date(wateredDate);
-      nextWateringDate.setDate(wateredDate.getDate() + wateringCycle);
+      const currentDate = new Date(); // 現在の日時
+      const nextWateringDate = new Date(currentDate);
+      nextWateringDate.setDate(currentDate.getDate() + wateringCycle);
       await addDoc(collection(db, 'waterings'), {
         plantId: plantDocRef.id, // 植物IDをplantIdとして保存
+        wateringCycle,
         nextWateringDate,
       });
       console.log('Watering Document written for Plant ID:', plantDocRef.id);
@@ -283,7 +285,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                 <span>Tags</span>
               </label>
               <div className="tagsInputDiv w-10/12 md:w-1/2 mt-4 md:mt-0 flex">
-                <TagsInput />
+                <TagsInput tags={tags} setTags={setTags} />
                 <div className="btn-container flex gap-4 mt-1">
                   <button type="submit" className="add-plant-btn btn flex">
                     <span>Submit</span>
