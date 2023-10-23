@@ -18,18 +18,12 @@ import { db } from './config/Firebase';
 import { collection, getDocs } from 'firebase/firestore';
 
 import { PlantInfo } from './types/plantInfo';
-
-type wateringsInfo = {
-  plantId: string;
-  nextWateringDate: Date;
-  wateringCycle: number;
-  wateringAmount: number;
-};
+import { WateringInfo } from './types/wateringInfo';
 
 function App() {
   const [isLogin, setIsLogin] = useState<boolean>(false);
   const [plantsData, setPlantsData] = useState<PlantInfo[]>([]);
-  const [wateringsData, setWateringsData] = useState<wateringsInfo[]>([]);
+  const [wateringsData, setWateringsData] = useState<WateringInfo[]>([]);
   const location = useLocation(); // 現在のページのパスを取得
   console.log('Current path:', location.pathname);
   const isNavbarHiddenPage =
@@ -70,14 +64,14 @@ function App() {
     const fetchWateringsData = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, 'waterings'));
-        const waterings: wateringsInfo[] = [];
+        const waterings: WateringInfo[] = [];
         querySnapshot.forEach((doc) => {
           const data = doc.data();
           waterings.push({
             plantId: doc.id,
             wateringCycle: data.wateringCycle,
-            nextWateringDate: data.nextWateringDate.toDate(),
             wateringAmount: data.wateringAmount,
+            nextWateringDate: data.nextWateringDate.toDate(),
           });
         });
         console.log(waterings);

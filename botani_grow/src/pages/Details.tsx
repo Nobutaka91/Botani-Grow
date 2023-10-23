@@ -30,6 +30,7 @@ import { WaterChart } from './WaterChart';
 import { CommentSidebar } from '../views/organisms/CommentSidebar';
 import { LeafSidebar } from '../views/organisms/LeafSidebar';
 import { PlantInfo } from '../types/plantInfo';
+import { WateringInfo } from '../types/wateringInfo';
 import { PlantsLinks } from '../views/organisms/PlantsLinks';
 
 import './Details.scss';
@@ -39,6 +40,8 @@ import { EndCareModal } from '../views/organisms/EndCareModal';
 type InfoProps = {
   plantsData: PlantInfo[];
   setPlantsData: React.Dispatch<React.SetStateAction<PlantInfo[]>>;
+  wateringsData: WateringInfo[];
+  setWateringsData: React.Dispatch<React.SetStateAction<WateringInfo[]>>;
 };
 
 export const Details: React.FC<InfoProps> = ({
@@ -188,7 +191,7 @@ export const Details: React.FC<InfoProps> = ({
                   </div>
                   <div className="next_watering_day">
                     <span className="flex gap-1">
-                      {}
+                      Next
                       <TiStopwatch className="icon" color="" />
                     </span>
                     <p className="">
