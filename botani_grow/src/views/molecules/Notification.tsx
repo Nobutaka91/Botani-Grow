@@ -56,21 +56,21 @@ export const Notification = () => {
             <div className="bg-green mx-auto my-1  py-1 w-11/12 rounded-lg text-white">
               <p className="text-center">
                 {/* <LocalFloristTwoToneIcon /> */}
-                <span>😢水やり忘れてるかも?</span>
+                <span className="text-black">Forgot watering?</span>
               </p>
             </div>
             <div className="">
               <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100 cursor-pointer">
-                🥀Rose may be lacking water.
+                🥀Ficus bambino
               </p>
               <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100 cursor-pointer">
-                🌿 Rose may be lacking water.
+                🌿 Unberata
               </p>
               <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100 cursor-pointer">
-                😵 Rose may be lacking water.
+                🍀七福神
               </p>
               <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100 cursor-pointer">
-                😵 Rose may be lacking water.
+                🌿 Glauca
               </p>
             </div>
           </div>

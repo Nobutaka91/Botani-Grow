@@ -68,7 +68,7 @@ function App() {
         querySnapshot.forEach((doc) => {
           const data = doc.data();
           waterings.push({
-            plantId: doc.id,
+            plantId: data.plantId,
             wateringCycle: data.wateringCycle,
             wateringAmount: data.wateringAmount,
             nextWateringDate: data.nextWateringDate.toDate(),

@@ -36,6 +36,7 @@ import { PlantsLinks } from '../views/organisms/PlantsLinks';
 import './Details.scss';
 import '../views/organisms/ButtonContainer.scss';
 import { EndCareModal } from '../views/organisms/EndCareModal';
+import { Console } from 'console';
 
 type InfoProps = {
   plantsData: PlantInfo[];
@@ -50,6 +51,7 @@ export const Details: React.FC<InfoProps> = ({
   wateringsData,
   setWateringsData,
 }) => {
+  console.log(wateringsData);
   const { id } = useParams<{ id: string }>();
   const { Modal, openModal, closeModal, show } = useModal();
   const [modalType, setModalType] = useState<
@@ -90,8 +92,13 @@ export const Details: React.FC<InfoProps> = ({
     return <p>ID Not Specified</p>;
   }
 
+  console.log();
   // idに基づいて選ばれた植物のデータを取得する
   const plant = plantsData.find((plant) => plant.id === id);
+
+  const watering = wateringsData.find((watering) => watering.plantId === id);
+  console.log(plant);
+  console.log(watering);
 
   const toggleCommentSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -170,7 +177,8 @@ export const Details: React.FC<InfoProps> = ({
                 <div className="flex plant__details">
                   <div className="lastWateringDay border-r border-gray-200 pr-4">
                     <span className="flex gap-1">
-                      Watered
+                      <span className="text-black opacity-80">Watered</span>
+
                       <MdWaterDrop
                         className="icon"
                         style={{ color: '#1ab4e7' }}
@@ -182,7 +190,8 @@ export const Details: React.FC<InfoProps> = ({
                   </div>
                   <div className="thisMonth_Watering_times border-r border-gray-200 pr-4">
                     <span className="flex gap-1">
-                      This Month
+                      <span className="text-black opacity-80">This Month</span>
+
                       <FcPlanner className="icon" />
                     </span>
                     <p className="">
@@ -191,11 +200,14 @@ export const Details: React.FC<InfoProps> = ({
                   </div>
                   <div className="next_watering_day">
                     <span className="flex gap-1">
-                      Next
-                      <TiStopwatch className="icon" color="" />
+                      <span className="text-black opacity-80">Next</span>
+
+                      <TiStopwatch className="icon" color="black" />
                     </span>
                     <p className="">
-                      2023/10/03 {/*後で「次回の水やり日」をいれる*/}
+                      {watering
+                        ? watering.nextWateringDate.toLocaleDateString()
+                        : '-'}
                     </p>
                   </div>
                 </div>
