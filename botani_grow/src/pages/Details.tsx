@@ -92,13 +92,9 @@ export const Details: React.FC<InfoProps> = ({
     return <p>ID Not Specified</p>;
   }
 
-  console.log();
   // idに基づいて選ばれた植物のデータを取得する
   const plant = plantsData.find((plant) => plant.id === id);
-
   const watering = wateringsData.find((watering) => watering.plantId === id);
-  console.log(plant);
-  console.log(watering);
 
   const toggleCommentSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -181,11 +177,11 @@ export const Details: React.FC<InfoProps> = ({
 
                       <MdWaterDrop
                         className="icon"
-                        style={{ color: '#1ab4e7' }}
+                        style={{ color: '#1a6fe7' }}
                       />
                     </span>
-                    <p className="flex">
-                      2023/9/28 {/*後で「水やりした日」をいれる*/}
+                    <p className="flex shadow-md rounded-lg px-4 py-2 mt-0.5">
+                      2023/9/7{/*後で「水やりした日」をいれる*/}
                     </p>
                   </div>
                   <div className="thisMonth_Watering_times border-r border-gray-200 pr-4">
@@ -194,17 +190,16 @@ export const Details: React.FC<InfoProps> = ({
 
                       <FcPlanner className="icon" />
                     </span>
-                    <p className="">
+                    <p className="shadow-md rounded-lg  px-4 py-2 mt-0.5 ">
                       4 times {/*後で「今月の水やり回数」をいれる*/}
                     </p>
                   </div>
                   <div className="next_watering_day">
-                    <span className="flex gap-1">
+                    <span className="flex gap-1 items-center">
                       <span className="text-black opacity-80">Next</span>
-
                       <TiStopwatch className="icon" color="black" />
                     </span>
-                    <p className="">
+                    <p className="shadow-md rounded-lg px-4 py-2 mt-0.5 ">
                       {watering
                         ? watering.nextWateringDate.toLocaleDateString()
                         : '-'}
@@ -213,18 +208,25 @@ export const Details: React.FC<InfoProps> = ({
                 </div>
                 <div className="lastCondition">
                   <span className="condition_expression">Feature</span>
-                  <p className="condition_memo">タグが配置されるところ</p>
+                  <div className="condition_memo ">
+                    {plant.tags?.map((tag) => (
+                      <span className="tag-text text-sm shadow-xl">{tag}</span>
+                    ))}
+                  </div>
                 </div>
               </div>
 
               {/* 植物名 + 画像　*/}
               <div className="img_container">
-                <div id="plant__name" className="plant__name_flex">
+                <div id="plant__name" className="plant__name_flex items-center">
                   <h1>{plant.name}</h1>
                   <span>({plant.startDate.toLocaleDateString()} ～ )</span>
+                  <span className="plant-size">{plant.size}</span>
                   <span className="flex">
                     <PiLeafDuotone className="icon" color="green" />
-                    {plant.leafCount}
+                    <span className="text-black opacity-80">
+                      {plant.leafCount}
+                    </span>
                   </span>
                 </div>
                 {plant.iconUrl ? (

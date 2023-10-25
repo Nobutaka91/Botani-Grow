@@ -28,12 +28,22 @@
 
 .plant__name_flex {
   display: flex;
-  align-items: baseline; // テキストの底が揃う
   justify-content: center;
   gap: 5px;
 
   span {
     font-size: 15px;
+  }
+
+  .plant-size {
+    opacity: 0.85;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    // border: solid var(--blackColor);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--bgColor);
+    border-width: thin;
   }
 }
 
@@ -66,27 +76,38 @@
 }
 
 .thisMonth_Watering_times {
-  margin-left: 30px;
-  margin-right: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .next_watering_day {
 }
 
 .lastCondition {
-  // border-top: 1px solid var(--bgColor);
-  // text-align: center;
   margin-top: 10px;
   padding: 10px 0 0 10px;
 
   .condition_expression {
     display: block;
-    // margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 3px;
     font-size: 14px;
   }
 
   .condition_memo {
+    width: 400px;
+    // padding: 0.7rem;
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+
+    .tag-text {
+      background-color: var(--tagsColor);
+      display: inline-block;
+      padding: 0.25em 0.5em;
+      border-radius: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      align-items: center;
+    }
   }
 }
 .setup__p {
