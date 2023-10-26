@@ -31,6 +31,7 @@ import { CommentSidebar } from '../views/organisms/CommentSidebar';
 import { LeafSidebar } from '../views/organisms/LeafSidebar';
 import { PlantInfo } from '../types/plantInfo';
 import { WateringInfo } from '../types/wateringInfo';
+import { Memo } from '../types/memo';
 import { PlantsLinks } from '../views/organisms/PlantsLinks';
 
 import './Details.scss';
@@ -265,6 +266,7 @@ export const Details: React.FC<InfoProps> = ({
             <CommentSidebar
               isSidebarOpen={isSidebarOpen}
               toggleCommentSidebar={toggleCommentSidebar}
+              plant={plant}
             />
           )}
 
