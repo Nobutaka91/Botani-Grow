@@ -62,6 +62,8 @@ export const CommentSidebar: React.FC<CommentSidebarProps> = ({
   console.log('After handleSubmit', comments, inputText);
 
   useEffect(() => {
+    setComments([]); // コメントのクリア(リンクで別の植物に遷移したときに別植物のコメントに切り替えるため)
+
     const fetchComments = async () => {
       const plantDocRef = doc(db, 'plants', plant.id);
       const plantData = await getDoc(plantDocRef);
