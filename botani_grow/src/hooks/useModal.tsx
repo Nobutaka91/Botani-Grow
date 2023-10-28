@@ -35,7 +35,6 @@ export const useModal = () => {
   };
 
   const closeModal = () => {
-    console.log('Closing modal');
     setShow(false);
   };
 

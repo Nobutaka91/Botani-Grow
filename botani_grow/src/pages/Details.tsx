@@ -33,6 +33,7 @@ import { PlantInfo } from '../types/plantInfo';
 import { WateringInfo } from '../types/wateringInfo';
 import { Memo } from '../types/memo';
 import { PlantsLinks } from '../views/organisms/PlantsLinks';
+import { Edit } from '../views/organisms/Edit';
 
 import './Details.scss';
 import '../views/organisms/ButtonContainer.scss';
@@ -63,6 +64,7 @@ export const Details: React.FC<InfoProps> = ({
   const navigationRef = useRef<HTMLDivElement | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isLeafSidebarOpen, setIsLeafSidebarOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -105,6 +107,10 @@ export const Details: React.FC<InfoProps> = ({
   const toggleLeafSidebar = () => {
     setIsLeafSidebarOpen(!isLeafSidebarOpen);
     if (isSidebarOpen) setIsSidebarOpen(false);
+  };
+
+  const handleEditClick = () => {
+    setIsEditModalOpen((prevState) => !prevState);
   };
 
   return (
@@ -154,12 +160,21 @@ export const Details: React.FC<InfoProps> = ({
               <div className="text-xs text-gray-500 mb-1">Edit</div>
               <button
                 className="edit__button"
-                onClick={() => setOpen(!open)}
+                onClick={handleEditClick}
                 ref={actionButtonRef}
               >
                 <MdEditDocument className=" icon fa-solid fa-plus" />
               </button>
             </div>
+
+            {isEditModalOpen && (
+              <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50">
+                <div className="bg-white p-4 rounded shadow-lg w-1/2">
+                  <Edit />
+                  <button onClick={closeModal}>Close</button>
+                </div>
+              </div>
+            )}
 
             {/* PlantsLinks　*/}
             <PlantsLinks plantsData={plantsData} currentPlantId={id} />
