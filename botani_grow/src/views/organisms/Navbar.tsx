@@ -21,7 +21,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   setIsLogin,
 }) => {
   const location = useLocation(); // 現在のURLのパスを取得
-  // console.log(location.pathname);
 
   const [open, setOpen] = useState(false);
   const imgRef = useRef<HTMLImageElement | null>(null);

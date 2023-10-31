@@ -118,7 +118,7 @@ export const Details: React.FC<InfoProps> = ({
       {plant ? (
         <>
           {/* Side-buttons + PlantsLinks　*/}
-          <div className="buttonContainer flex-none h-full flex-col">
+          <div className="buttonContainer flex-none flex-col">
             {/* Watering-button　*/}
             <div className="relative  watering__icon flex flex-col ">
               <div className="text-xs text-gray-500 mb-1">Watering</div>
@@ -134,18 +134,29 @@ export const Details: React.FC<InfoProps> = ({
             <div className="relative  leafCount__icon flex flex-col ">
               <div className="text-xs text-gray-500 mb-1">Leaf</div>
               <button
-                className="leafCount__button"
+                className="leafCount__button relative overflow-visible"
                 onClick={toggleLeafSidebar}
                 ref={actionButtonRef}
               >
                 <TiLeaf className=" icon fa-solid fa-plus" />
+                <div className="absolute bottom-0.5 -right-1.5 bg-green-200 w-5 h-5 rounded-full flex justify-center items-center text-gray ">
+                  {plant.leafCount}
+                </div>
               </button>
+              {/* Leafサイドバー　*/}
+              {isLeafSidebarOpen && (
+                <LeafSidebar
+                  // isLeafSidebarOpen={isLeafSidebarOpen}
+                  toggleLeafSidebar={toggleLeafSidebar}
+                  plant={plant}
+                />
+              )}
             </div>
             {/* Comment-button　*/}
             <div className="relative  comment__icon flex flex-col ">
               <div className="text-xs text-gray-500 mb-1">Memo</div>
               <button
-                className="comment__button"
+                className="comment__button relative"
                 onClick={() => {
                   setOpen(!open);
                   toggleCommentSidebar();
@@ -153,6 +164,9 @@ export const Details: React.FC<InfoProps> = ({
                 ref={actionButtonRef}
               >
                 <FaRegCommentDots className="icon fa-solid fa-plus" />
+                <div className="absolute bottom-0.5 -right-1.5 bg-green-200 w-5 h-5 rounded-full flex justify-center items-center text-gray ">
+                  {plant.memos ? plant.memos.length : 0}
+                </div>
               </button>
             </div>
             {/* Edit-button　*/}
@@ -181,7 +195,7 @@ export const Details: React.FC<InfoProps> = ({
           </div>
 
           {/* メイン画面 */}
-          <div className="flex-grow h-screen overflow-y-auto">
+          <div className="flex-grow h-screen overflow-y-auto z-0">
             {/* 植物ステータス　*/}
             <div className="flex justify-center gap-12 border-b py-8">
               {/* 水やりデータ + コンディション + メモ　*/}
@@ -286,13 +300,13 @@ export const Details: React.FC<InfoProps> = ({
           )}
 
           {/* Leafサイドバー　*/}
-          {isLeafSidebarOpen && (
+          {/* {isLeafSidebarOpen && (
             <LeafSidebar
               isLeafSidebarOpen={isLeafSidebarOpen}
               toggleLeafSidebar={toggleLeafSidebar}
               plant={plant}
             />
-          )}
+          )} */}
 
           {/* End Careモーダル　*/}
           <EndCareModal
