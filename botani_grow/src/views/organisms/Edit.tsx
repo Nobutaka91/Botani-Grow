@@ -1,8 +1,6 @@
 import React from 'react';
-import '.Edit.scss';
+import './Edit.scss';
 
-const Edit = () => {
-  return <div></div>;
+export const Edit = () => {
+  return <div>Edit</div>;
 };
-
-export default Edit;
