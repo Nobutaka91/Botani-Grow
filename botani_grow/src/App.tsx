@@ -48,6 +48,7 @@ function App() {
             leafCount: data.leafCount,
             // wateringCycle: data.wateringCycle,
             tags: data.tags,
+            memos: data.memos,
             startDate: data.startDate?.toDate(),
             wateringAmount: data.wateringAmount,
             isArchived: data.isArchived || false,
@@ -96,7 +97,7 @@ function App() {
           />
         </div>
       )}
-      <div className=" mb-80 overflow-y-auto">
+      <div className=" mb-80 ">
         <Routes>
           <Route
             path="/"

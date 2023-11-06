@@ -18,7 +18,7 @@ export const Plants: React.FC<PlantProps> = ({ plantsData }) => {
   const { Modal, openModal, closeModal, show } = useModal(); // 後ほど, 新規登録フォームをmodalで表示させる
 
   return (
-    <div className="pt-14">
+    <div className="plants-list pt-14">
       <div className="plants__icons h-full flex flex-col ">
         <span className="text-xs text-gray-500 mb-1">New</span>
         <button className="add_button">
@@ -27,7 +27,7 @@ export const Plants: React.FC<PlantProps> = ({ plantsData }) => {
           </Link>
         </button>
       </div>
-      <div className="h-screen overflow-y-auto">
+      <div className="h-screen">
         <h1 id="title">Plants</h1>
         <div className="plantCardContainer">
           {plantsData

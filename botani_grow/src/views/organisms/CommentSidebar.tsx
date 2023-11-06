@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './CommentSidebar.scss';
 import { PlantInfo } from '../../types/plantInfo';
+import { PlantMemo } from '../../types/plantMemo';
 
 import { IoIosClose } from 'react-icons/io';
 import { db } from '../../config/Firebase';
@@ -18,51 +19,56 @@ type CommentSidebarProps = {
   isSidebarOpen: boolean;
   toggleCommentSidebar: () => void;
   plant: PlantInfo;
-};
-
-type Comment = {
-  text: string;
-  date: Timestamp;
+  memos: PlantMemo[];
+  setMemos: React.Dispatch<React.SetStateAction<PlantMemo[]>>;
+  onCommentAdded: (newComment: PlantMemo) => void;
 };
 
 export const CommentSidebar: React.FC<CommentSidebarProps> = ({
   isSidebarOpen,
   toggleCommentSidebar,
   plant,
+  memos,
+  setMemos,
+  onCommentAdded,
 }) => {
   const [inputText, setInputText] = useState('');
-  const [comments, setComments] = useState<Comment[]>([]);
+  // const [comments, setComments] = useState<Comment[]>([]);
   const [isExpanded, setIsExpanded] = useState(false);
-  console.log('Before handleSubmit', comments, inputText);
+  console.log('Before handleSubmit', memos, inputText);
 
   const handleSubmit = async (e: React.MouseEvent) => {
     console.log('do handleSubmit');
     // e.preventDefault();
     if (inputText) {
-      setComments((prevComments) => [
-        ...prevComments,
-        {
-          text: inputText,
-          date: Timestamp.now(),
-        },
-      ]);
+      const timestampNow = Timestamp.now();
 
-      const plantDocRef = doc(db, 'plants', plant.id);
+      // setMemos((prevComments) => [
+      //   ...prevComments,
+      //   {
+      //     text: inputText,
+      //     date: timestampNow,
+      //   },
+      // ]);
+
       const newMemo = {
         text: inputText,
-        date: Timestamp.now(),
+        date: timestampNow,
       };
+
+      const plantDocRef = doc(db, 'plants', plant.id);
       await updateDoc(plantDocRef, {
         memos: arrayUnion(newMemo),
       });
 
       setInputText('');
+      onCommentAdded(newMemo); //Detailsへ新しいコメントを伝える
     }
   };
-  console.log('After handleSubmit', comments, inputText);
+  console.log('After handleSubmit', memos, inputText);
 
   useEffect(() => {
-    setComments([]); // コメントのクリア(リンクで別の植物に遷移したときに別植物のコメントに切り替えるため)
+    setMemos([]); // コメントのクリア(リンクで別の植物に遷移したときに別植物のコメントに切り替えるため)
 
     const fetchComments = async () => {
       const plantDocRef = doc(db, 'plants', plant.id);
@@ -73,7 +79,7 @@ export const CommentSidebar: React.FC<CommentSidebarProps> = ({
           const sortedMemos = data.memos.sort(
             (a: any, b: any) => b.date.seconds - a.date.seconds
           );
-          setComments(data.memos);
+          setMemos(sortedMemos);
         }
       }
     };
@@ -112,10 +118,10 @@ export const CommentSidebar: React.FC<CommentSidebarProps> = ({
           </label>
         </div>
         <div className="past-comments">
-          {comments.map((comment, id) => (
+          {memos.map((memo, id) => (
             <div key={id} className="single-comment">
               <span className="text-sm text-slate-400">
-                {comment.date.toDate().toLocaleString('ja-JP', {
+                {memo.date.toDate().toLocaleString('ja-JP', {
                   year: 'numeric',
                   month: '2-digit',
                   day: '2-digit',
@@ -123,7 +129,7 @@ export const CommentSidebar: React.FC<CommentSidebarProps> = ({
                   minute: '2-digit',
                 })}
               </span>
-              <div className="pt-1">{comment.text}</div>
+              <div className="pt-1">{memo.text}</div>
             </div>
           ))}
         </div>

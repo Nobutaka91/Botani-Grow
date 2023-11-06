@@ -1,13 +1,11 @@
 .buttonContainer {
   position: fixed;
-  // top: 0;
   left: 150px;
   width: 200px;
   height: 100%;
   overflow-y: auto; // 葉のグラフが半分表示されない原因になるため削除
   z-index: 20;
   padding-top: 50px;
-  border-right-width: 1px; //位置確認用
 
   .watering__icon {
     width: auto;
@@ -159,4 +157,20 @@
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     }
   }
+}
+
+.buttonContainer::-webkit-scrollbar {
+  display: block;
+  width: var(--sb-size);
+}
+
+.buttonContainer::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 12px;
+}
+
+.buttonContainer::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 12px;
+  border: 2px solid #eaf0f3;
 }

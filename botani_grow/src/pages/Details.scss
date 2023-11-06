@@ -167,3 +167,10 @@ ui-card img {
   height: 100vh;
   overflow-y: auto;
 }
+
+// // Hide scroll bar
+.plant-detail {
+  .plant-detail-main::-webkit-scrollbar {
+    display: none;
+  }
+}

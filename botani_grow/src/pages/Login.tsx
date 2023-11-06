@@ -98,7 +98,7 @@ export const Login: React.FC<LoginProps> = ({
 
   return (
     <>
-      <div className="loginPage flex">
+      <div className="loginPage flex  overflow-y-auto">
         <div className="container flex">
           <div className="videoDiv">
             <video

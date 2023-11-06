@@ -3,7 +3,13 @@ import { Link, useParams } from 'react-router-dom';
 import { useModal } from '../hooks/useModal';
 
 import { db } from '../config/Firebase';
-import { doc, deleteDoc } from 'firebase/firestore';
+import {
+  doc,
+  deleteDoc,
+  getDocs,
+  collection,
+  getDoc,
+} from 'firebase/firestore';
 
 import NaturePeopleIcon from '@mui/icons-material/NaturePeople';
 import { VscCloudUpload } from 'react-icons/vsc';
@@ -30,8 +36,8 @@ import { WaterChart } from './WaterChart';
 import { CommentSidebar } from '../views/organisms/CommentSidebar';
 import { LeafSidebar } from '../views/organisms/LeafSidebar';
 import { PlantInfo } from '../types/plantInfo';
+import { PlantMemo } from '../types/plantMemo';
 import { WateringInfo } from '../types/wateringInfo';
-import { Memo } from '../types/memo';
 import { PlantsLinks } from '../views/organisms/PlantsLinks';
 import { Edit } from '../views/organisms/Edit';
 
@@ -65,6 +71,7 @@ export const Details: React.FC<InfoProps> = ({
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isLeafSidebarOpen, setIsLeafSidebarOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [memos, setMemos] = useState<PlantMemo[]>([]);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -99,6 +106,8 @@ export const Details: React.FC<InfoProps> = ({
   const plant = plantsData.find((plant) => plant.id === id);
   const watering = wateringsData.find((watering) => watering.plantId === id);
 
+  console.log(plant);
+
   const toggleCommentSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
     if (isLeafSidebarOpen) setIsLeafSidebarOpen(false);
@@ -113,8 +122,28 @@ export const Details: React.FC<InfoProps> = ({
     setIsEditModalOpen((prevState) => !prevState);
   };
 
+  const fetchPlantDataById = async (plantId: string) => {
+    const docRef = doc(db, 'plants', plantId); // plantsコレクション内の特定のIDを持つドキュメントへの参照を取得
+    const docSnapshot = await getDoc(docRef);
+
+    if (docSnapshot.exists()) {
+      const data = docSnapshot.data();
+      if (data?.memos) {
+        setMemos(data.memos);
+      }
+    }
+  };
+
+  const onCommentAdded = (newComment: PlantMemo) => {
+    setMemos((prevMemos) => {
+      const updateMemos = [...prevMemos, newComment]; // 新しいメモを既存のメモ配列に追加
+      updateMemos.sort((a, b) => b.date.seconds - a.date.seconds); // 新しい配列を日付で降順にソート
+      return updateMemos; // ソートされた配列をセット
+    });
+  };
+
   return (
-    <div className="pt-14 flex">
+    <div className="plant-detail pt-14 flex z-10">
       {plant ? (
         <>
           {/* Side-buttons + PlantsLinks　*/}
@@ -164,11 +193,26 @@ export const Details: React.FC<InfoProps> = ({
                 ref={actionButtonRef}
               >
                 <FaRegCommentDots className="icon fa-solid fa-plus" />
-                <div className="absolute bottom-0.5 -right-1.5 bg-green-200 w-5 h-5 rounded-full flex justify-center items-center text-gray ">
-                  {plant.memos ? plant.memos.length : 0}
-                </div>
+                {plant.memos && (
+                  <div className="absolute bottom-0.5 -right-1.5 bg-green-200 w-5 h-5 rounded-full flex justify-center items-center text-gray ">
+                    {plant.memos.length}
+                  </div>
+                )}
               </button>
             </div>
+
+            {/* Commentサイドバー　*/}
+            {isSidebarOpen && (
+              <CommentSidebar
+                isSidebarOpen={isSidebarOpen}
+                toggleCommentSidebar={toggleCommentSidebar}
+                plant={plant}
+                memos={memos}
+                setMemos={setMemos}
+                onCommentAdded={onCommentAdded}
+              />
+            )}
+
             {/* Edit-button　*/}
             <div className="relative  edit__icon flex flex-col ">
               <div className="text-xs text-gray-500 mb-1">Edit</div>
@@ -195,7 +239,7 @@ export const Details: React.FC<InfoProps> = ({
           </div>
 
           {/* メイン画面 */}
-          <div className="flex-grow h-screen overflow-y-auto z-0">
+          <div className="plant-detail-main flex-grow h-screen overflow-y-auto z-0">
             {/* 植物ステータス　*/}
             <div className="flex justify-center gap-12 border-b py-8">
               {/* 水やりデータ + コンディション + メモ　*/}
@@ -289,24 +333,6 @@ export const Details: React.FC<InfoProps> = ({
               </button>
             </div>
           </div>
-
-          {/* Commentサイドバー　*/}
-          {isSidebarOpen && (
-            <CommentSidebar
-              isSidebarOpen={isSidebarOpen}
-              toggleCommentSidebar={toggleCommentSidebar}
-              plant={plant}
-            />
-          )}
-
-          {/* Leafサイドバー　*/}
-          {/* {isLeafSidebarOpen && (
-            <LeafSidebar
-              isLeafSidebarOpen={isLeafSidebarOpen}
-              toggleLeafSidebar={toggleLeafSidebar}
-              plant={plant}
-            />
-          )} */}
 
           {/* End Careモーダル　*/}
           <EndCareModal
