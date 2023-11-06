@@ -64,7 +64,6 @@ video {
   margin: auto;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 7px 50px rgb(214, 223, 213);
 
   .container {
     height: 75vh;
@@ -441,9 +440,4 @@ video {
       width: 90%;
     }
   }
-}
-
-//  scroll bar
-::-webkit-scrollbar {
-  display: none;
 }

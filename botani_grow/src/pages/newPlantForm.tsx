@@ -139,7 +139,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
   };
 
   return (
-    <div className="px-4 md:px-8 lg:px-16">
+    <div className="px-4 md:px-8 lg:px-16  overflow-y-auto">
       <div className="registerForm flex flex-col md:flex-row">
         <div className="registerForm-container w-full">
           <div className="formDiv flex justify-center flex-col md:flex-row">

@@ -49,7 +49,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, []);
 
   return (
-    <header className="fixed w-full  mx-auto  inset-x-0 border-b border-t-1 border-gray-200 z-50">
+    <header className="navigation-container fixed w-full  mx-auto  inset-x-0 border-b border-t-1 border-gray-200 ">
       <div className=" flex justify-between items-center align-items-center backdrop-filter backdrop-blur-lg">
         <div className="flex">
           <h1 className="pl-12">Botani-grow</h1>
@@ -64,7 +64,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {open && (
               <div
                 ref={menuRef}
-                className="bg-white p-4 w-52 shadow-lg absolute left-4 top-16 rounded-lg"
+                className="bg-white p-4 w-40 shadow-lg absolute left-4 top-16 rounded-lg"
               >
                 <nav className="Navbar">
                   <ul>
@@ -84,14 +84,14 @@ export const Navbar: React.FC<NavbarProps> = ({
                       <span className="Plants-button">Plants</span>
                       {isActive('/Plants') && <span>✔️</span>}
                     </Link>
-                    <Link
+                    {/* <Link
                       to="/History"
                       onClick={() => setOpen(!open)}
                       className="p-2 text-lg  rounded-lg hover:bg-lime-100 flex justify-between"
                     >
                       <span className="History-button">History</span>
                       {isActive('/History') && <span>✔️</span>}
-                    </Link>
+                    </Link> */}
                     {isLogin ? (
                       <Link
                         to="/"

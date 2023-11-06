@@ -24,6 +24,12 @@
   --deleteColor: hsl(9, 85%, 65%);
   // --deleteHoverColor: hsl(59, 100%, 75%);
 
+  --sb-track-color: #eaf0f3;
+  --sb-thumb-color: #12131248;
+  --sb-size: 10px;
+
+  scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+
   /* Font any Typography */
   --biggestFontSize: 2.5rem;
   --h1FontSize: 1.5rem;
@@ -105,7 +111,6 @@ video {
   margin: auto;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 7px 50px rgb(214, 223, 213);
 
   .container {
     height: 75vh;
@@ -496,7 +501,22 @@ body.modal-open {
   }
 }
 
-// Hide scroll bar
 ::-webkit-scrollbar {
-  display: none;
+  width: var(--sb-size);
 }
+
+::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 12px;
+  border: 2px solid #eaf0f3;
+}
+
+// // Hide scroll bar
+// ::-webkit-scrollbar {
+//   display: none;
+// }
