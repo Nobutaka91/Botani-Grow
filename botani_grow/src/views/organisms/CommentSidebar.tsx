@@ -1,3 +1,4 @@
+import ReactDOM from 'react-dom';
 import React, { useState, useEffect } from 'react';
 import './CommentSidebar.scss';
 import { PlantInfo } from '../../types/plantInfo';
@@ -87,7 +88,7 @@ export const CommentSidebar: React.FC<CommentSidebarProps> = ({
     fetchComments();
   }, [plant.id]);
 
-  return (
+  return ReactDOM.createPortal(
     <div className={`commentSidebarContainer ${isSidebarOpen ? 'open' : ''}`}>
       <div className="comment-sidebar">
         <button className="close-btn" onClick={toggleCommentSidebar}>
@@ -134,6 +135,7 @@ export const CommentSidebar: React.FC<CommentSidebarProps> = ({
           ))}
         </div>
       </div>
-    </div>
+    </div>,
+    document.getElementById('comment-sidebar-root')!
   );
 };
