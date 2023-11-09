@@ -126,7 +126,7 @@ export const Login: React.FC<LoginProps> = ({
           </div>
 
           <div className="formDiv flex">
-            <div className="headerDiv ">
+            <div className="headerDiv pointer-events-none ">
               <img src={logo} alt="Logo" />
               <h3>Botani-Grow</h3>
             </div>
