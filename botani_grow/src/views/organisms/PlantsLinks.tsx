@@ -2,6 +2,7 @@ import React from 'react';
 import './PlantsLinks.scss';
 
 import { TbPlantOff, TbPlant } from 'react-icons/tb';
+import { FcCloseUpMode } from 'react-icons/fc';
 import { Link } from 'react-router-dom';
 
 type PlantLinksProps = {
@@ -21,14 +22,15 @@ export const PlantsLinks: React.FC<PlantLinksProps> = ({
   return (
     <div className="plantsLinks">
       <p className="plantsList-title flex gap-1">
-        <TbPlant className="icon" color="green" />
+        {/* <TbPlant className="icon" color="green" /> */}
+        <FcCloseUpMode className="icon pointer-events-none" color="green" />
         Plant List
       </p>
       {plantsData
         .filter((plant) => plant.id !== currentPlantId && !plant.isArchived)
         .map((plant) => (
           <Link to={`/Plants/${plant.id}`} key={plant.id}>
-            <div className="flex gap-5">
+            <div className="flex gap-5 hover:bg-lime-100 p-1.5 rounded-lg cursor-pointer">
               {plant.iconUrl ? (
                 <img
                   src={plant.iconUrl}

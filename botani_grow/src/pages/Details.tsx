@@ -39,7 +39,7 @@ import { PlantInfo } from '../types/plantInfo';
 import { PlantMemo } from '../types/plantMemo';
 import { WateringInfo } from '../types/wateringInfo';
 import { PlantsLinks } from '../views/organisms/PlantsLinks';
-import { Edit } from '../views/organisms/Edit';
+import { EditSidebar } from '../views/organisms/EditSidebar';
 
 import './Details.scss';
 import '../views/organisms/ButtonContainer.scss';
@@ -68,9 +68,9 @@ export const Details: React.FC<InfoProps> = ({
   const [open, setOpen] = useState(false);
   const actionButtonRef = useRef<HTMLButtonElement | null>(null);
   const navigationRef = useRef<HTMLDivElement | null>(null);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isCommentSidebarOpen, setIsCommentSidebarOpen] = useState(false);
   const [isLeafSidebarOpen, setIsLeafSidebarOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isEditSidebarOpen, setIsEditSidebarOpen] = useState(false);
   const [memos, setMemos] = useState<PlantMemo[]>([]);
 
   useEffect(() => {
@@ -109,17 +109,21 @@ export const Details: React.FC<InfoProps> = ({
   console.log(plant);
 
   const toggleCommentSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
+    setIsCommentSidebarOpen(!isCommentSidebarOpen);
     if (isLeafSidebarOpen) setIsLeafSidebarOpen(false);
+    if (isEditSidebarOpen) setIsEditSidebarOpen(false);
   };
 
   const toggleLeafSidebar = () => {
     setIsLeafSidebarOpen(!isLeafSidebarOpen);
-    if (isSidebarOpen) setIsSidebarOpen(false);
+    if (isCommentSidebarOpen) setIsCommentSidebarOpen(false);
+    if (isEditSidebarOpen) setIsEditSidebarOpen(false);
   };
 
-  const handleEditClick = () => {
-    setIsEditModalOpen((prevState) => !prevState);
+  const toggleEditSidebar = () => {
+    setIsEditSidebarOpen(!isEditSidebarOpen);
+    if (isLeafSidebarOpen) setIsLeafSidebarOpen(false);
+    if (isCommentSidebarOpen) setIsCommentSidebarOpen(false);
   };
 
   const fetchPlantDataById = async (plantId: string) => {
@@ -150,7 +154,6 @@ export const Details: React.FC<InfoProps> = ({
           <div className="buttonContainer flex-none flex-col">
             {/* Watering-button　*/}
             <div className="relative  watering__icon flex flex-col ">
-              <div className="text-xs text-gray-500 mb-1">Watering</div>
               <button
                 className="watering__button"
                 onClick={() => setOpen(!open)}
@@ -158,20 +161,23 @@ export const Details: React.FC<InfoProps> = ({
               >
                 <MdWaterDrop className=" icon fa-solid fa-plus" />
               </button>
+              <div className="text-xs text-gray-500 my-1.5">Watering</div>
             </div>
             {/* Leaf-button　*/}
             <div className="relative  leafCount__icon flex flex-col ">
-              <div className="text-xs text-gray-500 mb-1">Leaf</div>
               <button
                 className="leafCount__button relative overflow-visible"
                 onClick={toggleLeafSidebar}
                 ref={actionButtonRef}
               >
                 <TiLeaf className=" icon fa-solid fa-plus" />
-                <div className="absolute bottom-0.5 -right-1.5 bg-green-200 w-5 h-5 rounded-full flex justify-center items-center text-gray ">
+                {/* <div className="absolute bottom-0.5 -right-1.5 bg-green-200 w-5 h-5 rounded-full flex justify-center items-center text-gray ">
                   {plant.leafCount}
-                </div>
+                </div> */}
               </button>
+              <div className="text-xs text-gray-500 my-1.5">
+                {plant.leafCount}
+              </div>
               {/* Leafサイドバー　*/}
               {isLeafSidebarOpen && (
                 <LeafSidebar
@@ -183,7 +189,6 @@ export const Details: React.FC<InfoProps> = ({
             </div>
             {/* Comment-button　*/}
             <div className="relative  comment__icon flex flex-col ">
-              <div className="text-xs text-gray-500 mb-1">Memo</div>
               <button
                 className="comment__button relative"
                 onClick={() => {
@@ -199,12 +204,13 @@ export const Details: React.FC<InfoProps> = ({
                   </div>
                 )}
               </button>
+              <div className="text-xs text-gray-500 my-1.5">Memo</div>
             </div>
 
             {/* Commentサイドバー　*/}
-            {isSidebarOpen && (
+            {isCommentSidebarOpen && (
               <CommentSidebar
-                isSidebarOpen={isSidebarOpen}
+                isCommentSidebarOpen={isCommentSidebarOpen}
                 toggleCommentSidebar={toggleCommentSidebar}
                 plant={plant}
                 memos={memos}
@@ -215,23 +221,21 @@ export const Details: React.FC<InfoProps> = ({
 
             {/* Edit-button　*/}
             <div className="relative  edit__icon flex flex-col ">
-              <div className="text-xs text-gray-500 mb-1">Edit</div>
               <button
-                className="edit__button"
-                onClick={handleEditClick}
+                className="edit__button relative overflow-visible"
+                onClick={toggleEditSidebar}
                 ref={actionButtonRef}
               >
                 <MdEditDocument className=" icon fa-solid fa-plus" />
               </button>
+              <div className="text-xs text-gray-500 my-1.5">Edit</div>
             </div>
-
-            {isEditModalOpen && (
-              <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50">
-                <div className="bg-white p-4 rounded shadow-lg w-1/2">
-                  <Edit />
-                  <button onClick={closeModal}>Close</button>
-                </div>
-              </div>
+            {/* Editサイドバー　*/}
+            {isEditSidebarOpen && (
+              <EditSidebar
+                toggleEditSidebar={toggleEditSidebar}
+                plant={plant}
+              />
             )}
 
             {/* PlantsLinks　*/}
@@ -247,10 +251,12 @@ export const Details: React.FC<InfoProps> = ({
                 <div className="flex plant__details">
                   <div className="lastWateringDay border-r border-gray-200 pr-4">
                     <span className="flex gap-1">
-                      <span className="text-black opacity-80">Watered</span>
+                      <span className="text-black opacity-80 text-sm">
+                        Watered
+                      </span>
 
                       <MdWaterDrop
-                        className="icon"
+                        className="icon pointer-events-none"
                         style={{ color: '#1a6fe7' }}
                       />
                     </span>
@@ -260,9 +266,11 @@ export const Details: React.FC<InfoProps> = ({
                   </div>
                   <div className="thisMonth_Watering_times border-r border-gray-200 pr-4">
                     <span className="flex gap-1">
-                      <span className="text-black opacity-80">This Month</span>
+                      <span className="text-black opacity-80 text-sm">
+                        This Month
+                      </span>
 
-                      <FcPlanner className="icon" />
+                      <FcPlanner className="icon pointer-events-none" />
                     </span>
                     <p className="shadow-md rounded-lg  px-4 py-2 mt-0.5 ">
                       4 times {/*後で「今月の水やり回数」をいれる*/}
@@ -270,8 +278,13 @@ export const Details: React.FC<InfoProps> = ({
                   </div>
                   <div className="next_watering_day">
                     <span className="flex gap-1 items-center">
-                      <span className="text-black opacity-80">Next</span>
-                      <TiStopwatch className="icon" color="black" />
+                      <span className="text-black opacity-80 text-sm">
+                        Next
+                      </span>
+                      <TiStopwatch
+                        className="icon pointer-events-none"
+                        color="black"
+                      />
                     </span>
                     <p className="shadow-md rounded-lg px-4 py-2 mt-0.5 ">
                       {watering
@@ -297,7 +310,10 @@ export const Details: React.FC<InfoProps> = ({
                   <span>({plant.startDate.toLocaleDateString()} ～ )</span>
                   <span className="plant-size">{plant.size}</span>
                   <span className="flex">
-                    <PiLeafDuotone className="icon" color="green" />
+                    <PiLeafDuotone
+                      className="icon pointer-events-none"
+                      color="green"
+                    />
                     <span className="text-black opacity-80">
                       {plant.leafCount}
                     </span>
@@ -307,7 +323,7 @@ export const Details: React.FC<InfoProps> = ({
                   <img
                     src={plant.iconUrl}
                     alt={plant.name}
-                    className="plant_img"
+                    className="plant_img pointer-events-none"
                   />
                 ) : null}
               </div>

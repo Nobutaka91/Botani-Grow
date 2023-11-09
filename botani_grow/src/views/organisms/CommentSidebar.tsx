@@ -4,7 +4,9 @@ import './CommentSidebar.scss';
 import { PlantInfo } from '../../types/plantInfo';
 import { PlantMemo } from '../../types/plantMemo';
 
+import { IconContext } from 'react-icons';
 import { IoIosClose } from 'react-icons/io';
+import { AiOutlineDelete } from 'react-icons/ai';
 import { db } from '../../config/Firebase';
 import {
   doc,
@@ -14,10 +16,11 @@ import {
   getDoc,
   orderBy,
   query,
+  arrayRemove,
 } from 'firebase/firestore';
 
 type CommentSidebarProps = {
-  isSidebarOpen: boolean;
+  isCommentSidebarOpen: boolean;
   toggleCommentSidebar: () => void;
   plant: PlantInfo;
   memos: PlantMemo[];
@@ -26,7 +29,7 @@ type CommentSidebarProps = {
 };
 
 export const CommentSidebar: React.FC<CommentSidebarProps> = ({
-  isSidebarOpen,
+  isCommentSidebarOpen,
   toggleCommentSidebar,
   plant,
   memos,
@@ -43,14 +46,6 @@ export const CommentSidebar: React.FC<CommentSidebarProps> = ({
     // e.preventDefault();
     if (inputText) {
       const timestampNow = Timestamp.now();
-
-      // setMemos((prevComments) => [
-      //   ...prevComments,
-      //   {
-      //     text: inputText,
-      //     date: timestampNow,
-      //   },
-      // ]);
 
       const newMemo = {
         text: inputText,
@@ -88,8 +83,23 @@ export const CommentSidebar: React.FC<CommentSidebarProps> = ({
     fetchComments();
   }, [plant.id]);
 
+  const handleDeleteComment = async (memoToDelete: PlantMemo) => {
+    // Firebase空コメントを削除
+    const plantDocRef = doc(db, 'plants', plant.id);
+    await updateDoc(plantDocRef, {
+      memos: arrayRemove(memoToDelete),
+    });
+
+    // ローカルからもコメントを削除
+    setMemos(memos.filter((memo) => memo.date !== memoToDelete.date));
+  };
+
   return ReactDOM.createPortal(
-    <div className={`commentSidebarContainer ${isSidebarOpen ? 'open' : ''}`}>
+    <div
+      className={`commentSidebarContainer ${
+        isCommentSidebarOpen ? 'open' : ''
+      }`}
+    >
       <div className="comment-sidebar">
         <button className="close-btn" onClick={toggleCommentSidebar}>
           <IoIosClose className="close-icon" />
@@ -121,15 +131,26 @@ export const CommentSidebar: React.FC<CommentSidebarProps> = ({
         <div className="past-comments">
           {memos.map((memo, id) => (
             <div key={id} className="single-comment">
-              <span className="text-sm text-slate-400">
-                {memo.date.toDate().toLocaleString('ja-JP', {
-                  year: 'numeric',
-                  month: '2-digit',
-                  day: '2-digit',
-                  hour: '2-digit',
-                  minute: '2-digit',
-                })}
-              </span>
+              <div className="flex justify-between">
+                <span className="text-sm text-slate-400">
+                  {memo.date.toDate().toLocaleString('ja-JP', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                  })}
+                </span>
+                <button
+                  className="delete-memo-button"
+                  onClick={() => handleDeleteComment(memo)}
+                >
+                  {' '}
+                  <IconContext.Provider value={{ color: '#4b4a4a' }}>
+                    <AiOutlineDelete className="close-icon" />
+                  </IconContext.Provider>
+                </button>
+              </div>
               <div className="pt-1">{memo.text}</div>
             </div>
           ))}
