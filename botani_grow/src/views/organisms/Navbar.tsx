@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { New } from '../molecules/New';
 import { Notification } from '../molecules/Notification';
 import myImage from '../../LoginAssets/leaf-logo.png';
 import './Navbar.scss';
@@ -20,106 +21,22 @@ export const Navbar: React.FC<NavbarProps> = ({
   isLogin,
   setIsLogin,
 }) => {
-  const location = useLocation(); // 現在のURLのパスを取得
+  const navigate = useNavigate();
 
-  const [open, setOpen] = useState(false);
-  const imgRef = useRef<HTMLImageElement | null>(null);
-  const menuRef = useRef<HTMLDivElement | null>(null);
-
-  const isActive = (path: string) => {
-    console.log(path);
-    return location.pathname === path;
+  const navigateHome = () => {
+    navigate('/');
   };
 
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      // dropdownメニュー以外をクリックしたときに表示をオフにする
-      if (e.target !== menuRef.current && e.target !== imgRef.current) {
-        setOpen(false);
-      }
-    };
-
-    // イベントリスナーの登録
-    window.addEventListener('click', handleClickOutside);
-
-    // コンポーネントがアンマウントされたときにイベントリスナーを削除する
-    return () => {
-      window.removeEventListener('click', handleClickOutside);
-    };
-  }, []);
-
   return (
-    <header className="navigation-container fixed w-full  mx-auto  inset-x-0 border-b-2 border-gray-200 py-1.5 backdrop-filter backdrop-blur-lg">
+    <header className="navigation-container fixed w-full inset-x-0 border-b-2 border-gray-200 px-32 py-1.5 backdrop-filter backdrop-blur-lg ">
       <div className=" flex justify-between items-center align-items-center">
-        <div className="flex">
-          {/* <h1 className="pl-12">Botani-grow</h1> */}
+        <div className="flex cursor-pointer" onClick={navigateHome}>
           <div className="relative ml-4">
             <img
-              ref={imgRef}
-              onClick={() => setOpen(!open)}
               src={myImage}
               alt="icon"
-              className="h-12 w-12 object-cover border-4 border-lime-100 bg-lime-400 rounded-full cursor-pointer"
+              className="h-12 w-12 object-cover border-2 border-lime-100 bg-lime-400 rounded-full"
             />
-            {open && (
-              <div
-                ref={menuRef}
-                className="bg-white p-4 w-40 shadow-lg absolute left-4 top-16 rounded-lg"
-              >
-                <nav className="Navbar">
-                  <ul>
-                    <Link
-                      to="/"
-                      onClick={() => setOpen(!open)}
-                      className="p-2 text-lg  rounded-lg hover:bg-lime-100/75 flex justify-between"
-                    >
-                      <span className="Top-button">Top</span>
-                      {isActive('/') && <span>✔️</span>}
-                    </Link>
-                    <Link
-                      to="/Plants"
-                      onClick={() => setOpen(!open)}
-                      className="p-2 text-lg  rounded-lg hover:bg-lime-100/75 flex justify-between"
-                    >
-                      <span className="Plants-button">Plants</span>
-                      {isActive('/Plants') && <span>✔️</span>}
-                    </Link>
-                    {/* <Link
-                      to="/History"
-                      onClick={() => setOpen(!open)}
-                      className="p-2 text-lg  rounded-lg hover:bg-lime-100 flex justify-between"
-                    >
-                      <span className="History-button">History</span>
-                      {isActive('/History') && <span>✔️</span>}
-                    </Link> */}
-                    {isLogin ? (
-                      <Link
-                        to="/"
-                        onClick={() => {
-                          setOpen(!open);
-                          setIsLogin(false); // ログアウト処理
-                        }}
-                        className="p-2 text-lg  rounded-lg hover:bg-lime-100/75 flex justify-between"
-                      >
-                        <span className="Logout-button">Logout</span>
-                        {isActive('/Logout') && <span>✔️</span>}
-                      </Link>
-                    ) : (
-                      <Link
-                        to="/"
-                        onClick={() => {
-                          setOpen(!open);
-                        }}
-                        className="p-2 text-lg  rounded-lg hover:bg-lime-100/75 flex justify-between"
-                      >
-                        <span className="Login-button">Login</span>
-                        {isActive('/Login') && <span>✔️</span>}
-                      </Link>
-                    )}
-                  </ul>
-                </nav>
-              </div>
-            )}
           </div>
           <h1 className="app-name">
             Botani
@@ -127,8 +44,37 @@ export const Navbar: React.FC<NavbarProps> = ({
             Grow
           </h1>
         </div>
-        <div className="mr-7 -mb-4">
-          <Notification />
+        <div className="flex mr-7">
+          <div className="flex gap-1 text-base font-normal pr-4">
+            <Link
+              to="/Plants"
+              className="hover:bg-gray-200/50 transition-all duration-300 px-2 py-3 rounded-lg text-slate-700 text-base "
+            >
+              Plants
+            </Link>
+            {isLogin ? (
+              <Link
+                to="/"
+                className="hover:bg-gray-200/50 transition-all duration-300 px-2 py-3 rounded-lg text-slate-700  text-base "
+                onClick={() => {
+                  setIsLogin(false); // ログアウト処理
+                }}
+              >
+                Logout
+              </Link>
+            ) : (
+              <Link
+                to="/"
+                className="hover:bg-gray-200/50 transition-all duration-300 px-2 py-3 rounded-lg text-slate-700  text-base "
+              >
+                Login
+              </Link>
+            )}
+          </div>
+          <div className="flex gap-3">
+            <New />
+            <Notification />
+          </div>
         </div>
       </div>
     </header>

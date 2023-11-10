@@ -1,7 +1,6 @@
 import { useModal } from '../hooks/useModal';
 import { Link } from 'react-router-dom';
 import { IoIosAdd } from 'react-icons/io';
-// import '../App.scss';
 
 import './Plants.scss';
 import { Card } from '../views/organisms/Card';
@@ -19,14 +18,6 @@ export const Plants: React.FC<PlantProps> = ({ plantsData }) => {
 
   return (
     <div className="plants-list pt-14">
-      <div className="plants__icons h-full flex flex-col ">
-        <span className="text-xs text-gray-500 mb-1">New</span>
-        <button className="add_button">
-          <Link to="/AddNewPlant">
-            <IoIosAdd className="icon fa-solid fa-plus" />
-          </Link>
-        </button>
-      </div>
       <div className="h-screen">
         <h1 id="title">Plants</h1>
         <div className="plantCardContainer">

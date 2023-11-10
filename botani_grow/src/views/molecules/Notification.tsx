@@ -30,7 +30,7 @@ export const Notification = () => {
 
   return (
     <div>
-      <div className="m-0 p-0 box-border bg-blue-200  w-12 h-12 rounded-full flex justify-center items-center relative">
+      <div className="notification-btn-container m-0 p-0 box-border bg-gray-200/50  w-10 h-10 rounded-lg  flex justify-center items-center relative">
         <div className="notification-btn">
           <IconButton
             onClick={(e) => {
