@@ -30,7 +30,7 @@ export const PlantsLinks: React.FC<PlantLinksProps> = ({
         .filter((plant) => plant.id !== currentPlantId && !plant.isArchived)
         .map((plant) => (
           <Link to={`/Plants/${plant.id}`} key={plant.id}>
-            <div className="flex gap-5 hover:bg-lime-100 p-1.5 rounded-lg cursor-pointer">
+            <div className="flex gap-5 hover:bg-lime-100/75 p-1.5 rounded-lg cursor-pointer">
               {plant.iconUrl ? (
                 <img
                   src={plant.iconUrl}
