@@ -58,13 +58,14 @@ export const Login: React.FC<LoginProps> = ({
     }
   };
 
-  const handleGuestLogin = () => {
+  const handleGuestLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault(); // フォームの送信を防ぐ
     onGuestLogin();
     navigate('/Plants');
   };
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // ユーザーがsubmitしたときの画面のリフレッッシュを防ぐ
+    e.preventDefault(); // ユーザーがEnterをしたときの画面のリフレッッシュを防ぐ
     setEmailError(null);
     setPasswordError(null);
     try {
@@ -173,7 +174,11 @@ export const Login: React.FC<LoginProps> = ({
               </div>
 
               <div className="button flex">
-                <button className="guest-btn flex" onClick={handleGuestLogin}>
+                <button
+                  type="button"
+                  className="guest-btn flex"
+                  onClick={handleGuestLogin}
+                >
                   <span>Guest</span>
                   <BsPersonCircle className="icon" />
                 </button>

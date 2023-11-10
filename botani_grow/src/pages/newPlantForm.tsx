@@ -161,7 +161,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                   ) : (
                     <TbCameraPlus
                       className="plant-picture-icon"
-                      color="green"
+                      color="black"
                     />
                   )}
                 </div>

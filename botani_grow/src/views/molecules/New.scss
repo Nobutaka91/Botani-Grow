@@ -1,0 +1,17 @@
+.newPlant-Link {
+  .newPlant-icon {
+    font-size: 25px;
+    color: var(--blackColor);
+    padding: 5px;
+    width: 35px;
+    height: 35px;
+    transition: ease 0.3s;
+    align-items: center;
+    border: 1px solid var(--bgColor);
+    background-color: var();
+    &:hover {
+      cursor: pointer;
+      color: var(--blackColor);
+    }
+  }
+}
