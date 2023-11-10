@@ -49,17 +49,17 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, []);
 
   return (
-    <header className="navigation-container fixed w-full  mx-auto  inset-x-0 border-b border-t-1 border-gray-200 ">
-      <div className=" flex justify-between items-center align-items-center backdrop-filter backdrop-blur-lg">
+    <header className="navigation-container fixed w-full  mx-auto  inset-x-0 border-b-2 border-gray-200 py-1.5 backdrop-filter backdrop-blur-lg">
+      <div className=" flex justify-between items-center align-items-center">
         <div className="flex">
-          <h1 className="pl-12">Botani-grow</h1>
+          {/* <h1 className="pl-12">Botani-grow</h1> */}
           <div className="relative ml-4">
             <img
               ref={imgRef}
               onClick={() => setOpen(!open)}
               src={myImage}
               alt="icon"
-              className="h-16 w-16 object-cover border-4 border-lime-100 bg-lime-400 rounded-full cursor-pointer"
+              className="h-12 w-12 object-cover border-4 border-lime-100 bg-lime-400 rounded-full cursor-pointer"
             />
             {open && (
               <div
@@ -71,7 +71,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <Link
                       to="/"
                       onClick={() => setOpen(!open)}
-                      className="p-2 text-lg  rounded-lg hover:bg-lime-100 flex justify-between"
+                      className="p-2 text-lg  rounded-lg hover:bg-lime-100/75 flex justify-between"
                     >
                       <span className="Top-button">Top</span>
                       {isActive('/') && <span>✔️</span>}
@@ -79,7 +79,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <Link
                       to="/Plants"
                       onClick={() => setOpen(!open)}
-                      className="p-2 text-lg  rounded-lg hover:bg-lime-100 flex justify-between"
+                      className="p-2 text-lg  rounded-lg hover:bg-lime-100/75 flex justify-between"
                     >
                       <span className="Plants-button">Plants</span>
                       {isActive('/Plants') && <span>✔️</span>}
@@ -99,7 +99,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                           setOpen(!open);
                           setIsLogin(false); // ログアウト処理
                         }}
-                        className="p-2 text-lg  rounded-lg hover:bg-lime-100 flex justify-between"
+                        className="p-2 text-lg  rounded-lg hover:bg-lime-100/75 flex justify-between"
                       >
                         <span className="Logout-button">Logout</span>
                         {isActive('/Logout') && <span>✔️</span>}
@@ -110,7 +110,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                         onClick={() => {
                           setOpen(!open);
                         }}
-                        className="p-2 text-lg  rounded-lg hover:bg-lime-100 flex justify-between"
+                        className="p-2 text-lg  rounded-lg hover:bg-lime-100/75 flex justify-between"
                       >
                         <span className="Login-button">Login</span>
                         {isActive('/Login') && <span>✔️</span>}
@@ -121,6 +121,11 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
             )}
           </div>
+          <h1 className="app-name">
+            Botani
+            <br />
+            Grow
+          </h1>
         </div>
         <div className="mr-7 -mb-4">
           <Notification />

@@ -60,16 +60,16 @@ export const Notification = () => {
               </p>
             </div>
             <div className="">
-              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100 cursor-pointer">
+              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100/75 cursor-pointer">
                 🥀Ficus bambino
               </p>
-              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100 cursor-pointer">
+              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100/75 cursor-pointer">
                 🌿 Unberata
               </p>
-              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100 cursor-pointer">
+              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100/75 cursor-pointer">
                 🍀七福神
               </p>
-              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100 cursor-pointer">
+              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100/75 cursor-pointer">
                 🌿 Glauca
               </p>
             </div>
