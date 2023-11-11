@@ -17,7 +17,7 @@ import { TbPlantOff, TbPlant } from 'react-icons/tb';
 import { FaRegSadCry } from 'react-icons/fa';
 import { FiEdit } from 'react-icons/fi';
 import { MdEditDocument } from 'react-icons/md';
-import { FaRegCommentDots } from 'react-icons/fa6';
+import { FaCommentDots } from 'react-icons/fa6';
 
 import {
   IoMdNotifications,
@@ -26,11 +26,15 @@ import {
 } from 'react-icons/io';
 
 import { AiOutlineSwapLeft } from 'react-icons/ai';
-import { PiLeafDuotone, PiPottedPlantDuotone } from 'react-icons/pi';
+import {
+  PiLeafDuotone,
+  PiPottedPlantDuotone,
+  PiLeafFill,
+} from 'react-icons/pi';
 import { GiWateringCan } from 'react-icons/gi';
 import { MdWaterDrop } from 'react-icons/md';
 import { FcPlanner } from 'react-icons/fc';
-import { TiStopwatch, TiLeaf } from 'react-icons/ti';
+import { TiStopwatch } from 'react-icons/ti';
 
 import { WaterChart } from './WaterChart';
 import { CommentSidebar } from '../views/organisms/CommentSidebar';
@@ -153,58 +157,61 @@ export const Details: React.FC<InfoProps> = ({
           {/* Side-buttons + PlantsLinks　*/}
           <div className="buttonContainer flex-none flex-col">
             {/* Watering-button　*/}
-            <div className="relative  watering__icon flex flex-col ">
-              <button
-                className="watering__button"
-                onClick={() => setOpen(!open)}
-                ref={actionButtonRef}
-              >
+            <div
+              className="relative  watering__icon "
+              onClick={() => setOpen(!open)}
+            >
+              <button className="watering__button" ref={actionButtonRef}>
                 <MdWaterDrop className=" icon fa-solid fa-plus" />
               </button>
-              <div className="text-xs text-gray-500 my-1.5">Watering</div>
+              <div className=" text-gray-700 my-1.5">Watering</div>
             </div>
             {/* Leaf-button　*/}
-            <div className="relative  leafCount__icon flex flex-col ">
+            <div
+              className="relative  leafCount__icon "
+              onClick={() => {
+                setOpen(!open);
+                toggleLeafSidebar();
+              }}
+            >
               <button
                 className="leafCount__button relative overflow-visible"
-                onClick={toggleLeafSidebar}
                 ref={actionButtonRef}
               >
-                <TiLeaf className=" icon fa-solid fa-plus" />
-                {/* <div className="absolute bottom-0.5 -right-1.5 bg-green-200 w-5 h-5 rounded-full flex justify-center items-center text-gray ">
+                <PiLeafFill className=" icon fa-solid fa-plus" />
+                <div className="absolute bottom-0 right-1 bg-green-200/75 w-4 h-4 rounded-full flex justify-center items-center text-gray text-xs ">
                   {plant.leafCount}
-                </div> */}
+                </div>
               </button>
-              <div className="text-xs text-gray-500 my-1.5">
-                {plant.leafCount}
-              </div>
+              <div className=" text-gray-700 my-1.5">Leaves Data</div>
               {/* Leafサイドバー　*/}
               {isLeafSidebarOpen && (
                 <LeafSidebar
-                  // isLeafSidebarOpen={isLeafSidebarOpen}
                   toggleLeafSidebar={toggleLeafSidebar}
                   plant={plant}
                 />
               )}
             </div>
             {/* Comment-button　*/}
-            <div className="relative  comment__icon flex flex-col ">
+            <div
+              className="relative  comment__icon "
+              onClick={() => {
+                setOpen(!open);
+                toggleCommentSidebar();
+              }}
+            >
               <button
                 className="comment__button relative"
-                onClick={() => {
-                  setOpen(!open);
-                  toggleCommentSidebar();
-                }}
                 ref={actionButtonRef}
               >
-                <FaRegCommentDots className="icon fa-solid fa-plus" />
+                <FaCommentDots className="icon fa-solid fa-plus" />
                 {plant.memos && (
-                  <div className="absolute bottom-0.5 -right-1.5 bg-green-200 w-5 h-5 rounded-full flex justify-center items-center text-gray ">
+                  <div className="absolute bottom-0 right-1 bg-green-200/75 w-4 h-4 rounded-full flex justify-center items-center text-gray text-xs ">
                     {plant.memos.length}
                   </div>
                 )}
               </button>
-              <div className="text-xs text-gray-500 my-1.5">Memo</div>
+              <div className=" text-gray-700 my-1.5">Memo</div>
             </div>
 
             {/* Commentサイドバー　*/}
@@ -220,15 +227,20 @@ export const Details: React.FC<InfoProps> = ({
             )}
 
             {/* Edit-button　*/}
-            <div className="relative  edit__icon flex flex-col ">
+            <div
+              className="relative  edit__icon "
+              onClick={() => {
+                setOpen(!open);
+                toggleEditSidebar();
+              }}
+            >
               <button
                 className="edit__button relative overflow-visible"
-                onClick={toggleEditSidebar}
                 ref={actionButtonRef}
               >
                 <MdEditDocument className=" icon fa-solid fa-plus" />
               </button>
-              <div className="text-xs text-gray-500 my-1.5">Edit</div>
+              <div className=" text-gray-700 my-1.5">Edit</div>
             </div>
             {/* Editサイドバー　*/}
             {isEditSidebarOpen && (
@@ -237,6 +249,33 @@ export const Details: React.FC<InfoProps> = ({
                 plant={plant}
               />
             )}
+
+            {/* End Careボタン　*/}
+            <div
+              className="relative delete__icon "
+              onClick={() => {
+                openModal();
+                setOpen(!open);
+              }}
+            >
+              <button
+                className="delete__button relative overflow-visible"
+                ref={actionButtonRef}
+              >
+                <TbPlantOff className="icon fa-solid fa-plus" />
+              </button>
+              <div className=" text-gray-700 my-1.5">End Care</div>
+            </div>
+            {/* End Careモーダル　*/}
+            <EndCareModal
+              show={show}
+              closeModal={closeModal}
+              plantName={plant.name}
+              Modal={Modal}
+              plantId={id}
+              plantsData={plantsData}
+              setPlantsData={setPlantsData}
+            />
 
             {/* PlantsLinks　*/}
             <PlantsLinks plantsData={plantsData} currentPlantId={id} />
@@ -333,33 +372,7 @@ export const Details: React.FC<InfoProps> = ({
             <div className="border-b py-8">
               <WaterChart />
             </div>
-
-            {/* End Careボタン　*/}
-            <div className=" delete__icon ">
-              <div className="text-xs text-gray-500 mb-1">End Care</div>
-              <button
-                className="delete__button"
-                onClick={() => {
-                  openModal();
-                  setOpen(!open);
-                }}
-                ref={actionButtonRef}
-              >
-                <TbPlantOff className="icon fa-solid fa-plus" />
-              </button>
-            </div>
           </div>
-
-          {/* End Careモーダル　*/}
-          <EndCareModal
-            show={show}
-            closeModal={closeModal}
-            plantName={plant.name}
-            Modal={Modal}
-            plantId={id}
-            plantsData={plantsData}
-            setPlantsData={setPlantsData}
-          />
         </>
       ) : (
         <p className="setup__p">Plant Not Found</p>

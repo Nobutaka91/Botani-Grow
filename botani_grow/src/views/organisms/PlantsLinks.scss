@@ -4,12 +4,10 @@
 
   height: 100vh;
   overflow-y: auto;
-  margin-top: 35px;
+  margin-top: 20px;
 
   .plantsList-title {
     font-size: 15px;
-    border-top: 1px solid var(--bgColor);
-    // margin: 0 10px;
     padding: 10px;
     pointer-events: none;
   }

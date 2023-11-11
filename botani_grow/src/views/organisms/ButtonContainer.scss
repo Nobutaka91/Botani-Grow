@@ -1,38 +1,33 @@
 .buttonContainer {
-  // position: fixed;
-  // left: 150px;
   width: 200px;
-  // height: 100%;
   overflow-y: auto; // 葉のグラフが半分表示されない原因になるため削除
   z-index: 20;
-  padding-top: 70px;
+  padding-top: 40px;
+  padding-left: 5px;
 
   .watering__icon {
     width: auto;
     height: 40px;
     margin-right: 40px;
     display: flex;
-    justify-content: end;
     align-items: center;
 
+    cursor: pointer;
     .watering__button .fa-solid {
-      font-size: 25px;
-      color: var(--blackColor);
-      border-radius: 50%;
+      color: var(--waterColor);
+      border-radius: 40%;
       padding: 8px;
-      width: 45px;
-      height: 45px;
-      transition: ease 0.3s;
+      margin-right: 12px;
+      width: 35px;
+      height: 35px;
       align-items: center;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-      // border: 1px solid var(--bgColor);
-      &:hover {
-        cursor: pointer;
-        background: var(--hoverColor);
-        color: var(--blackColor);
-        transform: translateY(2px);
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-      }
+      border: 1px solid var(--bgColor);
+      opacity: 0.8;
+    }
+
+    &:hover .watering__button .fa-solid {
+      box-shadow: 0 0 2px var(--waterColor);
+      opacity: 1;
     }
   }
 
@@ -40,29 +35,26 @@
     width: auto;
     height: 40px;
     margin-right: 40px;
-    margin-top: 37px;
+    margin-top: 10px;
     display: flex;
-    justify-content: end;
     align-items: center;
+    cursor: pointer;
 
     .leafCount__button .fa-solid {
-      font-size: 25px;
-      color: var(--blackColor);
-      border-radius: 50%;
+      color: var(--primaryColor);
+      border-radius: 40%;
       padding: 8px;
-      width: 45px;
-      height: 45px;
-      transition: ease 0.3s;
+      margin-right: 12px;
+      width: 35px;
+      height: 35px;
       align-items: center;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-      // border: 1px solid var(--bgColor);
-      &:hover {
-        cursor: pointer;
-        background: var(--hoverColor);
-        color: var(--blackColor);
-        transform: translateY(2px);
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-      }
+      border: 1px solid var(--bgColor);
+      opacity: 0.8;
+    }
+
+    &:hover .leafCount__button .fa-solid {
+      box-shadow: 0 0 2px var(--primaryColor);
+      opacity: 1;
     }
   }
 
@@ -70,29 +62,26 @@
     width: auto;
     height: 40px;
     margin-right: 40px;
-    margin-top: 37px;
+    margin-top: 10px;
     display: flex;
-    justify-content: end;
     align-items: center;
+    cursor: pointer;
 
     .comment__button .fa-solid {
-      font-size: 25px;
-      color: var(--blackColor);
-      border-radius: 50%;
+      color: var(--memoButtonColor);
+      border-radius: 40%;
       padding: 8px;
-      width: 45px;
-      height: 45px;
-      transition: ease 0.3s;
+      margin-right: 12px;
+      width: 35px;
+      height: 35px;
       align-items: center;
-      // border: 1px solid var(--bgColor);
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-      &:hover {
-        cursor: pointer;
-        background: var(--hoverColor);
-        color: var(--blackColor);
-        transform: translateY(2px);
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-      }
+      border: 1px solid var(--bgColor);
+      opacity: 0.8;
+    }
+
+    &:hover .comment__button .fa-solid {
+      box-shadow: 0 0 2px var(--memoButtonColor);
+      opacity: 1;
     }
   }
 
@@ -100,61 +89,53 @@
     width: auto;
     height: 40px;
     margin-right: 40px;
-    margin-top: 37px;
+    margin-top: 10px;
     display: flex;
-    justify-content: end;
     align-items: center;
+    cursor: pointer;
 
     .edit__button .fa-solid {
-      font-size: 25px;
-      color: var(--blackColor);
-      border-radius: 50%;
+      color: var(--editButtonColor);
+      border-radius: 40%;
       padding: 8px;
-      width: 45px;
-      height: 45px;
-      transition: ease 0.3s;
+      margin-right: 12px;
+      width: 35px;
+      height: 35px;
       align-items: center;
-      // border: 1px solid var(--bgColor);
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-      &:hover {
-        cursor: pointer;
-        background: var(--hoverColor);
-        color: var(--blackColor);
-        transform: translateY(2px);
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-      }
+      border: 1px solid var(--bgColor);
+      opacity: 0.8;
+    }
+    &:hover .edit__button .fa-solid {
+      box-shadow: 0 0 2px var(--editButtonColor);
+      opacity: 1;
     }
   }
-}
 
-.delete__icon {
-  position: fixed;
-  right: 130px;
-  bottom: 12px;
-  width: auto;
-  margin-top: 35px;
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  align-items: center;
+  .delete__icon {
+    height: 40px;
+    width: auto;
+    margin-right: 40px;
+    margin-top: 10px;
+    display: flex;
 
-  .delete__button .fa-solid {
-    font-size: 25px;
-    color: var(--blackColor);
-    border-radius: 50%;
-    padding: 8px;
-    width: 35px;
-    height: 35px;
-    transition: ease 0.3s;
     align-items: center;
-    // border: 1px solid var(--bgColor);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    &:hover {
-      cursor: pointer;
-      background: var(--deleteColor);
-      color: var(--blackColor);
-      transform: translateY(2px);
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+
+    .delete__button .fa-solid {
+      color: var(--deleteColor);
+      border-radius: 40%;
+      padding: 8px;
+      margin-right: 12px;
+      width: 35px;
+      height: 35px;
+      align-items: center;
+      border: 1px solid var(--bgColor);
+      opacity: 0.8;
+    }
+
+    &:hover .delete__button .fa-solid {
+      box-shadow: 0 0 2px var(--deleteColor);
+      opacity: 1;
     }
   }
 }
