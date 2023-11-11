@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
 import LocalFloristTwoToneIcon from '@mui/icons-material/LocalFloristTwoTone';
-import IconButton from '@mui/material/IconButton';
 import { TbDropletQuestion } from 'react-icons/tb';
 import './Notification.scss';
 
@@ -38,17 +37,10 @@ export const Notification = () => {
             setOpen(!open);
           }}
         >
-          {/* <IconButton
-            onClick={(e) => {
-              e.stopPropagation();
-              setOpen(!open);
-            }}
-          > */}
           <TbDropletQuestion
             type="checkbox"
             className="cursor-pointer w-full h-full font-medium text-blue-600"
           />
-          {/* </IconButton> */}
         </div>
 
         <div className="absolute -top-1 -right-1 bg-red-500 w-5 h-5 rounded-full flex justify-center items-center text-white ">

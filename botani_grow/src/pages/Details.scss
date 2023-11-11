@@ -2,23 +2,18 @@
   width: 180px;
   height: 180px;
   box-shadow: 2px 6px 10px 3px #777777;
-  // box-shadow: rgb(0, 0, 0, 0.3) 3px 3px 6px 0px inset,
-  //   rgba(0, 0, 0, 0.3) -3px -3px 6px 1px inset;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 35px;
-  //   background-color: white;
+  border-radius: 35%;
   border: none;
   cursor: pointer;
   transition: all 0.3s;
   background-size: cover;
-  //   background-position: center;
   overflow: hidden;
   margin: 10px 25px 0 25px;
   margin-top: 10px;
 }
 
 #plant__name {
-  // done
   font-size: 15px;
   text-align: center;
   margin-top: 20px;
@@ -40,35 +35,18 @@
     border-radius: 50%;
     width: 22px;
     height: 22px;
-    // border: solid var(--blackColor);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
     border: 1px solid var(--bgColor);
     border-width: thin;
   }
 }
 
-.fa-solid .fa-plus-water :hover {
-  cursor: pointer;
-  background: var(--waterHoverColor);
-  color: var(--blackColor);
-  // transform: scale(1.1);
-}
-
-.fa-solid:hover {
-  cursor: pointer;
-  background: var(--hoverColor);
-  color: var(--blackColor);
-  // transform: scale(1.1);
-}
-
 .plant__details {
   width: 360px;
   height: 40px;
-  // margin-right: 40px;
   margin-bottom: 20px;
   margin-top: 20px;
   display: flex;
-  // justify-content: center;
   align-items: center;
 }
 
@@ -95,7 +73,6 @@
 
   .condition_memo {
     width: 400px;
-    // padding: 0.7rem;
     display: flex;
     gap: 0.4rem;
     flex-wrap: wrap;
