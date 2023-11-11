@@ -10,7 +10,7 @@ export const New = () => {
       to="/AddNewPlant"
       className="newPlant-Link  text-slate-700  text-base "
     >
-      <div className="newPlant-icon bg-gray-200/50 rounded-lg">
+      <div className="newPlant-icon">
         <LiaSeedlingSolid />
       </div>
     </Link>

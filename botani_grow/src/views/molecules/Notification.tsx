@@ -30,19 +30,25 @@ export const Notification = () => {
 
   return (
     <div>
-      <div className="notification-btn-container m-0 p-0 box-border bg-gray-200/50  w-10 h-10 rounded-lg  flex justify-center items-center relative">
-        <div className="notification-btn">
-          <IconButton
+      <div className="notification-btn-container m-0 p-0 box-border   w-10 h-10   flex justify-center items-center relative">
+        <div
+          className="notification-btn"
+          onClick={(e) => {
+            e.stopPropagation();
+            setOpen(!open);
+          }}
+        >
+          {/* <IconButton
             onClick={(e) => {
               e.stopPropagation();
               setOpen(!open);
             }}
-          >
-            <TbDropletQuestion
-              type="checkbox"
-              className="cursor-pointer w-full h-full font-medium text-blue-600"
-            />
-          </IconButton>
+          > */}
+          <TbDropletQuestion
+            type="checkbox"
+            className="cursor-pointer w-full h-full font-medium text-blue-600"
+          />
+          {/* </IconButton> */}
         </div>
 
         <div className="absolute -top-1 -right-1 bg-red-500 w-5 h-5 rounded-full flex justify-center items-center text-white ">
