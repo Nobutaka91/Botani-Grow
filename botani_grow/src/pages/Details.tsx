@@ -47,7 +47,7 @@ import { EditSidebar } from '../views/organisms/EditSidebar';
 
 import './Details.scss';
 import '../views/organisms/ButtonContainer.scss';
-import { EndCareModal } from '../views/organisms/EndCareModal';
+import { QuitModal } from '../views/organisms/QuitModal';
 import { Console } from 'console';
 
 type InfoProps = {
@@ -75,6 +75,7 @@ export const Details: React.FC<InfoProps> = ({
   const [isCommentSidebarOpen, setIsCommentSidebarOpen] = useState(false);
   const [isLeafSidebarOpen, setIsLeafSidebarOpen] = useState(false);
   const [isEditSidebarOpen, setIsEditSidebarOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [memos, setMemos] = useState<PlantMemo[]>([]);
 
   useEffect(() => {
@@ -116,18 +117,27 @@ export const Details: React.FC<InfoProps> = ({
     setIsCommentSidebarOpen(!isCommentSidebarOpen);
     if (isLeafSidebarOpen) setIsLeafSidebarOpen(false);
     if (isEditSidebarOpen) setIsEditSidebarOpen(false);
+    if (isModalOpen) setIsModalOpen(false);
   };
 
   const toggleLeafSidebar = () => {
     setIsLeafSidebarOpen(!isLeafSidebarOpen);
     if (isCommentSidebarOpen) setIsCommentSidebarOpen(false);
     if (isEditSidebarOpen) setIsEditSidebarOpen(false);
+    if (isModalOpen) setIsModalOpen(false);
   };
 
   const toggleEditSidebar = () => {
     setIsEditSidebarOpen(!isEditSidebarOpen);
     if (isLeafSidebarOpen) setIsLeafSidebarOpen(false);
     if (isCommentSidebarOpen) setIsCommentSidebarOpen(false);
+    if (isModalOpen) setIsModalOpen(false);
+  };
+  const toggleQuitModal = () => {
+    setIsModalOpen(!isEditSidebarOpen);
+    if (isLeafSidebarOpen) setIsLeafSidebarOpen(false);
+    if (isCommentSidebarOpen) setIsCommentSidebarOpen(false);
+    if (isEditSidebarOpen) setIsEditSidebarOpen(false);
   };
 
   const fetchPlantDataById = async (plantId: string) => {
@@ -250,12 +260,13 @@ export const Details: React.FC<InfoProps> = ({
               />
             )}
 
-            {/* End Careボタン　*/}
+            {/* Quitボタン　*/}
             <div
               className="relative delete__icon "
               onClick={() => {
                 openModal();
                 setOpen(!open);
+                toggleQuitModal();
               }}
             >
               <button
@@ -264,10 +275,10 @@ export const Details: React.FC<InfoProps> = ({
               >
                 <TbPlantOff className="icon fa-solid fa-plus" />
               </button>
-              <div className=" text-gray-700 my-1.5">End Care</div>
+              <div className=" text-gray-700 my-1.5">Quit</div>
             </div>
-            {/* End Careモーダル　*/}
-            <EndCareModal
+            {/* Quit モーダル　*/}
+            <QuitModal
               show={show}
               closeModal={closeModal}
               plantName={plant.name}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PlantInfo } from '../../types/plantInfo';
 import { db } from '../../config/Firebase';
-import './EndCareModal.scss';
+import './QuitModal.scss';
 
 import { doc, updateDoc } from 'firebase/firestore';
 
@@ -19,7 +19,7 @@ type EndCareModalProps = {
   setPlantsData: React.Dispatch<React.SetStateAction<PlantInfo[]>>;
 };
 
-export const EndCareModal: React.FC<EndCareModalProps> = ({
+export const QuitModal: React.FC<EndCareModalProps> = ({
   show,
   closeModal,
   plantName,
@@ -64,10 +64,10 @@ export const EndCareModal: React.FC<EndCareModalProps> = ({
           />
           <div className="mx-auto my-4 w-64">
             <h3 className="text-xl font-black text-gray-800">
-              End "{plantName}" Care?
+              {plantName}の管理をやめますか?
             </h3>
             <p className="text-sm my-2 text-gray-500">
-              This plant will be moved to the Archive.
+              *この植物はArchiveに移動します
             </p>
           </div>
           <div className="flex gap-4 mt-7">
@@ -78,10 +78,10 @@ export const EndCareModal: React.FC<EndCareModalProps> = ({
                 closeModal();
               }}
             >
-              End Care
+              管理をやめる
             </button>
             <button className="btn btn-light w-full mt-2" onClick={closeModal}>
-              Cancel
+              キャンセル
             </button>
           </div>
         </div>

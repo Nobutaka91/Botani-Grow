@@ -1,7 +1,7 @@
 .buttonContainer {
   width: 200px;
   overflow-y: auto; // 葉のグラフが半分表示されない原因になるため削除
-  z-index: 20;
+  // z-index: 20; ← これを設定すると、モーダル標示させたときにbuttonContainerがぼやけなくなる
   padding-top: 40px;
   padding-left: 5px;
 
@@ -22,7 +22,7 @@
       height: 35px;
       align-items: center;
       border: 1px solid var(--bgColor);
-      opacity: 0.8;
+      opacity: 0.85;
     }
 
     &:hover .watering__button .fa-solid {
@@ -49,7 +49,7 @@
       height: 35px;
       align-items: center;
       border: 1px solid var(--bgColor);
-      opacity: 0.8;
+      opacity: 0.85;
     }
 
     &:hover .leafCount__button .fa-solid {
@@ -76,7 +76,7 @@
       height: 35px;
       align-items: center;
       border: 1px solid var(--bgColor);
-      opacity: 0.8;
+      opacity: 0.85;
     }
 
     &:hover .comment__button .fa-solid {
@@ -103,7 +103,7 @@
       height: 35px;
       align-items: center;
       border: 1px solid var(--bgColor);
-      opacity: 0.8;
+      opacity: 0.85;
     }
     &:hover .edit__button .fa-solid {
       box-shadow: 0 0 2px var(--editButtonColor);
@@ -122,7 +122,7 @@
     cursor: pointer;
 
     .delete__button .fa-solid {
-      color: var(--deleteColor);
+      color: #ff4c29;
       border-radius: 40%;
       padding: 8px;
       margin-right: 12px;
@@ -130,11 +130,11 @@
       height: 35px;
       align-items: center;
       border: 1px solid var(--bgColor);
-      opacity: 0.8;
+      opacity: 0.85;
     }
 
     &:hover .delete__button .fa-solid {
-      box-shadow: 0 0 2px var(--deleteColor);
+      box-shadow: 0 0 2px #ff4c29;
       opacity: 1;
     }
   }
