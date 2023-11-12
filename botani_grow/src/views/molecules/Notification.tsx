@@ -28,52 +28,58 @@ export const Notification = () => {
   }, []);
 
   return (
-    <div>
-      <div className="notification-btn-container m-0 p-0 box-border   w-10 h-10   flex justify-center items-center relative">
-        <div
-          className="notification-btn"
-          onClick={(e) => {
-            e.stopPropagation();
-            setOpen(!open);
-          }}
-        >
-          <TbDropletQuestion
-            type="checkbox"
-            className="cursor-pointer w-full h-full font-medium text-blue-600"
-          />
-        </div>
-
-        <div className="absolute -top-1 -right-1 bg-red-500 w-5 h-5 rounded-full flex justify-center items-center text-white ">
-          4
-        </div>
-        {open && (
+    <span className="relative group">
+      <div>
+        <div className="notification-btn-container m-0 p-0 box-border   w-10 h-10   flex justify-center items-center relative">
           <div
-            className="w-48 h-120 bg-white shadow-lg absolute rounded-lg top-14 right-12 overflow-y-auto"
-            ref={menuRef}
+            className="notification-btn"
+            onClick={(e) => {
+              e.stopPropagation();
+              setOpen(!open);
+            }}
           >
-            <div className="bg-green mx-auto my-1  py-1 w-11/12 rounded-lg text-white">
-              <p className="text-center">
-                {/* <LocalFloristTwoToneIcon /> */}
-                <span className="text-black">Forgot watering?</span>
-              </p>
-            </div>
-            <div className="">
-              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100/75 cursor-pointer">
-                🥀Ficus bambino
-              </p>
-              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100/75 cursor-pointer">
-                🌿 Unberata
-              </p>
-              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100/75 cursor-pointer">
-                🍀七福神
-              </p>
-              <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100/75 cursor-pointer">
-                🌿 Glauca
-              </p>
-            </div>
+            <TbDropletQuestion
+              type="checkbox"
+              className="cursor-pointer w-full h-full font-medium text-blue-600"
+            />
           </div>
-        )}
+
+          <div className="absolute -top-1 -right-1 bg-red-500 w-5 h-5 rounded-full flex justify-center items-center text-white ">
+            4
+          </div>
+          {open && (
+            <div
+              className="w-48 h-120 bg-white shadow-lg absolute rounded-lg top-14 right-12 overflow-y-auto"
+              ref={menuRef}
+            >
+              <div className="bg-green mx-auto my-1  py-1 w-11/12 rounded-lg text-white">
+                <p className="text-center">
+                  {/* <LocalFloristTwoToneIcon /> */}
+                  <span className="text-black">Forgot watering?</span>
+                </p>
+              </div>
+              <div className="">
+                <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100/75 cursor-pointer">
+                  🥀Ficus bambino
+                </p>
+                <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100/75 cursor-pointer">
+                  🌿 Unberata
+                </p>
+                <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100/75 cursor-pointer">
+                  🍀七福神
+                </p>
+                <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100/75 cursor-pointer">
+                  🌿 Glauca
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+
+      <span className="whitespace-nowrap rounded-lg bg-slate-700 px-2 py-1 text-sm text-white absolute top-12 -left-2 opacity-0 group-hover:opacity-100 transition pointer-events-none">
+        Notice
+      </span>
+    </span>
   );
 };
