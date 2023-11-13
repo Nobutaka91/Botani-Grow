@@ -26,27 +26,23 @@
   .close-btn {
     background: none;
     font-size: 25px;
-    cursor: pointer;
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 10px;
+    right: 405px;
     // 追加↓
-    color: var(--blackColor);
-    border-radius: 50%;
+    color: gray;
+    border-radius: 40%;
     padding: 8px;
     width: 35px;
     height: 35px;
-    transition: ease 0.3s;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
     &:hover {
-      cursor: pointer;
-      transform: translateY(2px);
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
       border: 1px solid var(--bgColor);
+      background-color: var(--buttonHoverColor);
     }
   }
 
@@ -123,4 +119,8 @@
 .comment-input textarea.expanded + .addComment-btn {
   z-index: 100;
   display: block;
+}
+
+.commentSidebarContainer::-webkit-scrollbar {
+  display: none;
 }

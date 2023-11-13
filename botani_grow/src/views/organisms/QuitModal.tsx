@@ -62,26 +62,26 @@ export const QuitModal: React.FC<EndCareModalProps> = ({
             className="plant-delete-icon mx-auto mt-4 text-red-500"
             size={56}
           />
-          <div className="mx-auto my-4 w-64">
+          <div className="mx-auto my-4 w-60">
             <h3 className="text-xl font-black text-gray-800">
               {plantName}の管理をやめますか?
             </h3>
             <p className="text-sm my-2 text-gray-500">
-              *この植物はArchiveに移動します
+              *この植物はArchiveに移動されて、閲覧のみ有効になります
             </p>
           </div>
-          <div className="flex gap-4 mt-7">
+          <div className="flex justify-end gap-4 mt-8 w-full">
+            <button className="btn btn-cancel mt-2" onClick={closeModal}>
+              Cancel
+            </button>
             <button
-              className="btn btn-danger w-full mt-2"
+              className="btn btn-danger"
               onClick={() => {
                 updateIsArchived(plantId);
                 closeModal();
               }}
             >
-              管理をやめる
-            </button>
-            <button className="btn btn-light w-full mt-2" onClick={closeModal}>
-              キャンセル
+              Quit
             </button>
           </div>
         </div>
