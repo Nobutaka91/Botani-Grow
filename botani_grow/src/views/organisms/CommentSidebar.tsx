@@ -7,6 +7,7 @@ import { PlantMemo } from '../../types/plantMemo';
 import { IconContext } from 'react-icons';
 import { IoIosClose } from 'react-icons/io';
 import { AiOutlineDelete } from 'react-icons/ai';
+import { TbChevronsRight } from 'react-icons/tb';
 import { db } from '../../config/Firebase';
 import {
   doc,
@@ -101,9 +102,14 @@ export const CommentSidebar: React.FC<CommentSidebarProps> = ({
       }`}
     >
       <div className="comment-sidebar">
-        <button className="close-btn" onClick={toggleCommentSidebar}>
-          <IoIosClose className="close-icon" />
-        </button>
+        <span className="group">
+          <button className="close-btn" onClick={toggleCommentSidebar}>
+            <TbChevronsRight className="close-icon" />
+          </button>
+          <span className="whitespace-nowrap rounded-lg bg-slate-700 px-2 py-1 text-sm text-white absolute top-14 left-0 opacity-0 group-hover:opacity-100 transition pointer-events-none z-10">
+            Close sidebar
+          </span>
+        </span>
         <div className="comment-input">
           <label>
             Add Memo
@@ -114,7 +120,7 @@ export const CommentSidebar: React.FC<CommentSidebarProps> = ({
               name="commentText"
               maxLength={100}
               spellCheck="true"
-              placeholder="write comment here..."
+              placeholder="write memo here..."
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               // onFocus={(e) => e.currentTarget.parentElement?.focus()}
@@ -141,15 +147,20 @@ export const CommentSidebar: React.FC<CommentSidebarProps> = ({
                     minute: '2-digit',
                   })}
                 </span>
-                <button
-                  className="delete-memo-button"
-                  onClick={() => handleDeleteComment(memo)}
-                >
-                  {' '}
-                  <IconContext.Provider value={{ color: '#4b4a4a' }}>
-                    <AiOutlineDelete className="close-icon" />
-                  </IconContext.Provider>
-                </button>
+                <span className="relative group">
+                  <button
+                    className="delete-memo-button"
+                    onClick={() => handleDeleteComment(memo)}
+                  >
+                    {' '}
+                    <IconContext.Provider value={{ color: '#4b4a4a' }}>
+                      <AiOutlineDelete className="close-icon" />
+                    </IconContext.Provider>
+                  </button>
+                  <span className="whitespace-nowrap rounded-lg bg-slate-700 px-2 py-1 text-xs text-white absolute top-7 -left-5 opacity-0 group-hover:opacity-100 transition pointer-events-none">
+                    Delete
+                  </span>
+                </span>
               </div>
               <div className="pt-1">{memo.text}</div>
             </div>
