@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import './WateringModal.scss';
 
 import { PlantInfo } from '../../types/plantInfo';
+import { useModal } from '../../hooks/useModal';
+import { WateringRate } from '../atoms/WateringRate';
+
 import { TbPlant } from 'react-icons/tb';
 import { MdWaterDrop } from 'react-icons/md';
-
 import { IoIosClose } from 'react-icons/io';
-import { useModal } from '../../hooks/useModal';
 
 type WateringModalProps = {
   plantId: string;
@@ -59,11 +60,12 @@ export const WateringModal: React.FC<WateringModalProps> = ({
             )}
 
             <div className="mx-auto my-4 w-60">
-              <h3 className="text-xl font-black text-gray-800">
+              <h3 className="text-basic font-black text-gray-800">
                 {plant.name}に水をあげよう
               </h3>
-              <p className="text-sm my-2 text-gray-500">
-                *気が向いたら剪定もしておこう
+              <p className=" my-2 text-gray-500">
+                {/* *気が向いたら剪定もしておこう */}
+                <WateringRate />
               </p>
             </div>
             <div className="flex justify-end gap-4 mt-10 w-full">
