@@ -7,26 +7,27 @@ import './QuitModal.scss';
 import { doc, updateDoc } from 'firebase/firestore';
 
 import { IoIosClose } from 'react-icons/io';
-import { TbPlantOff } from 'react-icons/tb';
 
-type EndCareModalProps = {
+type QuitModalProps = {
   show: boolean;
   closeModal: () => void;
-  plantName: string;
+  // plantName: string;
   Modal: any;
   plantId: string;
   plantsData: PlantInfo[];
   setPlantsData: React.Dispatch<React.SetStateAction<PlantInfo[]>>;
+  plant: PlantInfo;
 };
 
-export const QuitModal: React.FC<EndCareModalProps> = ({
+export const QuitModal: React.FC<QuitModalProps> = ({
   show,
   closeModal,
-  plantName,
+  // plantName,
   plantId,
   Modal,
   plantsData,
   setPlantsData,
+  plant,
 }) => {
   const [isArchived, setIsArchived] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -58,13 +59,16 @@ export const QuitModal: React.FC<EndCareModalProps> = ({
           <button className="close-modal-btn" onClick={closeModal}>
             <IoIosClose className="close-icon" />
           </button>
-          <TbPlantOff
-            className="plant-delete-icon mx-auto mt-4 text-red-500"
-            size={56}
-          />
+          {plant.iconUrl && (
+            <img
+              src={plant.iconUrl}
+              alt={plant.name}
+              className="quitPlantIcon mx-auto mt-4 h-14 w-14 "
+            />
+          )}
           <div className="mx-auto my-4 w-60">
             <h3 className="text-xl font-black text-gray-800">
-              {plantName}の管理をやめますか?
+              {plant.name}の管理をやめますか?
             </h3>
             <p className="text-sm my-2 text-gray-500">
               *この植物はArchiveに移動されて、閲覧のみ有効になります
