@@ -136,14 +136,12 @@ export const Details: React.FC<InfoProps> = ({
     if (isQuitModalOpen) setIsQuitModalOpen(false);
   };
   const toggleQuitModal = () => {
-    setIsQuitModalOpen(!isQuitModalOpen);
     if (isLeafSidebarOpen) setIsLeafSidebarOpen(false);
     if (isCommentSidebarOpen) setIsCommentSidebarOpen(false);
     if (isEditSidebarOpen) setIsEditSidebarOpen(false);
   };
 
   const toggleWateringModal = () => {
-    setIsWateringModalOpen(!isWateringModalOpen);
     if (isLeafSidebarOpen) setIsLeafSidebarOpen(false);
     if (isCommentSidebarOpen) setIsCommentSidebarOpen(false);
     if (isEditSidebarOpen) setIsEditSidebarOpen(false);
@@ -175,31 +173,11 @@ export const Details: React.FC<InfoProps> = ({
         <>
           {/* Side-buttons + PlantsLinks　*/}
           <div className="buttonContainer flex-none flex-col">
-            {/* Watering-button　*/}
-            <div
-              className="relative  watering__icon "
-              onClick={() => {
-                openModal();
-                toggleWateringModal();
-              }}
-            >
-              <button className="watering__button" ref={actionButtonRef}>
-                <MdWaterDrop className=" icon fa-solid fa-plus" />
-              </button>
-              <div className=" text-gray-700 my-1.5">Watering</div>
-            </div>
-            {/* Watering モーダル*/}
-            {isWateringModalOpen && (
-              <WateringModal
-                show={isWateringModalOpen}
-                closeModal={() => setIsWateringModalOpen(false)}
-                // plantName={plant.name}
-                Modal={Modal}
-                plantId={id}
-                plant={plant}
-                setPlantsData={setPlantsData}
-              />
-            )}
+            <WateringModal
+              plantId={id}
+              plant={plant}
+              toggleWateringModal={toggleWateringModal}
+            />
             {/* Leaf-button　*/}
             <div
               className="relative  leafCount__icon "
@@ -284,32 +262,13 @@ export const Details: React.FC<InfoProps> = ({
               />
             )}
 
-            {/* Quitボタン　*/}
-            <div
-              className="relative delete__icon "
-              onClick={() => {
-                openModal();
-                toggleQuitModal();
-              }}
-            >
-              <button
-                className="delete__button relative overflow-visible"
-                ref={actionButtonRef}
-              >
-                <TbPlantOff className="icon fa-solid fa-plus" />
-              </button>
-              <div className=" text-gray-700 my-1.5">Quit</div>
-            </div>
             {/* Quit モーダル　*/}
             <QuitModal
-              show={show}
-              closeModal={closeModal}
-              // plantName={plant.name}
-              Modal={Modal}
               plantId={id}
               plantsData={plantsData}
               setPlantsData={setPlantsData}
               plant={plant}
+              toggleQuitModal={toggleQuitModal}
             />
 
             {/* PlantsLinks　*/}
