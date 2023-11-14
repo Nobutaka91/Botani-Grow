@@ -47,6 +47,7 @@ import { EditSidebar } from '../views/organisms/EditSidebar';
 
 import './Details.scss';
 import '../views/organisms/ButtonContainer.scss';
+import { WateringModal } from '../views/organisms/WateringModal';
 import { QuitModal } from '../views/organisms/QuitModal';
 import { Console } from 'console';
 
@@ -75,7 +76,8 @@ export const Details: React.FC<InfoProps> = ({
   const [isCommentSidebarOpen, setIsCommentSidebarOpen] = useState(false);
   const [isLeafSidebarOpen, setIsLeafSidebarOpen] = useState(false);
   const [isEditSidebarOpen, setIsEditSidebarOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isQuitModalOpen, setIsQuitModalOpen] = useState(false);
+  const [isWateringModalOpen, setIsWateringModalOpen] = useState(false);
   const [memos, setMemos] = useState<PlantMemo[]>([]);
 
   useEffect(() => {
@@ -117,24 +119,31 @@ export const Details: React.FC<InfoProps> = ({
     setIsCommentSidebarOpen(!isCommentSidebarOpen);
     if (isLeafSidebarOpen) setIsLeafSidebarOpen(false);
     if (isEditSidebarOpen) setIsEditSidebarOpen(false);
-    if (isModalOpen) setIsModalOpen(false);
+    if (isQuitModalOpen) setIsQuitModalOpen(false);
   };
 
   const toggleLeafSidebar = () => {
     setIsLeafSidebarOpen(!isLeafSidebarOpen);
     if (isCommentSidebarOpen) setIsCommentSidebarOpen(false);
     if (isEditSidebarOpen) setIsEditSidebarOpen(false);
-    if (isModalOpen) setIsModalOpen(false);
+    if (isQuitModalOpen) setIsQuitModalOpen(false);
   };
 
   const toggleEditSidebar = () => {
     setIsEditSidebarOpen(!isEditSidebarOpen);
     if (isLeafSidebarOpen) setIsLeafSidebarOpen(false);
     if (isCommentSidebarOpen) setIsCommentSidebarOpen(false);
-    if (isModalOpen) setIsModalOpen(false);
+    if (isQuitModalOpen) setIsQuitModalOpen(false);
   };
   const toggleQuitModal = () => {
-    setIsModalOpen(!isEditSidebarOpen);
+    setIsQuitModalOpen(!isQuitModalOpen);
+    if (isLeafSidebarOpen) setIsLeafSidebarOpen(false);
+    if (isCommentSidebarOpen) setIsCommentSidebarOpen(false);
+    if (isEditSidebarOpen) setIsEditSidebarOpen(false);
+  };
+
+  const toggleWateringModal = () => {
+    setIsWateringModalOpen(!isWateringModalOpen);
     if (isLeafSidebarOpen) setIsLeafSidebarOpen(false);
     if (isCommentSidebarOpen) setIsCommentSidebarOpen(false);
     if (isEditSidebarOpen) setIsEditSidebarOpen(false);
@@ -169,13 +178,28 @@ export const Details: React.FC<InfoProps> = ({
             {/* Watering-button　*/}
             <div
               className="relative  watering__icon "
-              onClick={() => setOpen(!open)}
+              onClick={() => {
+                openModal();
+                toggleWateringModal();
+              }}
             >
               <button className="watering__button" ref={actionButtonRef}>
                 <MdWaterDrop className=" icon fa-solid fa-plus" />
               </button>
               <div className=" text-gray-700 my-1.5">Watering</div>
             </div>
+            {/* Watering モーダル*/}
+            {isWateringModalOpen && (
+              <WateringModal
+                show={isWateringModalOpen}
+                closeModal={() => setIsWateringModalOpen(false)}
+                // plantName={plant.name}
+                Modal={Modal}
+                plantId={id}
+                plant={plant}
+                setPlantsData={setPlantsData}
+              />
+            )}
             {/* Leaf-button　*/}
             <div
               className="relative  leafCount__icon "
@@ -265,7 +289,6 @@ export const Details: React.FC<InfoProps> = ({
               className="relative delete__icon "
               onClick={() => {
                 openModal();
-                setOpen(!open);
                 toggleQuitModal();
               }}
             >
@@ -281,11 +304,12 @@ export const Details: React.FC<InfoProps> = ({
             <QuitModal
               show={show}
               closeModal={closeModal}
-              plantName={plant.name}
+              // plantName={plant.name}
               Modal={Modal}
               plantId={id}
               plantsData={plantsData}
               setPlantsData={setPlantsData}
+              plant={plant}
             />
 
             {/* PlantsLinks　*/}
