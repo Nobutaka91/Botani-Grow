@@ -44,7 +44,6 @@ function App() {
             id: doc.id,
             iconUrl: data.iconUrl,
             name: data.name,
-            size: data.size,
             leafCount: data.leafCount,
             // wateringCycle: data.wateringCycle,
             tags: data.tags,

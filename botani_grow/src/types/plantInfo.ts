@@ -2,7 +2,6 @@ export type PlantInfo = {
   id: string;
   iconUrl: string | null;
   name: string;
-  size: string;
   leafCount: number;
   tags: string[] | null;
   startDate: Date;

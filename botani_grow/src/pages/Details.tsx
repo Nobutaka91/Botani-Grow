@@ -341,7 +341,6 @@ export const Details: React.FC<InfoProps> = ({
                 <div id="plant__name" className="plant__name_flex items-center">
                   <h1>{plant.name}</h1>
                   <span>({plant.startDate.toLocaleDateString()} ～ )</span>
-                  <span className="plant-size">{plant.size}</span>
                   <span className="flex">
                     <PiLeafDuotone
                       className="icon pointer-events-none"
