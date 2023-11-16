@@ -28,7 +28,6 @@ type PlantProps = {
 
 export const NewPlantForm: React.FC<PlantProps> = () => {
   const [name, setName] = useState('');
-  const [size, setSize] = useState('S');
   const [leafCount, setLeafCount] = useState(0);
   const [wateringCycle, setWateringCycle] = useState(0);
   const [tags, setTags] = useState<string[] | null>(null);
@@ -113,7 +112,6 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
         iconUrl,
         startDate: new Date(),
         name,
-        size,
         leafCount: Number(leafCount),
         tags,
         isArchived: false,
@@ -199,26 +197,6 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                 </div>
               </div>
 
-              <div className="inputDiv">
-                <div className="flex space-x-4">
-                  <label htmlFor="size">Size</label>
-                </div>
-                <div className="size-input flex">
-                  <select
-                    id="size"
-                    name="size"
-                    value={size}
-                    onChange={(e: ChangeEvent<HTMLSelectElement>) => {
-                      setSize(e.target.value);
-                    }}
-                    // required
-                  >
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                  </select>
-                </div>
-              </div>
               <div className="inputDiv">
                 <div className="flex space-x-4">
                   <label htmlFor="leaf" className="flex gap-1">
