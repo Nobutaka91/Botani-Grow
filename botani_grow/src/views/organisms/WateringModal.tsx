@@ -59,12 +59,12 @@ export const WateringModal: React.FC<WateringModalProps> = ({
               />
             )}
 
+            <h3 className="text-basic font-black text-gray-800 py-2">
+              {plant.name}に水をあげよう
+            </h3>
+
             <div className="mx-auto my-4 w-60">
-              <h3 className="text-basic font-black text-gray-800">
-                {plant.name}に水をあげよう
-              </h3>
               <p className=" my-2 text-gray-500">
-                {/* *気が向いたら剪定もしておこう */}
                 <WateringRate />
               </p>
             </div>
@@ -72,8 +72,8 @@ export const WateringModal: React.FC<WateringModalProps> = ({
               <button className="btn btn-cancel mt-2" onClick={closeModal}>
                 Cancel
               </button>
-              <button className="btn btn-danger" onClick={handleClose}>
-                Quit
+              <button className="btn btn-next-step" onClick={handleClose}>
+                Next
               </button>
             </div>
           </div>
