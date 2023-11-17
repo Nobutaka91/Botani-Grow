@@ -6,5 +6,19 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   pointer-events: none;
   margin: auto;
-  margin-top: 25px;
+  margin-top: 20px;
+}
+
+.btn-next-step {
+  width: 75px;
+  // background-color: var(--hoverColor);
+  background-color: #ff4c29;
+  color: var(--whiteColor);
+  // color: black;
+  transition: ease 0.3s;
+  // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  &:hover {
+    background-color: var(--deleteColor);
+    color: var(--whiteColor);
+  }
 }

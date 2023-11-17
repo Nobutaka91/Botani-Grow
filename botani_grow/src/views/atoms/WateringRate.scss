@@ -9,3 +9,9 @@
     width: 25px;
   }
 }
+
+.ratingMessage {
+  font-size: x-small;
+  padding-top: 5px;
+  white-space: nowrap; // 改行できなくする
+}
