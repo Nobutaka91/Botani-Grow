@@ -288,7 +288,7 @@ export const WaterChart = React.memo(() => {
   return (
     <div className="waterChartContainer">
       <div className="waterChartMenu">
-        <span>"x" waterings in the last year.</span>
+        {/* <span>"x" waterings in the last year.</span> */}
       </div>
       <div className="waterChartCard">
         <div className="waterChartBox flex">

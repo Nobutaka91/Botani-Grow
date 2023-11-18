@@ -8,6 +8,7 @@ import { IconContext } from 'react-icons';
 import { IoIosClose } from 'react-icons/io';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { TbChevronsRight } from 'react-icons/tb';
+import { HiOutlineArrowSmDown } from 'react-icons/hi';
 import { db } from '../../config/Firebase';
 import {
   doc,
@@ -106,13 +107,13 @@ export const CommentSidebar: React.FC<CommentSidebarProps> = ({
           <button className="close-btn" onClick={toggleCommentSidebar}>
             <TbChevronsRight className="close-icon" />
           </button>
-          <span className="whitespace-nowrap rounded-lg bg-slate-700 px-2 py-1 text-sm text-white absolute top-14 left-0 opacity-0 group-hover:opacity-100 transition pointer-events-none z-10">
+          <span className="whitespace-nowrap rounded-lg bg-slate-700 px-2 py-1 text-xs text-white absolute top-14 left-0 opacity-0 group-hover:opacity-100 transition pointer-events-none z-10">
             Close sidebar
           </span>
         </span>
         <div className="comment-input">
           <label>
-            Add Memo
+            Memo
             <textarea
               className={isExpanded ? 'expanded' : ''}
               onFocus={() => setIsExpanded(true)}
@@ -120,18 +121,19 @@ export const CommentSidebar: React.FC<CommentSidebarProps> = ({
               name="commentText"
               maxLength={100}
               spellCheck="true"
-              placeholder="write memo here..."
+              placeholder="write here..."
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               // onFocus={(e) => e.currentTarget.parentElement?.focus()}
             ></textarea>
-            <button
-              className="addComment-btn"
-              type="button"
-              onMouseDown={handleSubmit}
-            >
-              Add
-            </button>
+            <span className="addComment-btn relative group">
+              <button className="" type="button" onMouseDown={handleSubmit}>
+                <HiOutlineArrowSmDown className="text-xl" />
+              </button>
+              <span className="whitespace-nowrap rounded-lg bg-slate-700 px-2 py-1 text-xs text-white absolute -top-8 -left-1 opacity-0 group-hover:opacity-100 transition pointer-events-none">
+                Add
+              </span>
+            </span>
           </label>
         </div>
         <div className="past-comments">

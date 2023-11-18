@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PlantInfo } from '../../types/plantInfo';
-import { db } from '../../config/Firebase';
+import { PlantInfo } from '../../../../types/plantInfo';
+import { db } from '../../../../config/Firebase';
 import './QuitModal.scss';
 
 import { doc, updateDoc } from 'firebase/firestore';
 
 import { IoIosClose } from 'react-icons/io';
 import { TbPlantOff } from 'react-icons/tb';
-import { useModal } from '../../hooks/useModal';
+import { useModal } from '../../../../hooks/useModal';
 
 type QuitModalProps = {
   plantId: string;

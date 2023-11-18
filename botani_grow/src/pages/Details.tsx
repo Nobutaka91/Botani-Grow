@@ -47,8 +47,8 @@ import { EditSidebar } from '../views/organisms/EditSidebar';
 
 import './Details.scss';
 import '../views/organisms/ButtonContainer.scss';
-import { WateringModal } from '../views/organisms/WateringModal';
-import { QuitModal } from '../views/organisms/QuitModal';
+import { WateringModal } from '../views/organisms/Modal/Watering/WateringModal';
+import { QuitModal } from '../views/organisms/Modal/Quit/QuitModal';
 import { Console } from 'console';
 
 type InfoProps = {
@@ -346,9 +346,9 @@ export const Details: React.FC<InfoProps> = ({
                       className="icon pointer-events-none"
                       color="green"
                     />
-                    <span className="text-black opacity-80">
+                    {/* <span className="text-black opacity-80">
                       {plant.leafCount}
-                    </span>
+                    </span>  */}
                   </span>
                 </div>
                 {plant.iconUrl ? (

@@ -15,14 +15,14 @@ export const WateringRate = () => {
 
   // rating値に応じて表示するテキストを定義するオブジェクト
   const ratingMessages: { [key: string]: string } = {
-    low: 'ひとしずく',
-    medium: 'ペットボトルのキャップ1杯くらい',
+    low: 'petボトルのキャップ 1杯くらい',
+    medium: 'コップ 1/3くらい',
     high: 'コップ半分くらい',
   };
 
   return (
     <>
-      <div className="flex justify-center">
+      <div className="flex justify-center mt-4">
         {[...Array(3)] // 3つのnullを持つ配列を生成
           .map((liquid, index) => {
             const currentRate = index + 1;
@@ -37,7 +37,9 @@ export const WateringRate = () => {
                   />
                   <IoMdWater
                     className="liquid"
-                    color={currentRate <= rating ? 'var(--waterColor)' : 'gray'}
+                    color={
+                      currentRate <= rating ? 'var(--waterHoverColor)' : 'gray'
+                    }
                   />
                 </label>
               </>
