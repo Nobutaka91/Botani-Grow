@@ -326,9 +326,18 @@ export const Details: React.FC<InfoProps> = ({
                     </p>
                   </div>
                 </div>
-                <div className="lastCondition">
-                  <span className="condition_expression">Feature</span>
-                  <div className="condition_memo ">
+                {/* 植物名 + タグ */}
+                <div className="tagsContainer">
+                  <div id="plant__name" className="plant__name_flex">
+                    <h1>{plant.name}</h1>
+                    <span>
+                      <PiLeafDuotone
+                        className="icon pointer-events-none"
+                        color="green"
+                      />
+                    </span>
+                  </div>
+                  <div className="tags">
                     {plant.tags?.map((tag) => (
                       <span className="tag-text text-sm shadow-xl">{tag}</span>
                     ))}
@@ -336,21 +345,8 @@ export const Details: React.FC<InfoProps> = ({
                 </div>
               </div>
 
-              {/* 植物名 + 画像　*/}
+              {/* 植物の画像 + 生育開始日　*/}
               <div className="img_container">
-                <div id="plant__name" className="plant__name_flex items-center">
-                  <h1>{plant.name}</h1>
-                  <span>({plant.startDate.toLocaleDateString()} ～ )</span>
-                  <span className="flex">
-                    <PiLeafDuotone
-                      className="icon pointer-events-none"
-                      color="green"
-                    />
-                    {/* <span className="text-black opacity-80">
-                      {plant.leafCount}
-                    </span>  */}
-                  </span>
-                </div>
                 {plant.iconUrl ? (
                   <img
                     src={plant.iconUrl}
@@ -358,6 +354,9 @@ export const Details: React.FC<InfoProps> = ({
                     className="plant_img pointer-events-none"
                   />
                 ) : null}
+                <div className="plant_birth">
+                  {plant.startDate.toLocaleDateString()} ～
+                </div>
               </div>
             </div>
             {/* Waterヒートマップ */}
