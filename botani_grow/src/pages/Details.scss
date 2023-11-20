@@ -15,7 +15,6 @@
 
 #plant__name {
   font-size: 15px;
-  text-align: center;
   margin-top: 20px;
   margin-bottom: 10px;
   color: var(--blackColor);
@@ -23,11 +22,18 @@
 
 .plant__name_flex {
   display: flex;
-  justify-content: center;
   gap: 5px;
 
   span {
     font-size: 15px;
+  }
+}
+
+.img_container {
+  text-align: center;
+  .plant_birth {
+    margin-top: 5px;
+    font-size: small;
   }
 }
 
@@ -40,18 +46,12 @@
   align-items: center;
 }
 
-.lastWateringDay {
-}
-
 .thisMonth_Watering_times {
   margin-left: 20px;
   margin-right: 20px;
 }
 
-.next_watering_day {
-}
-
-.lastCondition {
+.tagsContainer {
   margin-top: 10px;
   padding: 10px 0 0 10px;
 
@@ -61,7 +61,7 @@
     font-size: 14px;
   }
 
-  .condition_memo {
+  .tags {
     width: 400px;
     display: flex;
     gap: 0.4rem;
