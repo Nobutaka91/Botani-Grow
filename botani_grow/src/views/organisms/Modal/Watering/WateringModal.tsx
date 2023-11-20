@@ -73,7 +73,7 @@ export const WateringModal: React.FC<WateringModalProps> = ({
             <button className="close-modal-btn" onClick={handleClose}>
               <IoIosClose className="close-icon" />
             </button>
-            <span className="currentPage">{step} / 3</span>
+            <span className="currentPage">step {step} / 3</span>
             {/* ステップに応じたコンテンツの描画 */}
             {renderModalContent()}
             <div className="flex justify-end gap-4 mt-20 w-full">

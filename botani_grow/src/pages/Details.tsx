@@ -45,10 +45,10 @@ import { WateringInfo } from '../types/wateringInfo';
 import { PlantsLinks } from '../views/organisms/PlantsLinks';
 import { EditSidebar } from '../views/organisms/EditSidebar';
 
-import './Details.scss';
-import '../views/organisms/ButtonContainer.scss';
 import { WateringModal } from '../views/organisms/Modal/Watering/WateringModal';
 import { QuitModal } from '../views/organisms/Modal/Quit/QuitModal';
+import './Details.scss';
+import '../views/organisms/ButtonContainer.scss';
 import { Console } from 'console';
 
 type InfoProps = {
