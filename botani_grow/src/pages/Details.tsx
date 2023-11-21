@@ -1,40 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { useModal } from '../hooks/useModal';
+import { useParams } from 'react-router-dom';
 
 import { db } from '../config/Firebase';
-import {
-  doc,
-  deleteDoc,
-  getDocs,
-  collection,
-  getDoc,
-} from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 
-import NaturePeopleIcon from '@mui/icons-material/NaturePeople';
-import { VscCloudUpload } from 'react-icons/vsc';
-import { TbPlantOff, TbPlant } from 'react-icons/tb';
-import { FaRegSadCry } from 'react-icons/fa';
-import { FiEdit } from 'react-icons/fi';
 import { MdEditDocument } from 'react-icons/md';
 import { FaCommentDots } from 'react-icons/fa6';
 
-import {
-  IoMdNotifications,
-  IoIosClose,
-  IoIosAddCircleOutline,
-} from 'react-icons/io';
-
-import { AiOutlineSwapLeft } from 'react-icons/ai';
-import {
-  PiLeafDuotone,
-  PiPottedPlantDuotone,
-  PiLeafFill,
-} from 'react-icons/pi';
-import { GiWateringCan } from 'react-icons/gi';
-import { MdWaterDrop } from 'react-icons/md';
-import { FcPlanner } from 'react-icons/fc';
-import { TiStopwatch } from 'react-icons/ti';
+import { PiLeafDuotone, PiLeafFill } from 'react-icons/pi';
 
 import { WaterChart } from './WaterChart';
 import { CommentSidebar } from '../views/organisms/CommentSidebar';
@@ -49,7 +22,6 @@ import { WateringModal } from '../views/organisms/Modal/Watering/WateringModal';
 import { QuitModal } from '../views/organisms/Modal/Quit/QuitModal';
 import './Details.scss';
 import '../views/organisms/ButtonContainer.scss';
-import { Console } from 'console';
 
 type InfoProps = {
   plantsData: PlantInfo[];
@@ -66,10 +38,6 @@ export const Details: React.FC<InfoProps> = ({
 }) => {
   console.log(wateringsData);
   const { id } = useParams<{ id: string }>();
-  const { Modal, openModal, closeModal, show } = useModal();
-  const [modalType, setModalType] = useState<
-    'COUNT' | 'WATERING' | 'DELETE' | 'EDIT' | 'DELETE' | null
-  >(null);
   const [open, setOpen] = useState(false);
   const actionButtonRef = useRef<HTMLButtonElement | null>(null);
   const navigationRef = useRef<HTMLDivElement | null>(null);
@@ -77,7 +45,6 @@ export const Details: React.FC<InfoProps> = ({
   const [isLeafSidebarOpen, setIsLeafSidebarOpen] = useState(false);
   const [isEditSidebarOpen, setIsEditSidebarOpen] = useState(false);
   const [isQuitModalOpen, setIsQuitModalOpen] = useState(false);
-  const [isWateringModalOpen, setIsWateringModalOpen] = useState(false);
   const [memos, setMemos] = useState<PlantMemo[]>([]);
 
   useEffect(() => {
@@ -278,54 +245,9 @@ export const Details: React.FC<InfoProps> = ({
           {/* メイン画面 */}
           <div className="plant-detail-main flex-grow h-screen overflow-y-auto z-0">
             {/* 植物ステータス　*/}
-            <div className="flex justify-center gap-12 border-b py-8">
+            <div className="flex justify-center gap-12 border-b pt-12 pb-8">
               {/* 水やりデータ + コンディション + メモ　*/}
               <div className="condition_container">
-                <div className="flex plant__details">
-                  <div className="lastWateringDay border-r border-gray-200 pr-4">
-                    <span className="flex gap-1">
-                      <span className="text-black opacity-80 text-sm">
-                        Watered
-                      </span>
-
-                      <MdWaterDrop
-                        className="icon pointer-events-none"
-                        style={{ color: '#1a6fe7' }}
-                      />
-                    </span>
-                    <p className="flex shadow-md rounded-lg px-4 py-2 mt-0.5">
-                      2023/9/7{/*後で「水やりした日」をいれる*/}
-                    </p>
-                  </div>
-                  <div className="thisMonth_Watering_times border-r border-gray-200 pr-4">
-                    <span className="flex gap-1">
-                      <span className="text-black opacity-80 text-sm">
-                        This Month
-                      </span>
-
-                      <FcPlanner className="icon pointer-events-none" />
-                    </span>
-                    <p className="shadow-md rounded-lg  px-4 py-2 mt-0.5 ">
-                      4 times {/*後で「今月の水やり回数」をいれる*/}
-                    </p>
-                  </div>
-                  <div className="next_watering_day">
-                    <span className="flex gap-1 items-center">
-                      <span className="text-black opacity-80 text-sm">
-                        Next
-                      </span>
-                      <TiStopwatch
-                        className="icon pointer-events-none"
-                        color="black"
-                      />
-                    </span>
-                    <p className="shadow-md rounded-lg px-4 py-2 mt-0.5 ">
-                      {watering
-                        ? watering.nextWateringDate.toLocaleDateString()
-                        : '-'}
-                    </p>
-                  </div>
-                </div>
                 {/* 植物名 + タグ */}
                 <div className="tagsContainer">
                   <div id="plant__name" className="plant__name_flex">
@@ -341,6 +263,42 @@ export const Details: React.FC<InfoProps> = ({
                     {plant.tags?.map((tag) => (
                       <span className="tag-text text-sm shadow-xl">{tag}</span>
                     ))}
+                  </div>
+                </div>
+                <div className="flex plant__details">
+                  <div className="lastWateringDay border-r border-gray-200 pr-4">
+                    <span className="flex gap-1">
+                      <span className="text-black opacity-80 text-xs">
+                        さいごに水やりした日
+                      </span>
+                    </span>
+                    <p className=" shadow-md rounded-lg px-4 py-3 mt-0.5 text-center opacity-80 w-28">
+                      11/15{/*後で「水やりした日」をいれる*/}
+                    </p>
+                  </div>
+                  <div className="thisMonth_Watering_times border-r border-gray-200 pr-4">
+                    <span className="flex gap-1">
+                      <span className="text-black opacity-80 text-xs">
+                        {/* This Month */}
+                        今月の水やり回数
+                      </span>
+                    </span>
+                    <p className="shadow-md rounded-lg  px-4 py-3 mt-0.5 text-center opacity-80 w-28">
+                      2 {/*後で「今月の水やり回数」をいれる*/}
+                    </p>
+                  </div>
+                  <div className="next_watering_day">
+                    <span className="flex gap-1 items-center">
+                      <span className="text-black opacity-80 text-xs">
+                        水やり予定日
+                      </span>
+                    </span>
+                    <p className="shadow-md rounded-lg px-4 py-3 mt-0.5 text-center opacity-80 w-28">
+                      {/* {watering
+                        ? watering.nextWateringDate.toLocaleDateString()
+                        : '-'} */}
+                      11/29
+                    </p>
                   </div>
                 </div>
               </div>
@@ -360,8 +318,7 @@ export const Details: React.FC<InfoProps> = ({
               </div>
             </div>
             {/* Waterヒートマップ */}
-
-            <div className="border-b py-8">
+            <div className="border-b pb-6">
               <WaterChart />
             </div>
           </div>
