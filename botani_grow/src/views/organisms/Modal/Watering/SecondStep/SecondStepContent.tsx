@@ -29,6 +29,7 @@ export const SecondStepContent = () => {
       {/* <div>step 2</div> */}
       <div className="container" onMouseLeave={handleMouseLeave}>
         <div className="wrapper">
+          <p className="text">植物の状態</p>
           <div className="emoji">
             <button onClick={() => handleEmojiClick('🤕')} className="so bad">
               🤕
@@ -46,7 +47,6 @@ export const SecondStepContent = () => {
               😍
             </button>
           </div>
-          <p className="text">植物の状態</p>
         </div>
 
         <textarea

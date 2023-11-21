@@ -70,30 +70,34 @@ export const WateringModal: React.FC<WateringModalProps> = ({
       <div className="m-8">
         <Modal show={show}>
           <div className="wateringModal text-center w-72">
-            <button className="close-modal-btn" onClick={handleClose}>
+            {/* <button className="close-modal-btn" onClick={handleClose}>
               <IoIosClose className="close-icon" />
-            </button>
-            <span className="currentPage">step {step} / 3</span>
+            </button> */}
+            {(step == 1 || step == 2) && (
+              <span className="currentPage">step {step} / 2</span>
+            )}
             {/* ステップに応じたコンテンツの描画 */}
             {renderModalContent()}
-            <div className="flex justify-end gap-4 mt-20 w-full">
+            {/* ステップに応じたボタンの表示切り替え */}
+            <div className="flex  gap-4 mt-20 w-full">
               {step < 3 && (
                 <button className="btn btn-cancel mt-2" onClick={handleClose}>
                   Cancel
                 </button>
               )}
+
               <button
                 className="btn btn-next-step"
                 onClick={step < 3 ? handleNext : handleClose}
               >
-                {step < 3 ? (
-                  <div className="flex gap-1.5">
-                    <span>Next</span>
-                    <TbChevronRight />
-                  </div>
-                ) : (
-                  <span>Close</span>
-                )}
+                <div className="flex gap-1.5">
+                  <span>
+                    {step == 1 && 'Next'}
+                    {step == 2 && 'Submit'}
+                    {step > 2 && 'Okay'}
+                  </span>
+                  {step == 1 && <TbChevronRight />}
+                </div>
               </button>
             </div>
           </div>

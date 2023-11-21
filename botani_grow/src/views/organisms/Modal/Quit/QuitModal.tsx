@@ -72,9 +72,9 @@ export const QuitModal: React.FC<QuitModalProps> = ({
       <div className="m-8">
         <Modal show={show}>
           <div className="modal text-center w-72">
-            <button className="close-modal-btn" onClick={closeModal}>
+            {/* <button className="close-modal-btn" onClick={closeModal}>
               <IoIosClose className="close-icon" />
-            </button>
+            </button> */}
             {plant.iconUrl && (
               <img
                 src={plant.iconUrl}
