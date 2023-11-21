@@ -61,12 +61,26 @@
     }
   }
 
+  .btn-back-step {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 80px;
+    background-color: var(--addNewPlantButtonColor);
+    color: var(--blackColor) !important;
+    transition: ease 0.3s;
+    &:hover {
+      background-color: var(--addNewPlantButtonHoverColor);
+    }
+  }
+
   .btn-cancel {
     position: absolute;
     bottom: 20px;
     right: 110px;
     width: 80px;
     color: var(--blackColor);
+    opacity: 0.6;
     transition: ease 0.3s;
     &:hover {
       color: var(--blackColor);

@@ -18,7 +18,8 @@ export const FirstStepContent: React.FC<WateringPlantProps> = ({ plant }) => {
       )}
 
       <h3 className="text-basic font-black text-gray-800 py-2">
-        {name}に水をあげよう
+        {/* {name}に水をあげよう */}
+        水をあげよう
       </h3>
 
       <div className="mx-auto my-4 w-60">
