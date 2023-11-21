@@ -15,7 +15,6 @@
 
 #plant__name {
   font-size: 15px;
-  margin-top: 20px;
   margin-bottom: 10px;
   color: var(--blackColor);
 }
@@ -38,10 +37,10 @@
 }
 
 .plant__details {
-  width: 360px;
+  width: 400px;
   height: 40px;
   margin-bottom: 20px;
-  margin-top: 20px;
+  margin-top: 60px;
   display: flex;
   align-items: center;
 }
@@ -52,8 +51,8 @@
 }
 
 .tagsContainer {
-  margin-top: 10px;
-  padding: 10px 0 0 10px;
+  margin-bottom: 10px;
+  padding: 10px 10px 0 0;
 
   .condition_expression {
     display: block;
@@ -142,6 +141,6 @@ ui-card img {
   }
 
   .plant-detail-main {
-    padding: 10px 25px;
+    padding: 30px 70px;
   }
 }
