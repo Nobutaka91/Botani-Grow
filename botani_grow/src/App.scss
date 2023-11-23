@@ -34,7 +34,8 @@
   --editButtonColor: hsl(0, 4%, 27%);
 
   --sb-track-color: #eaf0f3;
-  --sb-thumb-color: #575a5748;
+  --sb-thumb-color: #3c3e3c48;
+  --sb-thumb-hover-color: #2f302f78;
   --sb-size: 10px;
   --buttonHoverColor: rgb(243 244 246 / 0.8);
 
@@ -524,6 +525,10 @@ body.modal-open {
   background: var(--sb-thumb-color);
   border-radius: 12px;
   border: 2px solid #eaf0f3;
+
+  &:hover {
+    background: var(--sb-thumb-hover-color);
+  }
 }
 
 // // Hide scroll bar
