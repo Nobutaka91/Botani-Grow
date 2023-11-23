@@ -155,4 +155,8 @@
   background: var(--sb-thumb-color);
   border-radius: 12px;
   border: 2px solid #eaf0f3;
+
+  &:hover {
+    background: var(--sb-thumb-hover-color);
+  }
 }
