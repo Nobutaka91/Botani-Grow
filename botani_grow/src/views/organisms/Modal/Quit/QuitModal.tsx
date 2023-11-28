@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { PlantInfo } from '../../../../types/plantInfo';
 import { db } from '../../../../config/Firebase';
 import './QuitModal.scss';
-
 import { doc, updateDoc } from 'firebase/firestore';
+import { useModal } from '../../../../hooks/useModal';
+import { FirstStepQuitContent } from './FirstStep/FirstStepQuitContent';
+import { SecondStepQuitContent } from './SecondStep/SecondStepQuitContent';
 
 import { IoIosClose } from 'react-icons/io';
 import { TbPlantOff } from 'react-icons/tb';
-import { useModal } from '../../../../hooks/useModal';
 
 type QuitModalProps = {
   plantId: string;
@@ -28,6 +29,24 @@ export const QuitModal: React.FC<QuitModalProps> = ({
   const [isArchived, setIsArchived] = useState<boolean>(false);
   const navigate = useNavigate();
   const { Modal, openModal, closeModal, show } = useModal();
+  const [step, setStep] = useState(1);
+
+  // 次のステップへ進む処理
+  const handleNext = () => {
+    setStep((prevStep) => prevStep + 1);
+  };
+
+  // 現在のステップに基づいてモーダルのコンテンツを表示する
+  const renderQuitModalContent = () => {
+    switch (step) {
+      case 1:
+        return <FirstStepQuitContent plant={plant} />;
+      case 2:
+        return <SecondStepQuitContent archivedPlant={plant} />;
+      default:
+        return null;
+    }
+  };
 
   // Quitモーダルを開く処理
   const handleOpen = () => {
@@ -37,6 +56,7 @@ export const QuitModal: React.FC<QuitModalProps> = ({
 
   // Quitモーダルを閉じる処理
   const handleClose = () => {
+    setStep(1); // ステップを1にリセット
     closeModal();
   };
 
@@ -54,7 +74,7 @@ export const QuitModal: React.FC<QuitModalProps> = ({
 
       setIsArchived(true);
 
-      navigate('/Plants');
+      handleNext();
     } catch (error) {
       console.error('Error updating document:', error);
     }
@@ -72,37 +92,36 @@ export const QuitModal: React.FC<QuitModalProps> = ({
       <div className="m-8">
         <Modal show={show}>
           <div className="modal text-center w-72">
-            {/* <button className="close-modal-btn" onClick={closeModal}>
-              <IoIosClose className="close-icon" />
-            </button> */}
-            {plant.iconUrl && (
-              <img
-                src={plant.iconUrl}
-                alt={plant.name}
-                className="quitPlantIcon mx-auto mt-4 h-14 w-14 "
-              />
-            )}
-            <div className="mx-auto my-4 w-60">
-              <h3 className="text-xl font-black text-gray-800">
-                {plant.name}の管理をやめますか?
-              </h3>
-              <p className="text-sm my-2 text-gray-500">
-                *この植物はArchiveに移動されて、閲覧のみ有効になります
-              </p>
-            </div>
+            {/* ステップに応じたコンテンツの描画 */}
+            {renderQuitModalContent()}
+
             <div className="flex justify-end gap-4 mt-8 w-full">
-              <button className="btn btn-cancel mt-2" onClick={closeModal}>
-                Cancel
-              </button>
-              <button
-                className="btn btn-danger"
-                onClick={() => {
-                  updateIsArchived(plantId);
-                  handleClose();
-                }}
-              >
-                Quit
-              </button>
+              {step == 1 && (
+                <>
+                  <button className="btn btn-cancel mt-2" onClick={handleClose}>
+                    Cancel
+                  </button>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => {
+                      updateIsArchived(plantId);
+                    }}
+                  >
+                    Quit
+                  </button>
+                </>
+              )}
+              {step == 2 && (
+                <button
+                  className="btn btn-danger"
+                  onClick={() => {
+                    handleClose();
+                    navigate('/Plants');
+                  }}
+                >
+                  Okay
+                </button>
+              )}
             </div>
           </div>
         </Modal>
