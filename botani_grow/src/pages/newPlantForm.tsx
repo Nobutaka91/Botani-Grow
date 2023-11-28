@@ -15,7 +15,7 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from 'firebase/storage';
-import { MdWaterDrop } from 'react-icons/md';
+// import { MdWaterDrop } from 'react-icons/md';
 import { useNavigate } from 'react-router';
 import { TbCameraPlus } from 'react-icons/tb';
 import { FaTags } from 'react-icons/fa';
@@ -29,15 +29,15 @@ type PlantProps = {
 export const NewPlantForm: React.FC<PlantProps> = () => {
   const [name, setName] = useState('');
   const [leafCount, setLeafCount] = useState(0);
-  const [wateringCycle, setWateringCycle] = useState(0);
+  const wateringCycle = 14;
   const [tags, setTags] = useState<string[] | null>(null);
   const [iconUrl, setIconUrl] = useState<string | null>(null);
 
   const [nameError, setNameError] = useState<string | null>(null);
   const [leafCountError, setLeafCountError] = useState<string | null>(null);
-  const [wateringCycleError, setWateringCycleError] = useState<string | null>(
-    null
-  );
+  // const [wateringCycleError, setWateringCycleError] = useState<string | null>(
+  //   null
+  // );
   const [uploadError, setUploadError] = useState<string | null>(null);
 
   const storage = getStorage(app); // getStorageでStorageのインスタンスを取得
@@ -79,7 +79,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
     e.preventDefault();
     setNameError(null);
     setLeafCountError(null);
-    setWateringCycleError(null);
+    // setWateringCycleError(null);
     setUploadError(null);
 
     let hasError = false;
@@ -94,10 +94,10 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
       hasError = true;
     }
 
-    if (wateringCycle < 1 || wateringCycle > 30) {
-      setWateringCycleError('Watering cycle: 1 - 30');
-      hasError = true;
-    }
+    // if (wateringCycle < 1 || wateringCycle > 30) {
+    //   setWateringCycleError('Watering cycle: 1 - 30');
+    //   hasError = true;
+    // }
 
     if (!iconUrl) {
       setUploadError('*Upload failed. Please Retry.');
@@ -122,10 +122,10 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
 
       const currentDate = new Date(); // 現在の日時
       const nextWateringDate = new Date(currentDate);
-      nextWateringDate.setDate(currentDate.getDate() + wateringCycle);
+      nextWateringDate.setDate(currentDate.getDate() + 14); // 現在日時に14日(2週間)を足す
       await addDoc(collection(db, 'waterings'), {
         plantId: plantDocRef.id, // 植物IDをplantIdとして保存
-        wateringCycle,
+        wateringCycle: 14,
         nextWateringDate,
       });
       console.log('Watering Document written for Plant ID:', plantDocRef.id);
@@ -225,7 +225,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                   </div>
                 </div>
               </div>
-              <div className="inputDiv">
+              {/* <div className="inputDiv">
                 <div className="flex space-x-4">
                   <label htmlFor="wateringCycle" className=" flex gap-1">
                     <MdWaterDrop
@@ -256,7 +256,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                   />
                   <div className="text-xs">{wateringCycle} days</div>
                 </div>
-              </div>
+              </div> */}
 
               <label className="flex gap-1 -mb-3">
                 <FaTags className="icon" />
