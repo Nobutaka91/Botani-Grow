@@ -273,7 +273,7 @@ export const Details: React.FC<InfoProps> = ({
                       </span>
                     </span>
                     <p className=" shadow-md rounded-lg px-4 py-3 mt-0.5 text-center opacity-80 w-28">
-                      11/15{/*後で「水やりした日」をいれる*/}
+                      11/22{/*後で「水やりした日」をいれる*/}
                     </p>
                   </div>
                   <div className="thisMonth_Watering_times border-r border-gray-200 pr-4">
@@ -294,10 +294,9 @@ export const Details: React.FC<InfoProps> = ({
                       </span>
                     </span>
                     <p className="shadow-md rounded-lg px-4 py-3 mt-0.5 text-center opacity-80 w-28">
-                      {/* {watering
+                      {watering
                         ? watering.nextWateringDate.toLocaleDateString()
-                        : '-'} */}
-                      11/29
+                        : '-'}
                     </p>
                   </div>
                 </div>

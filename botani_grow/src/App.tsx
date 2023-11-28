@@ -69,7 +69,8 @@ function App() {
           const data = doc.data();
           waterings.push({
             plantId: data.plantId,
-            wateringCycle: data.wateringCycle,
+            // wateringCycle: data.wateringCycle,
+            wateringCycle: 14,
             wateringAmount: data.wateringAmount,
             nextWateringDate: data.nextWateringDate.toDate(),
           });
