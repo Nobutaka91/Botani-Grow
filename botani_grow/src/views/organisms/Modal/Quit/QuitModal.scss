@@ -7,28 +7,6 @@
   position: relative;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-  .close-modal-btn {
-    font-size: 25px;
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    color: var(--blackColor);
-    border-radius: 50%;
-    padding: 2px;
-    width: 25px;
-    height: 25px;
-    border: 1px solid var(--bgColor);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &:hover {
-      cursor: pointer;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    }
-  }
-
   .quitPlantIcon {
     width: 65px;
     height: 65px;
@@ -39,6 +17,9 @@
   }
 
   .btn-danger {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
     width: 80px;
     background-color: #ff4c29;
     color: var(--whiteColor);
@@ -51,6 +32,9 @@
   }
 
   .btn-cancel {
+    position: absolute;
+    bottom: 20px;
+    right: 110px;
     width: 80px;
     color: var(--blackColor);
     transition: ease 0.3s;

@@ -70,9 +70,6 @@ export const WateringModal: React.FC<WateringModalProps> = ({
       <div className="m-8">
         <Modal show={show}>
           <div className="wateringModal text-center w-72">
-            {/* <button className="close-modal-btn" onClick={handleClose}>
-              <IoIosClose className="close-icon" />
-            </button> */}
             {(step == 1 || step == 2) && (
               <span className="currentPage">step {step} / 2</span>
             )}

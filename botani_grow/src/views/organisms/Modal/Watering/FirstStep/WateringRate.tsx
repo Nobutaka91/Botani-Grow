@@ -22,7 +22,7 @@ export const WateringRate = () => {
 
   return (
     <>
-      <div className="flex justify-center mt-4">
+      <div className="flex justify-center mt-8">
         {[...Array(3)] // 3つのnullを持つ配列を生成
           .map((liquid, index) => {
             const currentRate = index + 1;

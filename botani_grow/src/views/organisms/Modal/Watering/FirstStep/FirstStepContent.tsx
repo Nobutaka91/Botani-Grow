@@ -4,9 +4,7 @@ import { WateringRate } from './WateringRate';
 import { PlantInfo } from '../../../../../types/plantInfo';
 
 type WateringPlantProps = {
-  // plantId: string;
   plant: PlantInfo;
-  // toggleWateringModal: () => void;
 };
 
 export const FirstStepContent: React.FC<WateringPlantProps> = ({ plant }) => {
@@ -18,8 +16,7 @@ export const FirstStepContent: React.FC<WateringPlantProps> = ({ plant }) => {
       )}
 
       <h3 className="text-basic font-black text-gray-800 py-2">
-        {/* {name}に水をあげよう */}
-        水をあげよう
+        {name}に水をあげよう
       </h3>
 
       <div className="mx-auto my-4 w-60">
