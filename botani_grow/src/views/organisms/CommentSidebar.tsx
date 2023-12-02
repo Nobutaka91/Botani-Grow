@@ -6,7 +6,7 @@ import { PlantMemo } from '../../types/plantMemo';
 
 import { IconContext } from 'react-icons';
 import { IoIosClose } from 'react-icons/io';
-import { AiOutlineDelete } from 'react-icons/ai';
+import { RiDeleteBin6Fill } from 'react-icons/ri';
 import { TbChevronsRight } from 'react-icons/tb';
 import { HiOutlineArrowSmDown } from 'react-icons/hi';
 import { db } from '../../config/Firebase';
@@ -156,10 +156,10 @@ export const CommentSidebar: React.FC<CommentSidebarProps> = ({
                   >
                     {' '}
                     <IconContext.Provider value={{ color: '#4b4a4a' }}>
-                      <AiOutlineDelete className="close-icon" />
+                      <RiDeleteBin6Fill className="close-icon" />
                     </IconContext.Provider>
                   </button>
-                  <span className="whitespace-nowrap rounded-lg bg-slate-700 px-2 py-1 text-xs text-white absolute top-7 -left-5 opacity-0 group-hover:opacity-100 transition pointer-events-none">
+                  <span className="whitespace-nowrap rounded-lg bg-slate-700 px-2 py-1 text-xs text-white absolute top-4 -left-5 opacity-0 group-hover:opacity-100 transition pointer-events-none">
                     Delete
                   </span>
                 </span>
