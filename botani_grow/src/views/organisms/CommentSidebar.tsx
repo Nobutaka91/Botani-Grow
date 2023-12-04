@@ -128,7 +128,7 @@ export const CommentSidebar: React.FC<CommentSidebarProps> = ({
             ></textarea>
             <span className="addComment-btn relative group">
               <button className="" type="button" onMouseDown={handleSubmit}>
-                <HiOutlineArrowSmDown className="text-xl" />
+                <HiOutlineArrowSmDown className="text-lg" />
               </button>
               <span className="whitespace-nowrap rounded-lg bg-slate-700 px-2 py-1 text-xs text-white absolute -top-8 -left-1 opacity-0 group-hover:opacity-100 transition pointer-events-none">
                 Add
@@ -140,13 +140,11 @@ export const CommentSidebar: React.FC<CommentSidebarProps> = ({
           {memos.map((memo, id) => (
             <div key={id} className="single-comment">
               <div className="flex justify-between">
-                <span className="text-sm text-slate-400">
+                <span className="text-xs text-slate-400">
                   {memo.date.toDate().toLocaleString('ja-JP', {
                     year: 'numeric',
                     month: '2-digit',
                     day: '2-digit',
-                    hour: '2-digit',
-                    minute: '2-digit',
                   })}
                 </span>
                 <span className="relative group">
