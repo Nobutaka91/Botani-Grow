@@ -6,7 +6,7 @@
   position: fixed;
   top: 0;
   right: 0;
-  width: 450px;
+  width: 380px;
   height: 100%;
   z-index: 50;
   background-color: var(--inputColor);
@@ -20,7 +20,7 @@
   &.open {
     // transform: translateX(0);
     // transition: transform 0.3s ease;
-    left: calc(100% - 450px);
+    left: calc(100% - 380px);
   }
 
   .close-btn {
@@ -53,7 +53,7 @@
 
     textarea {
       outline: none;
-      width: 90%;
+      width: 88%;
       resize: none;
       border-radius: 5px;
       border: 1px solid #ccc;
@@ -76,8 +76,9 @@
       bottom: 0.9rem;
       right: 3.5rem;
       background-color: var(--addNewPlantButtonHoverColor);
+      border: 1px solid #ccc;
       color: var(--blackColor);
-      padding: 0.1rem 0.5rem;
+      padding: 0.06rem 0.3rem;
       border-radius: 4px;
     }
   }
