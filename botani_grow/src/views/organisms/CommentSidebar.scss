@@ -23,6 +23,36 @@
     left: calc(100% - 380px);
   }
 
+  .plantIcon-container {
+    position: absolute;
+    top: 25px;
+    left: 20px;
+    display: flex;
+
+    .plantIcon {
+      width: 50px;
+      height: 50px;
+      border-radius: 40%;
+      object-fit: cover;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      pointer-events: none;
+    }
+
+    .plantInfo {
+      padding: 5px 0 0 8px;
+
+      .plantName {
+        font-size: 1.2rem;
+      }
+
+      .plantMemoCount {
+        font-size: 0.75rem;
+        color: #908e8e;
+        padding: 0 0 0 4px;
+      }
+    }
+  }
+
   .close-btn {
     background: none;
     font-size: 25px;
@@ -51,6 +81,7 @@
     margin: auto;
     padding-left: 0.5rem;
     margin-left: 20px;
+    margin-top: 40px;
 
     textarea {
       outline: none;

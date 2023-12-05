@@ -103,12 +103,21 @@ export const CommentSidebar: React.FC<CommentSidebarProps> = ({
       }`}
     >
       <div className="comment-sidebar">
+        <div className="plantIcon-container">
+          {plant.iconUrl && (
+            <img src={plant.iconUrl} alt={plant.name} className="plantIcon" />
+          )}
+          <div className="plantInfo">
+            <h1 className="plantName">{plant.name}</h1>
+            <h2 className="plantMemoCount ">{memos.length}コのメモ</h2>
+          </div>
+        </div>
         <span className="group">
           <button className="close-btn" onClick={toggleCommentSidebar}>
             <TbChevronsRight className="close-icon" />
           </button>
           <span className="whitespace-nowrap rounded-lg bg-slate-700 px-2 py-1 text-xs text-white absolute top-14 right-3 opacity-0 group-hover:opacity-100 transition pointer-events-none z-10">
-            Close sidebar
+            Close sideba
           </span>
         </span>
         <div className="comment-input">
