@@ -147,7 +147,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
               onSubmit={onSubmit}
             >
               <div className="headerDiv">
-                <h3>Register New Plant</h3>
+                <h1 className="modalTitle">Register New Plant</h1>
                 <div
                   className="icon-container"
                   onClick={() => {
@@ -264,15 +264,15 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
               </label>
               <div className="tagsInputDiv w-10/12 md:w-1/2 mt-4 md:mt-0 flex">
                 <TagsInput tags={tags} setTags={setTags} />
-                <div className="btn-container flex gap-4 mt-1">
-                  <button type="submit" className="add-plant-btn btn flex">
-                    <span>Submit</span>
-                  </button>
+                <div className="btn-container flex  mt-1">
                   <button
                     className="cancel-btn btn flex"
                     onClick={() => navigate('/Plants')}
                   >
                     <span>Cancel</span>
+                  </button>
+                  <button type="submit" className="add-plant-btn btn flex">
+                    <span>Submit</span>
                   </button>
                 </div>
               </div>

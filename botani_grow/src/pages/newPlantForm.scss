@@ -42,15 +42,17 @@ img {
 /* Paging style */
 .registerForm {
   width: 100%;
+  // width: 360px;
   margin-top: 10%;
   border-radius: 10px;
   overflow: hidden;
 
   .registerForm-container {
-    width: 70%;
+    width: 50%;
     margin: auto;
     border-radius: 10px;
-    background-color: hsl(0, 0%, 91%);
+    // background-color: hsl(0, 0%, 91%);
+    border: 1px solid var(--blackColor);
 
     .formDiv {
       position: relative;
@@ -71,10 +73,10 @@ img {
         flex-direction: column;
         align-items: center;
 
-        h3 {
-          font-size: 25px;
+        .modalTitle {
+          font-size: 15px;
           color: var(--blackColor);
-          font-weight: 600;
+          // font-weight: 600;
           margin-top: 20px;
         }
 
@@ -85,9 +87,10 @@ img {
           justify-content: center;
           align-items: center;
           border: 2px solid var(--inputColor);
-          border-radius: 50%;
-          width: 63px;
-          height: 63px;
+          // border-radius: 50%;
+          border-radius: 40%;
+          width: 60px;
+          height: 60px;
           cursor: pointer;
           margin-top: 10px;
           overflow: hidden;
@@ -140,34 +143,34 @@ img {
 
           .name-input {
             gap: 0.5rem;
-            padding: 0.7rem;
+            padding: 0.5rem;
             background: var(--inputColor);
             border-radius: 10px;
-            width: 300px;
+            width: 180px;
           }
 
-          .size-input {
-            gap: 0.5rem;
-            padding: 0.7rem;
-            background: var(--inputColor);
-            border-radius: 10px;
-            width: 300px;
+          // .size-input {
+          //   gap: 0.5rem;
+          //   padding: 0.7rem;
+          //   background: var(--inputColor);
+          //   border-radius: 10px;
+          //   width: 300px;
 
-            select {
-              width: 290px;
-              background-color: var(--inputColor);
-            }
-          }
+          //   select {
+          //     width: 290px;
+          //     background-color: var(--inputColor);
+          //   }
+          // }
 
           .leaf-input {
             gap: 0.5rem;
-            padding: 0.7rem;
+            padding: 0.5rem;
             background: var(--inputColor);
             border-radius: 10px;
-            width: 300px;
+            width: 55px;
 
             .number-input {
-              width: 290px;
+              width: 45px;
             }
           }
 
@@ -193,18 +196,20 @@ img {
       .btn-container {
         padding: 0.7rem;
         margin-top: 50px;
+        gap: 0.38rem;
         .btn {
           padding: 0.8rem;
-          background: var(--primaryColor);
+          // background: var(--primaryColor);
           border-radius: 10px;
-          color: var(--whiteColor);
+          // color: var(--whiteColor);
           align-items: center;
           margin: auto;
           justify-content: center;
-          font-size: 16px;
-          width: 130px;
-          gap: 0.5rem;
+          // font-size: 16px;
+          font-size: 1rem;
+          width: 80px;
           transition: 0.3s ease;
+          color: var(--blackColor) !important;
 
           .icon {
             font-size: 25px;
@@ -212,13 +217,13 @@ img {
           }
 
           &:hover {
-            background: var(--hoverColor);
-            color: var(--blackColor);
+            // background: var(--hoverColor);
+            // color: var(--blackColor);
 
-            .icon {
-              color: var(--blackColor);
-              transform: translateX(5px);
-            }
+            // .icon {
+            //   color: var(--blackColor);
+            //   transform: translateX(5px);
+            // }
           }
         }
 
@@ -228,26 +233,30 @@ img {
         }
 
         .add-plant-btn {
-          transition: ease 0.3s;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+          // transition: ease 0.3s;
+          // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+          background-color: var(--addNewPlantButtonColor);
           &:hover {
-            cursor: pointer;
-            transform: translateY(2px);
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            // cursor: pointer;
+            // transform: translateY(2px);
+            // box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            background-color: var(--addNewPlantButtonHoverColor);
           }
         }
 
         .cancel-btn {
-          background-color: var(--whiteColor);
-          color: var(--blackColor);
-          transition: ease 0.3s;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+          // background-color: var(--whiteColor);
+          // color: var(--blackColor);
+          // transition: ease 0.3s;
+          // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+          opacity: 0.6;
           &:hover {
-            background-color: var(--whiteColor);
+            // background-color: var(--whiteColor);
             color: var(--blackColor);
-            cursor: pointer;
-            transform: translateY(2px);
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            // cursor: pointer;
+            // transform: translateY(2px);
+            // box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            background-color: rgb(229 231 235 / 0.5);
           }
         }
       }
