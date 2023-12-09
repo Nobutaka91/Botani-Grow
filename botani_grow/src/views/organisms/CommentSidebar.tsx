@@ -117,7 +117,7 @@ export const CommentSidebar: React.FC<CommentSidebarProps> = ({
             <TbChevronsRight className="close-icon" />
           </button>
           <span className="whitespace-nowrap rounded-lg bg-slate-700 px-2 py-1 text-xs text-white absolute top-14 right-3 opacity-0 group-hover:opacity-100 transition pointer-events-none z-10">
-            Close sideba
+            Close sidebar
           </span>
         </span>
         <div className="comment-input">
