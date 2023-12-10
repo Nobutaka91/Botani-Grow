@@ -124,13 +124,15 @@ img {
             background: none;
             outline: none;
             border: none;
+            font-size: smaller;
           }
 
           label {
             color: var(--blackColor);
-            font-weight: 400;
-            font-size: 14px;
+            // font-weight: 400;
+            font-size: 0.9rem;
             padding-bottom: 0.5rem;
+            opacity: 0.8;
           }
 
           .error-message {
@@ -146,7 +148,7 @@ img {
             padding: 0.5rem;
             background: var(--inputColor);
             border-radius: 10px;
-            width: 180px;
+            width: 220px;
           }
 
           // .size-input {
