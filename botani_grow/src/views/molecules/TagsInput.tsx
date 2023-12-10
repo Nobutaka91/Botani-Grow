@@ -60,10 +60,11 @@ export const TagsInput: React.FC<TagProps> = ({ tags, setTags }) => {
         ))}
 
         <input
+          id="tag"
           onKeyDown={handleKeyDown}
           type="text"
           className="tags-input"
-          placeholder="Type here..."
+          placeholder="Enter tags (e.g., 乾燥に強い、暑さに強い)"
         />
         <div className="tags-counter flex">
           {exceedMaxTags && (

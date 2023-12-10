@@ -187,7 +187,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                     type="text"
                     id="name"
                     name="name"
-                    placeholder="type here..."
+                    placeholder="Enter the plant's name"
                     value={name}
                     onChange={(e: ChangeEvent<HTMLInputElement>) => {
                       setName(e.target.value);
@@ -258,7 +258,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                 </div>
               </div> */}
 
-              <label className="flex gap-1 -mb-3">
+              <label htmlFor="tag" className="flex gap-1 -mb-3">
                 <FaTags className="icon" />
                 <span>Tags</span>
               </label>
