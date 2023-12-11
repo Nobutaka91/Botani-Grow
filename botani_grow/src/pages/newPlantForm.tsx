@@ -5,7 +5,11 @@ import './newPlantForm.scss';
 import { AiOutlineSwapLeft } from 'react-icons/ai';
 import { TbRotateClockwise } from 'react-icons/tb';
 import { VscCloudUpload } from 'react-icons/vsc';
-import { PiPottedPlantDuotone, PiLeafDuotone } from 'react-icons/pi';
+import {
+  PiPottedPlantDuotone,
+  PiLeafDuotone,
+  PiPottedPlantFill,
+} from 'react-icons/pi';
 
 import { db, app } from '../config/Firebase';
 import { addDoc, collection } from 'firebase/firestore';
@@ -157,9 +161,13 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                   {iconUrl ? (
                     <img src={iconUrl} alt="uploaded_img" className="icon" />
                   ) : (
-                    <TbCameraPlus
+                    // <TbCameraPlus
+                    //   className="plant-picture-icon"
+                    //   color="black"
+                    // />
+                    <PiPottedPlantFill
                       className="plant-picture-icon"
-                      color="black"
+                      // color="gray"
                     />
                   )}
                 </div>
@@ -260,7 +268,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
 
               <label htmlFor="tag" className="flex gap-1 -mb-3">
                 <FaTags className="icon" />
-                <span>Tags</span>
+                <span className="text-base opacity-75">Tags</span>
               </label>
               <div className="tagsInputDiv w-10/12 md:w-1/2 mt-4 md:mt-0 flex">
                 <TagsInput tags={tags} setTags={setTags} />
