@@ -135,13 +135,9 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
   return (
     <div className="px-4 md:px-8 lg:px-16  overflow-y-auto">
       <div className="registerForm flex flex-col md:flex-row">
-        <div className="registerForm-container w-full">
-          <div className="formDiv flex justify-center flex-col md:flex-row">
-            <form
-              action=""
-              className="form grid w-10/12 md:w-1/2"
-              onSubmit={onSubmit}
-            >
+        <div className="registerForm-container">
+          <div className="formDiv flex flex-col md:flex-row">
+            <form action="" className="form" onSubmit={onSubmit}>
               <div className="headerDiv">
                 <h1 className="modalTitle">Register New Plant</h1>
                 <div
@@ -172,7 +168,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
               </div>
               <div className="inputDiv">
                 <div className="flex space-x-4">
-                  <label htmlFor="name">Name</label>
+                  <label htmlFor="name">Plant Name</label>
                   {nameError && (
                     <label className="error-message">{nameError}</label>
                   )}
@@ -253,23 +249,23 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                 </div>
               </div> */}
 
-              <label htmlFor="tag" className="flex gap-1 -mb-3">
+              <label htmlFor="tag" className="flex gap-1 mb-3">
                 <FaTags className="icon" />
                 <span className="text-base opacity-75">Tags</span>
               </label>
               <div className="tagsInputDiv w-10/12 md:w-1/2 mt-4 md:mt-0 flex">
                 <TagsInput tags={tags} setTags={setTags} />
-                <div className="btn-container flex  mt-1">
-                  <button
-                    className="cancel-btn btn flex"
-                    onClick={() => navigate('/Plants')}
-                  >
-                    <span>Cancel</span>
-                  </button>
-                  <button type="submit" className="add-plant-btn btn flex">
-                    <span>Submit</span>
-                  </button>
-                </div>
+              </div>
+              <div className="btn-container flex  mt-1">
+                <button
+                  className="cancel-btn btn"
+                  onClick={() => navigate('/Plants')}
+                >
+                  <span>Cancel</span>
+                </button>
+                <button type="submit" className="add-plant-btn btn flex">
+                  <span>Submit</span>
+                </button>
               </div>
             </form>
           </div>
