@@ -2,14 +2,8 @@ import React, { ChangeEvent, FormEvent, useState } from 'react';
 
 import './newPlantForm.scss';
 
-import { AiOutlineSwapLeft } from 'react-icons/ai';
-import { TbRotateClockwise } from 'react-icons/tb';
-import { VscCloudUpload } from 'react-icons/vsc';
-import {
-  PiPottedPlantDuotone,
-  PiLeafDuotone,
-  PiPottedPlantFill,
-} from 'react-icons/pi';
+import { PiLeafDuotone, PiPottedPlantFill } from 'react-icons/pi';
+import { BsFillCameraFill } from 'react-icons/bs';
 
 import { db, app } from '../config/Firebase';
 import { addDoc, collection } from 'firebase/firestore';
@@ -19,9 +13,7 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from 'firebase/storage';
-// import { MdWaterDrop } from 'react-icons/md';
 import { useNavigate } from 'react-router';
-import { TbCameraPlus } from 'react-icons/tb';
 import { FaTags } from 'react-icons/fa';
 import { PlantInfo } from '../types/plantInfo';
 import { TagsInput } from '../views/molecules/TagsInput';
@@ -153,23 +145,19 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
               <div className="headerDiv">
                 <h1 className="modalTitle">Register New Plant</h1>
                 <div
-                  className="icon-container"
+                  className="upload-img-container"
                   onClick={() => {
                     document.getElementById('fileInput')?.click();
                   }}
                 >
-                  {iconUrl ? (
-                    <img src={iconUrl} alt="uploaded_img" className="icon" />
-                  ) : (
-                    // <TbCameraPlus
-                    //   className="plant-picture-icon"
-                    //   color="black"
-                    // />
-                    <PiPottedPlantFill
-                      className="plant-picture-icon"
-                      // color="gray"
-                    />
-                  )}
+                  <div className="icon-container">
+                    {iconUrl ? (
+                      <img src={iconUrl} alt="uploaded_img" className="icon" />
+                    ) : (
+                      <PiPottedPlantFill className="plant-picture-icon" />
+                    )}
+                  </div>
+                  <BsFillCameraFill className="camera-icon" />
                 </div>
                 <input
                   type="file"
@@ -190,12 +178,11 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                   )}
                 </div>
                 <div className="name-input flex">
-                  <PiPottedPlantDuotone className="icon" />
                   <input
                     type="text"
                     id="name"
                     name="name"
-                    placeholder="Enter the plant's name"
+                    placeholder="enter the plant's name"
                     value={name}
                     onChange={(e: ChangeEvent<HTMLInputElement>) => {
                       setName(e.target.value);
@@ -207,7 +194,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
 
               <div className="inputDiv">
                 <div className="flex space-x-4">
-                  <label htmlFor="leaf" className="flex gap-1">
+                  <label htmlFor="leaf" className="flex gap-x-0.5">
                     <PiLeafDuotone className="icon" color="green" />
                     <span>Count</span>
                   </label>

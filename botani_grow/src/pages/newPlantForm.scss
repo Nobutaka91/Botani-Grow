@@ -76,38 +76,52 @@ img {
         .modalTitle {
           font-size: 15px;
           color: var(--blackColor);
-          // font-weight: 600;
           margin-top: 20px;
         }
 
-        .icon-container {
+        .upload-img-container {
           position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          align-items: center;
-          border: 2px solid var(--inputColor);
-          // border-radius: 50%;
-          border-radius: 40%;
-          border-radius: 50%;
-          width: 60px;
-          height: 60px;
-          cursor: pointer;
-          margin-top: 10px;
-          overflow: hidden;
-          background-color: var(--registerFormPlantIconColor);
-          opacity: 0.85;
-        }
 
-        .plant-picture-icon {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -45%);
-          width: 35px;
-          height: 35px;
-          color: var(--whiteColor);
-          // background-color: var(--whiteColor);
+          .icon-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            align-items: center;
+            border: 2.5px solid var(--bgColor);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            margin-top: 10px;
+            overflow: hidden;
+            background-color: var(--registerFormPlantIconColor);
+            opacity: 0.85;
+
+            .plant-picture-icon {
+              position: absolute;
+              top: 56%;
+              left: 46%;
+              transform: translate(-56%, -46%);
+              width: 47px;
+              height: 47px;
+              color: var(--whiteColor);
+              position: relative;
+            }
+          }
+          .camera-icon {
+            position: absolute;
+            bottom: -5%;
+            right: 5%;
+            width: 20px;
+            height: 20px;
+            padding: 3px;
+            color: var(--whiteColor);
+            background-color: var(--blackColor);
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0.85;
+          }
         }
 
         img {
@@ -134,7 +148,6 @@ img {
 
           label {
             color: var(--blackColor);
-            // font-weight: 400;
             font-size: 0.9rem;
             padding-bottom: 0.5rem;
             opacity: 0.8;
@@ -155,19 +168,6 @@ img {
             border-radius: 10px;
             width: 220px;
           }
-
-          // .size-input {
-          //   gap: 0.5rem;
-          //   padding: 0.7rem;
-          //   background: var(--inputColor);
-          //   border-radius: 10px;
-          //   width: 300px;
-
-          //   select {
-          //     width: 290px;
-          //     background-color: var(--inputColor);
-          //   }
-          // }
 
           .leaf-input {
             gap: 0.5rem;
@@ -206,13 +206,10 @@ img {
         gap: 0.38rem;
         .btn {
           padding: 0.8rem;
-          // background: var(--primaryColor);
           border-radius: 10px;
-          // color: var(--whiteColor);
           align-items: center;
           margin: auto;
           justify-content: center;
-          // font-size: 16px;
           font-size: 1rem;
           width: 80px;
           transition: 0.3s ease;
@@ -222,16 +219,6 @@ img {
             font-size: 25px;
             transition: 0.3s ease;
           }
-
-          &:hover {
-            // background: var(--hoverColor);
-            // color: var(--blackColor);
-
-            // .icon {
-            //   color: var(--blackColor);
-            //   transform: translateX(5px);
-            // }
-          }
         }
 
         a {
@@ -240,29 +227,16 @@ img {
         }
 
         .add-plant-btn {
-          // transition: ease 0.3s;
-          // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
           background-color: var(--addNewPlantButtonColor);
           &:hover {
-            // cursor: pointer;
-            // transform: translateY(2px);
-            // box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
             background-color: var(--addNewPlantButtonHoverColor);
           }
         }
 
         .cancel-btn {
-          // background-color: var(--whiteColor);
-          // color: var(--blackColor);
-          // transition: ease 0.3s;
-          // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
           opacity: 0.6;
           &:hover {
-            // background-color: var(--whiteColor);
             color: var(--blackColor);
-            // cursor: pointer;
-            // transform: translateY(2px);
-            // box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
             background-color: rgb(229 231 235 / 0.5);
           }
         }
