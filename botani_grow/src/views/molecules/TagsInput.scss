@@ -1,6 +1,6 @@
 .tags-input-container {
   position: relative;
-  padding: 0.7em;
+  padding: 0.5em;
   border-radius: 10px;
   width: 260px;
   display: flex;
@@ -10,7 +10,7 @@
   background: var(--inputColor);
 
   .tag-item {
-    background-color: var(--tagsColor);
+    background-color: var(--addNewPlantButtonColor);
     display: inline-block;
     padding: 0.25em 0.5em;
     border-radius: 20px;
