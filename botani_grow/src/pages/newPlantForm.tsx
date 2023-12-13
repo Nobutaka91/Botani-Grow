@@ -17,12 +17,14 @@ import { useNavigate } from 'react-router';
 import { FaTags } from 'react-icons/fa';
 import { PlantInfo } from '../types/plantInfo';
 import { TagsInput } from '../views/molecules/TagsInput';
+import { useModal } from '../hooks/useModal';
 
 type PlantProps = {
   plantsData?: PlantInfo[];
+  handleClose: () => void;
 };
 
-export const NewPlantForm: React.FC<PlantProps> = () => {
+export const NewPlantForm: React.FC<PlantProps> = ({ handleClose }) => {
   const [name, setName] = useState('');
   const [leafCount, setLeafCount] = useState(0);
   const wateringCycle = 14;
@@ -81,12 +83,12 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
     let hasError = false;
 
     if (!name) {
-      setNameError('*Name is required');
+      setNameError('*植物名を入力してください');
       hasError = true;
     }
 
     if (leafCount < 0 || leafCount > 100) {
-      setLeafCountError('*Leaf count: 0 - 100');
+      setLeafCountError('*葉の枚数: 0 ～ 100');
       hasError = true;
     }
 
@@ -96,7 +98,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
     // }
 
     if (!iconUrl) {
-      setUploadError('*Upload failed. Please Retry.');
+      setUploadError('*植物画像をアップロードしてください');
       hasError = true;
     }
 
@@ -181,7 +183,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                     type="text"
                     id="name"
                     name="name"
-                    placeholder="enter the plant's name"
+                    placeholder="フィカス・ウンベラータ"
                     value={name}
                     onChange={(e: ChangeEvent<HTMLInputElement>) => {
                       setName(e.target.value);
@@ -213,7 +215,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                       onChange={(e: ChangeEvent<HTMLInputElement>) => {
                         setLeafCount(Number(e.target.value));
                       }}
-                      placeholder="0"
+                      placeholder="6"
                       // required
                     />
                   </div>
@@ -252,7 +254,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                 </div>
               </div> */}
 
-              <label htmlFor="tag" className="flex gap-1 mb-3">
+              <label htmlFor="tag" className="flex gap-1">
                 <FaTags className="icon" />
                 <span className="text-base opacity-75">Tags</span>
               </label>
@@ -260,13 +262,17 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                 <TagsInput tags={tags} setTags={setTags} />
               </div>
               <div className="btn-container flex  mt-1">
-                <button
-                  className="cancel-btn btn"
-                  onClick={() => navigate('/Plants')}
-                >
+                <button className="cancel-btn btn" onClick={handleClose}>
                   <span>Cancel</span>
                 </button>
-                <button type="submit" className="add-plant-btn btn flex">
+                <button
+                  type="submit"
+                  className="add-plant-btn btn flex"
+                  onClick={() => {
+                    handleClose();
+                    navigate('/Plants');
+                  }}
+                >
                   <span>Submit</span>
                 </button>
               </div>
