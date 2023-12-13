@@ -64,7 +64,7 @@ export const TagsInput: React.FC<TagProps> = ({ tags, setTags }) => {
           onKeyDown={handleKeyDown}
           type="text"
           className="tags-input"
-          placeholder="Enter tags (e.g., 乾燥に強い、暑さに強い)"
+          placeholder="水たくさん飲む"
         />
         <div className="tags-counter flex">
           {exceedMaxTags && (

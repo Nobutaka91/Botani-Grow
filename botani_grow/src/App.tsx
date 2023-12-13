@@ -30,8 +30,8 @@ function App() {
     location.pathname === '/' ||
     location.pathname === '/Login' ||
     location.pathname === '/Reset' ||
-    location.pathname === '/Reset-Success' ||
-    location.pathname === '/create-plant';
+    location.pathname === '/Reset-Success';
+  // location.pathname === '/create-plant';
 
   useEffect(() => {
     const fetchPlantData = async () => {
@@ -121,10 +121,10 @@ function App() {
               />
             }
           />
-          <Route path="/History" element={<History />} />
+          {/* <Route path="/History" element={<History />} /> */}
           <Route path="/Reset" element={<Reset />} />
           <Route path="/Reset-Success" element={<ResetSuccess />} />
-          <Route path="/AddNewPlant" element={<NewPlantForm />} />
+          {/* <Route path="/AddNewPlant" element={<NewPlantForm />} /> */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

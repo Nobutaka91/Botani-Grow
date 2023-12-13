@@ -49,10 +49,9 @@ img {
     justify-content: center;
     text-align: center;
     position: relative;
-    width: 360px;
+    width: 325px;
     margin: auto;
     border-radius: 15px;
-    border: 1px solid var(--blackColor); // ← 確認用(あとで消す)
     background: var(--whiteColor);
     padding: 0.3rem 1rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -60,7 +59,7 @@ img {
     .formDiv {
       display: flex;
 
-      padding: 0 1.5rem;
+      // padding: 0 1.5rem;
       text-align: center;
       justify-content: center;
       flex-direction: column;
@@ -70,7 +69,6 @@ img {
 
       .headerDiv {
         text-align: center;
-        padding-bottom: 15px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -151,7 +149,7 @@ img {
           label {
             color: var(--blackColor);
             font-size: 0.9rem;
-            padding-bottom: 0.5rem;
+            // padding-bottom: 0.5rem;
           }
 
           .error-message {
@@ -209,7 +207,6 @@ img {
     .btn-container {
       padding: 1rem 0.7rem 0.5rem 0.7rem;
       margin-top: 30px;
-
       gap: 0.38rem;
       justify-content: end;
       .btn {
