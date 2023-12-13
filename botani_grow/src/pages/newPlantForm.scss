@@ -70,13 +70,13 @@ img {
 
       .headerDiv {
         text-align: center;
-        padding-bottom: 5px;
+        padding-bottom: 15px;
         display: flex;
         flex-direction: column;
         align-items: center;
 
         .modalTitle {
-          font-size: 15px;
+          font-size: 1rem;
           color: var(--blackColor);
           margin-top: 20px;
         }
@@ -92,21 +92,20 @@ img {
             align-items: center;
             border: 2.5px solid var(--bgColor);
             border-radius: 50%;
-            width: 60px;
-            height: 60px;
+            width: 65px;
+            height: 65px;
             cursor: pointer;
             margin: 20px 0;
             overflow: hidden;
             background-color: var(--registerFormPlantIconColor);
-            opacity: 0.85;
 
             .plant-picture-icon {
               position: absolute;
-              top: 56%;
-              left: 46%;
-              transform: translate(-56%, -46%);
-              width: 47px;
-              height: 47px;
+              top: 60%;
+              left: 55%;
+              transform: translate(-60%, -50%);
+              width: 57px;
+              height: 57px;
               color: var(--whiteColor);
               position: relative;
             }
@@ -153,7 +152,6 @@ img {
             color: var(--blackColor);
             font-size: 0.9rem;
             padding-bottom: 0.5rem;
-            opacity: 0.8;
           }
 
           .error-message {
@@ -209,7 +207,7 @@ img {
     }
 
     .btn-container {
-      padding: 1rem 0.7rem;
+      padding: 1rem 0.7rem 0.5rem 0.7rem;
       margin-top: 30px;
 
       gap: 0.38rem;
@@ -247,6 +245,7 @@ img {
         &:hover {
           color: var(--blackColor);
           background-color: rgb(229 231 235 / 0.5);
+          opacity: 1;
         }
       }
     }

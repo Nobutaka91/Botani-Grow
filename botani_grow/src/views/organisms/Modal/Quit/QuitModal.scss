@@ -38,9 +38,11 @@
     width: 80px;
     color: var(--blackColor);
     transition: ease 0.3s;
+    opacity: 0.6;
     &:hover {
       color: var(--blackColor);
       background-color: rgb(229 231 235 / 0.5);
+      opacity: 1;
     }
   }
 }

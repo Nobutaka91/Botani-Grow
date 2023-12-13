@@ -141,7 +141,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
               <div className="headerDiv">
                 <h1 className="modalTitle">Register New Plant</h1>
                 <div
-                  className="upload-img-container"
+                  className="upload-img-container relative group"
                   onClick={() => {
                     document.getElementById('fileInput')?.click();
                   }}
@@ -154,6 +154,9 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
                     )}
                   </div>
                   <BsFillCameraFill className="camera-icon" />
+                  <span className="whitespace-nowrap rounded-lg bg-slate-700 px-2 py-1 text-xs text-white absolute -bottom-3 -left-5 opacity-0 group-hover:opacity-100 transition pointer-events-none">
+                    Add plant img
+                  </span>
                 </div>
                 <input
                   type="file"
