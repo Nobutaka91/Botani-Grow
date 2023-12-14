@@ -1,12 +1,17 @@
 .resetPassword-page {
-  height: 100vh;
-  width: 70%;
+  position: fixed;
+  top: 0;
+  bottom: 20%;
+  right: 0;
+  left: 0;
+  height: 350px;
+  width: 400px;
   margin: auto;
-  border-radius: 10px;
+  border-radius: 15px;
+  padding: 1rem;
 
   .container {
-    height: 60vh;
-    width: 60%;
+    width: 100%;
     margin: auto;
     background-color: hsl(0, 0%, 91%);
 
@@ -113,9 +118,11 @@
         .return-loginPage-btn {
           font-size: 1rem;
           color: var(--blackColor);
-          opacity: 0.75;
+          opacity: 0.85;
           gap: 2px;
+          padding-top: 15px;
           margin-right: 5px;
+          margin-bottom: 25px;
 
           .back {
             color: var(--blackColor);
@@ -123,6 +130,7 @@
 
           .icon {
             transition: 0.3s ease;
+            opacity: 0.85;
           }
 
           &:hover {
@@ -133,6 +141,7 @@
             }
             .icon {
               transform: translateX(-3px);
+              opacity: 1;
             }
           }
         }
