@@ -22,6 +22,7 @@
   --editColor: hsl(30, 85%, 70%);
   // --editHoverColor: hsl(30, 100%, 79%);
   --deleteColor: hsl(9, 85%, 65%);
+  --forGuestColor: rgb(199, 80, 80);
   // --deleteHoverColor: hsl(59, 100%, 75%);
   --appTitleColor: hsl(217.5, 3.48%, 45.1%);
   --notificationButtonColor: rgb(229 231 235 / 0.5);
@@ -249,9 +250,9 @@ video {
         }
 
         h3 {
-          font-size: 25px;
+          font-size: 1.3rem;
           color: var(--blackColor);
-          font-weight: 600;
+          font-weight: 500;
         }
       }
 
@@ -267,7 +268,7 @@ video {
             background: none;
             outline: none;
             border: none;
-            width: 200px;
+            width: 225px;
           }
 
           .number-input::-webkit-outer-spin-button,
@@ -285,21 +286,6 @@ video {
             font-size: 14px;
             padding: 0.5rem 0;
             display: block;
-          }
-
-          .error-message {
-            color: rgb(241, 40, 40) !important;
-            font-weight: 400;
-            font-size: 12px;
-            padding: 0.5rem 0;
-            display: block;
-          }
-
-          .input {
-            gap: 0.5rem;
-            padding: 1rem;
-            background: var(--inputColor);
-            border-radius: 10px;
           }
         }
 
@@ -335,9 +321,9 @@ video {
         .forgotPassword {
           font-size: 13px;
           color: var(--blackColor);
-          opacity: 0.7;
+          // opacity: 0.75;
           text-align: center;
-          margin-top: 10px;
+          margin-top: 50px;
 
           a {
             text-decoration: underline;
@@ -407,9 +393,9 @@ body.modal-open {
             width: 40px;
           }
 
-          h3 {
-            font-size: 20px;
-          }
+          // h3 {
+          //   font-size: 20px;
+          // }
         }
 
         .form {
