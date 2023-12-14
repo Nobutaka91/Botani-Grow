@@ -4,7 +4,7 @@ import { auth } from '../config/Firebase';
 
 import React from 'react';
 
-import '../App.scss';
+import './Reset.scss';
 
 import logo from '../LoginAssets/leaf-logo.png';
 
@@ -38,13 +38,13 @@ export const Reset = () => {
       navigate('/Reset-Success');
     } catch (error) {
       // エラーメッセージを表示する
-      setEmailError('*Error Occurred');
+      setEmailError('*Not Correct');
     }
   };
 
   return (
     <>
-      <div className="loginPage flex">
+      <div className="resetPassword-page flex">
         <div className="container flex">
           <div className="formDiv flex">
             <div className="headerDiv ">
@@ -54,32 +54,36 @@ export const Reset = () => {
 
             <form action="" className="form grid" onSubmit={onSubmit}>
               <div className="inputDiv">
-                <div className="flex space-x-4">
-                  <label htmlFor="email">Email</label>
-                  {emailError && (
-                    <label className="error-message">{emailError}</label>
-                  )}
-                </div>
+                {/* <label htmlFor="email">Email</label> */}
                 <div className="input flex">
                   <MdEmail className="icon" />
                   <input
                     type="email"
                     id="email"
-                    placeholder="Enter Email"
+                    placeholder="Your Email"
                     value={email}
                     onChange={onChange}
                     required
                   />
                 </div>
+                <div className="flex space-x-4">
+                  {emailError && (
+                    <label className="error-message">{emailError}</label>
+                  )}
+                </div>
               </div>
 
-              <button type="submit" className="btn flex">
-                <span>Send</span>
-              </button>
+              <div className="button">
+                <button type="submit" className="btn flex">
+                  <span>Send</span>
+                </button>
+              </div>
 
-              <span className="flex">
-                <AiOutlineSwapLeft className="icon text-red-800" />
-                <a href="/">back</a>
+              <span className="return-loginPage-btn flex">
+                <AiOutlineSwapLeft className="icon" />
+                <a href="/" className="back">
+                  back
+                </a>
               </span>
             </form>
           </div>
