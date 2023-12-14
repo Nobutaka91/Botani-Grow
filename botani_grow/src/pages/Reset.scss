@@ -1,147 +1,20 @@
-.flex {
-  display: flex;
-  align-items: center;
-}
-
-.grid {
-  display: grid;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-html {
-  font-size: 90%;
-}
-
-li {
-  list-style: none;
-}
-
-.icon {
-  font-size: var(--h2FontSize);
-  cursor: pointer;
-}
-
-img,
-video {
-  height: auto;
-  width: 100%;
-}
-
-.message {
-  display: none; /*後で反応を見る */
-}
-
-.showMessage {
-  display: block;
-  color: var(--whiteColor);
-  background: rgb(255, 0, 0);
-  border-radius: 3px;
-  text-align: center;
-}
-
-.btn {
-  border: none;
-  outline: none;
-  cursor: pointer;
-  border-radius: 8px;
-  padding: 0.8rem 1rem;
-  color: var(--greyText);
-}
-
-.btn .icon {
-  margin-left: 0.5rem;
-}
-
-.btn:hover {
-  color: var(--primaryColor);
-  background: var(--paleGreen);
-}
-
-.loginPage {
+.resetPassword-page {
   height: 100vh;
-  width: 100%;
+  width: 70%;
   margin: auto;
   border-radius: 10px;
-  overflow: hidden;
 
   .container {
-    height: 75vh;
+    height: 60vh;
     width: 60%;
     margin: auto;
-    justify-content: space-between;
-    border-radius: 10px;
     background-color: hsl(0, 0%, 91%);
-
-    .videoDiv {
-      position: relative;
-      display: flex;
-      flex-basis: 50%;
-      width: 70%;
-      height: 100%;
-      padding: 0 1.5rem;
-      text-align: center;
-      justify-content: center;
-      flex-direction: column;
-      margin: auto;
-      border-radius: 10px;
-      overflow: hidden;
-
-      video {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        filter: brightness(85%); /* ビデオの明るさを50%に設定 */
-      }
-
-      video,
-      .footerDiv {
-        position: absolute;
-      }
-
-      .textDiv {
-        position: relative;
-
-        .title {
-          color: var(--whiteColor);
-          font-size: 35px;
-          font-weight: 800;
-        }
-        p {
-          color: var(--whiteColor);
-          padding: 1rem;
-          font-weight: 400;
-        }
-      }
-
-      .footerDiv {
-        bottom: 10px;
-        padding: 0 1rem;
-        height: 60px;
-        background: rgba(255, 255, 255, 0.248);
-        left: 10px;
-        right: 10px;
-        justify-content: center;
-        align-items: center;
-        backdrop-filter: blur(1px);
-        border-radius: 10px;
-
-        .text {
-          color: var(--whiteColor);
-        }
-      }
-    }
 
     .formDiv {
       flex-basis: 50%;
       margin: auto;
       flex-direction: column;
       gap: 1.5rem;
-      transform: translateY(-1rem);
 
       .headerDiv {
         text-align: center;
@@ -210,11 +83,6 @@ video {
         }
 
         .button {
-          // display: flex;
-          justify-content: space-between;
-          gap: 0.7rem;
-          position: relative;
-
           .btn {
             box-sizing: border-box;
             padding: 0.7rem;
@@ -239,41 +107,33 @@ video {
             &:hover {
               background-color: var(--addNewPlantButtonHoverColor);
               opacity: 1;
-
-              .icon {
-                transform: translateX(5px);
-              }
-            }
-          }
-
-          .guest-btn {
-            font-size: 0.78rem;
-            position: absolute;
-            bottom: -28px;
-            right: 13px;
-            opacity: 0.85;
-
-            &:hover {
-              color: var(--forGuestColor);
-              opacity: 1;
-              .icon {
-                transform: none;
-              }
             }
           }
         }
-
-        .forgotPassword {
-          font-size: 13px;
+        .return-loginPage-btn {
+          font-size: 1rem;
           color: var(--blackColor);
           opacity: 0.75;
-          text-align: center;
-          margin-top: 50px;
+          gap: 2px;
+          margin-right: 5px;
 
-          a {
-            text-decoration: underline;
-            cursor: pointer;
+          .back {
+            color: var(--blackColor);
+          }
+
+          .icon {
+            transition: 0.3s ease;
+          }
+
+          &:hover {
             opacity: 1;
+            // color: var(--return-loginPage-btn);
+            .back {
+              //   color: var(--return-loginPage-btn);
+            }
+            .icon {
+              transform: translateX(-3px);
+            }
           }
         }
       }
@@ -320,7 +180,7 @@ video {
         transform: translateY(-0.5rem);
 
         .headerDiv {
-          padding: 1rem 0;
+          padding: 1rem;
 
           img {
             width: 40px;
@@ -328,7 +188,6 @@ video {
 
           h3 {
             font-size: 20px;
-            // font-weight: 700;
           }
         }
 
@@ -347,51 +206,13 @@ video {
 }
 
 @media screen and (max-width: 678px) {
-  .loginPage {
+  .resetPassword-page {
     .container {
-      .videoDiv {
-        .textDiv {
-          .title {
-            font-size: 25px;
-          }
-
-          p {
-            padding: 1rem;
-          }
-        }
-
-        .footerDiv {
-          justify-content: center;
-          align-items: center;
-          .text {
-            font-size: 12px;
-          }
-
-          .btn {
-            padding: 0.8rem 1.5rem;
-          }
-        }
-      }
-
       .formDiv {
         .headerDiv {
           padding: 1.5rem 0;
           display: flex;
 
-          .icon-container {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            align-items: center;
-            border: 2px solid var(--inputColor);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            margin-top: 50px;
-            overflow: hidden;
-          }
           .icon {
             position: absolute;
             top: 50%;
@@ -417,18 +238,18 @@ video {
   }
 }
 
-@media screen and (max-width: 927px) {
-  .loginPage {
-    .container {
-      width: 85%;
-    }
-  }
-}
+// @media screen and (max-width: 927px) {
+//   .resetPassword-page {
+//     .container {
+//       width: 85%;
+//     }
+//   }
+// }
 
-@media screen and (min-width: 928px) {
-  .loginPage {
-    .container {
-      width: 90%;
-    }
-  }
-}
+// @media screen and (min-width: 928px) {
+//   .resetPassword-page {
+//     .container {
+//       width: 90%;
+//     }
+//   }
+// }

@@ -126,7 +126,7 @@ export const Login: React.FC<LoginProps> = ({
           </div>
 
           <div className="formDiv flex">
-            <div className="headerDiv pointer-events-none ">
+            <div className="headerDiv">
               <img src={logo} alt="Logo" />
               <h3>Botani-Grow</h3>
             </div>
@@ -139,7 +139,7 @@ export const Login: React.FC<LoginProps> = ({
                   <input
                     type="email"
                     id="email"
-                    placeholder="User Email"
+                    placeholder="Email"
                     value={email}
                     onChange={onChange}
                     required
