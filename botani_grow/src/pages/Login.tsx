@@ -15,7 +15,6 @@ import logo from '../LoginAssets/leaf-logo.png';
 import { BsFillShieldLockFill } from 'react-icons/bs';
 import { AiOutlineSwapRight } from 'react-icons/ai';
 import { MdEmail } from 'react-icons/md';
-import { BsPersonCircle } from 'react-icons/bs';
 import { FirebaseError } from 'firebase/app';
 import { signInAnonymously } from 'firebase/auth';
 
@@ -134,57 +133,57 @@ export const Login: React.FC<LoginProps> = ({
 
             <form action="" className="form grid" onSubmit={onSubmit}>
               <div className="inputDiv">
-                <div className="flex space-x-4">
-                  <label htmlFor="email">Email</label>
-                  {emailError && (
-                    <label className="error-message">{emailError}</label>
-                  )}
-                </div>
+                {/* <label htmlFor="email">Email</label> */}
                 <div className="input flex">
                   <MdEmail className="icon" />
                   <input
                     type="email"
                     id="email"
-                    placeholder="Enter Email"
+                    placeholder="User Email"
                     value={email}
                     onChange={onChange}
                     required
                   />
                 </div>
+                <div className="flex space-x-4">
+                  {emailError && (
+                    <label className="error-message">{emailError}</label>
+                  )}
+                </div>
               </div>
 
               <div className="inputDiv">
-                <div className="flex space-x-4">
-                  <label htmlFor="password">Password</label>
-                  {passwordError && (
-                    <label className="error-message">{passwordError}</label>
-                  )}
-                </div>
+                {/* <label htmlFor="password">Password</label> */}
                 <div className="input flex">
                   <BsFillShieldLockFill className="icon" />
                   <input
                     type="password"
                     id="password"
                     value={password}
-                    placeholder="Enter Password"
+                    placeholder="Password"
                     onChange={onChange}
                     required
                   />
                 </div>
+                <div className="flex space-x-4">
+                  {passwordError && (
+                    <label className="error-message">{passwordError}</label>
+                  )}
+                </div>
               </div>
 
-              <div className="button flex">
+              <div className="button">
+                <button type="submit" className="btn flex">
+                  <span>Login</span>
+                  <AiOutlineSwapRight className="icon" />
+                </button>
                 <button
                   type="button"
                   className="guest-btn flex"
                   onClick={handleGuestLogin}
                 >
-                  <span>Guest</span>
-                  <BsPersonCircle className="icon" />
-                </button>
-                <button type="submit" className="btn flex">
-                  <span>Login</span>
-                  <AiOutlineSwapRight className="icon" />
+                  <span>for Guest Login</span>
+                  {/* <BsPersonFill className="icon" /> */}
                 </button>
               </div>
 
