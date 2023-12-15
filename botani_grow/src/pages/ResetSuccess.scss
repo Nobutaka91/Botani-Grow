@@ -1,0 +1,180 @@
+.resetPassword-page {
+  position: fixed;
+  top: 0;
+  bottom: 20%;
+  right: 0;
+  left: 0;
+  height: 350px;
+  width: 400px;
+  margin: auto;
+  border-radius: 15px;
+  padding: 1rem;
+
+  .container {
+    width: 100%;
+    margin: auto;
+    background-color: hsl(0, 0%, 91%);
+
+    .formDiv {
+      flex-basis: 50%;
+      margin: auto;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      .headerDiv {
+        text-align: center;
+        padding: 1.5rem 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        pointer-events: none; // 葉っぱアイコンにホバーできなくする
+
+        img {
+          width: 60px;
+          margin: auto;
+          padding-bottom: 0.5rem;
+        }
+      }
+
+      .return-loginPage-btn {
+        font-size: 1rem;
+        color: var(--blackColor);
+        opacity: 0.85;
+        gap: 2px;
+        padding-top: 15px;
+        margin-right: 5px;
+        margin-bottom: 25px;
+
+        .back {
+          color: var(--blackColor);
+        }
+
+        .icon {
+          transition: 0.3s ease;
+          opacity: 0.85;
+        }
+
+        &:hover {
+          opacity: 1;
+          .icon {
+            transform: translateX(-3px);
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 602px) {
+  .loginPage {
+    .container {
+      height: 100%;
+      width: 100%;
+      flex-direction: column;
+      padding: 1.5rem;
+
+      .videoDiv {
+        width: 100%;
+        .textDiv {
+          .title {
+            font-size: 20px;
+          }
+
+          p {
+            padding: 1rem;
+          }
+        }
+
+        .footerDiv {
+          justify-content: center;
+          align-items: center;
+
+          .text {
+            font-size: 12px;
+          }
+
+          .btn {
+            padding: 0.4rem 1.5rem;
+          }
+        }
+      }
+
+      .formDiv {
+        gap: 1rem;
+        transform: translateY(-0.5rem);
+
+        .headerDiv {
+          padding: 1rem;
+
+          img {
+            width: 40px;
+          }
+
+          h3 {
+            font-size: 20px;
+          }
+        }
+
+        .form {
+          gap: 0.5rem;
+
+          .inputDiv {
+            input {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 678px) {
+  .resetPassword-page {
+    .container {
+      .formDiv {
+        .headerDiv {
+          padding: 1.5rem 0;
+          display: flex;
+
+          .icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -45%);
+          }
+
+          h3 {
+            // font-size: 20px;
+          }
+        }
+
+        .form {
+          .inputDiv {
+            input {
+              width: 100%;
+              max-width: 200px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// @media screen and (max-width: 927px) {
+//   .resetPassword-page {
+//     .container {
+//       width: 85%;
+//     }
+//   }
+// }
+
+// @media screen and (min-width: 928px) {
+//   .resetPassword-page {
+//     .container {
+//       width: 90%;
+//     }
+//   }
+// }

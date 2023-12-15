@@ -2,7 +2,7 @@ import { useState, ChangeEvent, FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../config/Firebase';
 
-import React from 'react';
+// import React from 'react';
 
 import './Reset.scss';
 
@@ -46,7 +46,7 @@ export const Reset = () => {
     <>
       <div className="resetPassword-page flex">
         <div className="container flex">
-          <div className="formDiv flex">
+          <div className="formDiv">
             <div className="headerDiv ">
               <img src={logo} alt="Logo" />
               <h3>Reset Password</h3>
@@ -66,7 +66,7 @@ export const Reset = () => {
                     required
                   />
                 </div>
-                <div className="flex space-x-4">
+                <div className="space-x-4">
                   {emailError && (
                     <label className="error-message">{emailError}</label>
                   )}
@@ -74,7 +74,7 @@ export const Reset = () => {
               </div>
 
               <div className="button">
-                <button type="submit" className="btn flex">
+                <button type="submit" className="btn">
                   <span>Send</span>
                 </button>
               </div>
