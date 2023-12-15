@@ -110,8 +110,9 @@ export const Login: React.FC<LoginProps> = ({
             ></video>
 
             <div className="textDiv">
-              <h2 className="title">Track Plant's Health and Watering</h2>
-              <p>Grow Plants Easily</p>
+              {/* <h2 className="title">Track Plant's Health and Watering</h2> */}
+              {/* <p>Grow Plants Easily</p> */}
+              <p>Track Plant's Health and Watering</p>
             </div>
 
             <div className="footerDiv flex">
