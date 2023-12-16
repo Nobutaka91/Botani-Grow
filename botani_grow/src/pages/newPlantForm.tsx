@@ -39,6 +39,11 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
   const storage = getStorage(app); // getStorageでStorageのインスタンスを取得
   const navigate = useNavigate();
 
+  const handleCancel = () => {
+    // ユーザーを前のページに戻す
+    navigate(-1);
+  };
+
   const handleFileUpload = async (file: File) => {
     const storageRef = ref(storage, 'images/' + file.name); // アップロードするパスを指定
     const uploadTask = uploadBytesResumable(storageRef, file); // ファイルのアップロード開始
@@ -130,11 +135,6 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
     } catch (e) {
       console.error('Error adding document: ', e);
     }
-  };
-
-  const handleCancel = () => {
-    // ユーザーを前のページに戻す
-    navigate(-1);
   };
 
   return (
