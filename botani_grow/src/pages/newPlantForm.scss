@@ -1,47 +1,6 @@
-.flex {
-  display: flex;
-  align-items: center;
-}
-
-.grid {
-  display: grid;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-html {
-  font-size: 90%;
-}
-
-li {
-  list-style: none;
-}
-
-.icon {
-  font-size: var(--h2FontSize);
-  cursor: pointer;
-}
-
-img {
-  height: auto;
-  width: 100%;
-}
-
-.message {
-  display: none;
-}
-
-.showMessage {
-  display: block;
-  color: var(--whiteColor);
-  background: rgb(255, 0, 0);
-  border-radius: 3px;
-  text-align: center;
-}
-
-/* Paging style */
 .registerForm {
   margin-top: 10%;
+  margin-bottom: 10%;
   border-radius: 10px;
 
   .registerForm-container {
@@ -49,17 +8,16 @@ img {
     justify-content: center;
     text-align: center;
     position: relative;
-    width: 325px;
+    width: 360px;
     margin: auto;
-    border-radius: 15px;
-    background: var(--whiteColor);
+    border-radius: 13px;
     padding: 0.3rem 1rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--bgColor);
 
     .formDiv {
       display: flex;
 
-      // padding: 0 1.5rem;
       text-align: center;
       justify-content: center;
       flex-direction: column;
@@ -149,7 +107,6 @@ img {
           label {
             color: var(--blackColor);
             font-size: 0.9rem;
-            // padding-bottom: 0.5rem;
           }
 
           .error-message {
