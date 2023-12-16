@@ -124,7 +124,7 @@ function App() {
           {/* <Route path="/History" element={<History />} /> */}
           <Route path="/Reset" element={<Reset />} />
           <Route path="/Reset-Success" element={<ResetSuccess />} />
-          {/* <Route path="/AddNewPlant" element={<NewPlantForm />} /> */}
+          <Route path="/AddNewPlant" element={<NewPlantForm />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

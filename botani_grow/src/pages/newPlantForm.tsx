@@ -17,14 +17,12 @@ import { useNavigate } from 'react-router';
 import { FaTags } from 'react-icons/fa';
 import { PlantInfo } from '../types/plantInfo';
 import { TagsInput } from '../views/molecules/TagsInput';
-import { useModal } from '../hooks/useModal';
 
 type PlantProps = {
   plantsData?: PlantInfo[];
-  handleClose: () => void;
 };
 
-export const NewPlantForm: React.FC<PlantProps> = ({ handleClose }) => {
+export const NewPlantForm: React.FC<PlantProps> = () => {
   const [name, setName] = useState('');
   const [leafCount, setLeafCount] = useState(0);
   const wateringCycle = 14;
@@ -132,6 +130,11 @@ export const NewPlantForm: React.FC<PlantProps> = ({ handleClose }) => {
     } catch (e) {
       console.error('Error adding document: ', e);
     }
+  };
+
+  const handleCancel = () => {
+    // ユーザーを前のページに戻す
+    navigate(-1);
   };
 
   return (
@@ -262,17 +265,10 @@ export const NewPlantForm: React.FC<PlantProps> = ({ handleClose }) => {
                 <TagsInput tags={tags} setTags={setTags} />
               </div>
               <div className="btn-container flex  mt-1">
-                <button className="cancel-btn btn" onClick={handleClose}>
+                <button className="cancel-btn btn" onClick={handleCancel}>
                   <span>Cancel</span>
                 </button>
-                <button
-                  type="submit"
-                  className="add-plant-btn btn flex"
-                  onClick={() => {
-                    handleClose();
-                    navigate('/Plants');
-                  }}
-                >
+                <button type="submit" className="add-plant-btn btn flex">
                   <span>Submit</span>
                 </button>
               </div>
