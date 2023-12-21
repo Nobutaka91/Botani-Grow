@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import { db } from '../config/Firebase';
 import { doc, getDoc } from 'firebase/firestore';
 
-import { MdEditDocument } from 'react-icons/md';
 import { FaCommentDots } from 'react-icons/fa6';
 
 import { PiLeafDuotone, PiLeafFill } from 'react-icons/pi';
@@ -205,26 +204,8 @@ export const Details: React.FC<InfoProps> = ({
               />
             )}
 
-            {/* Edit-button　*/}
-            <div
-              className="relative  edit__icon "
-              onClick={() => {
-                setOpen(!open);
-                toggleEditModal();
-              }}
-            >
-              <button
-                className="edit__button relative overflow-visible"
-                ref={actionButtonRef}
-              >
-                <MdEditDocument className=" icon fa-solid fa-plus" />
-              </button>
-              <div className=" text-gray-700 my-1.5">Edit</div>
-            </div>
             {/* Edit モーダル　*/}
-            {isEditModalOpen && (
-              <EditModal toggleEditModal={toggleEditModal} plant={plant} />
-            )}
+            <EditModal toggleEditModal={toggleEditModal} plant={plant} />
 
             {/* Quit モーダル　*/}
             <QuitModal
