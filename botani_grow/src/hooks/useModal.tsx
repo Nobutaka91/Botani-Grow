@@ -1,12 +1,6 @@
 import './useModal.scss';
 
-import React, {
-  ReactNode,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { ReactNode, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import {
   disableBodyScroll,
@@ -41,6 +35,7 @@ export const useModal = () => {
   const Modal: React.FC<ModalProps> = React.memo(({ children, show }) => {
     const contentRef = useRef(null);
 
+    // モーダルの背景のスクロールを停止するための処理
     useEffect(() => {
       if (contentRef.current === null) return;
 
