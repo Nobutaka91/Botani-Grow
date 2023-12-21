@@ -16,7 +16,7 @@ import { PlantInfo } from '../types/plantInfo';
 import { PlantMemo } from '../types/plantMemo';
 import { WateringInfo } from '../types/wateringInfo';
 import { PlantsLinks } from '../views/organisms/PlantsLinks';
-import { EditSidebar } from '../views/organisms/EditSidebar';
+import { EditModal } from '../views/organisms/Modal/Edit/EditModal';
 
 import { WateringModal } from '../views/organisms/Modal/Watering/WateringModal';
 import { QuitModal } from '../views/organisms/Modal/Quit/QuitModal';
@@ -43,7 +43,7 @@ export const Details: React.FC<InfoProps> = ({
   const navigationRef = useRef<HTMLDivElement | null>(null);
   const [isCommentSidebarOpen, setIsCommentSidebarOpen] = useState(false);
   const [isLeafSidebarOpen, setIsLeafSidebarOpen] = useState(false);
-  const [isEditSidebarOpen, setIsEditSidebarOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isQuitModalOpen, setIsQuitModalOpen] = useState(false);
   const [memos, setMemos] = useState<PlantMemo[]>([]);
 
@@ -85,19 +85,19 @@ export const Details: React.FC<InfoProps> = ({
   const toggleCommentSidebar = () => {
     setIsCommentSidebarOpen(!isCommentSidebarOpen);
     if (isLeafSidebarOpen) setIsLeafSidebarOpen(false);
-    if (isEditSidebarOpen) setIsEditSidebarOpen(false);
+    if (isEditModalOpen) setIsEditModalOpen(false);
     if (isQuitModalOpen) setIsQuitModalOpen(false);
   };
 
   const toggleLeafSidebar = () => {
     setIsLeafSidebarOpen(!isLeafSidebarOpen);
     if (isCommentSidebarOpen) setIsCommentSidebarOpen(false);
-    if (isEditSidebarOpen) setIsEditSidebarOpen(false);
+    if (isEditModalOpen) setIsEditModalOpen(false);
     if (isQuitModalOpen) setIsQuitModalOpen(false);
   };
 
-  const toggleEditSidebar = () => {
-    setIsEditSidebarOpen(!isEditSidebarOpen);
+  const toggleEditModal = () => {
+    setIsEditModalOpen(!isEditModalOpen);
     if (isLeafSidebarOpen) setIsLeafSidebarOpen(false);
     if (isCommentSidebarOpen) setIsCommentSidebarOpen(false);
     if (isQuitModalOpen) setIsQuitModalOpen(false);
@@ -105,13 +105,13 @@ export const Details: React.FC<InfoProps> = ({
   const toggleQuitModal = () => {
     if (isLeafSidebarOpen) setIsLeafSidebarOpen(false);
     if (isCommentSidebarOpen) setIsCommentSidebarOpen(false);
-    if (isEditSidebarOpen) setIsEditSidebarOpen(false);
+    if (isEditModalOpen) setIsEditModalOpen(false);
   };
 
   const toggleWateringModal = () => {
     if (isLeafSidebarOpen) setIsLeafSidebarOpen(false);
     if (isCommentSidebarOpen) setIsCommentSidebarOpen(false);
-    if (isEditSidebarOpen) setIsEditSidebarOpen(false);
+    if (isEditModalOpen) setIsEditModalOpen(false);
   };
 
   const fetchPlantDataById = async (plantId: string) => {
@@ -210,7 +210,7 @@ export const Details: React.FC<InfoProps> = ({
               className="relative  edit__icon "
               onClick={() => {
                 setOpen(!open);
-                toggleEditSidebar();
+                toggleEditModal();
               }}
             >
               <button
@@ -221,12 +221,9 @@ export const Details: React.FC<InfoProps> = ({
               </button>
               <div className=" text-gray-700 my-1.5">Edit</div>
             </div>
-            {/* Editサイドバー　*/}
-            {isEditSidebarOpen && (
-              <EditSidebar
-                toggleEditSidebar={toggleEditSidebar}
-                plant={plant}
-              />
+            {/* Edit モーダル　*/}
+            {isEditModalOpen && (
+              <EditModal toggleEditModal={toggleEditModal} plant={plant} />
             )}
 
             {/* Quit モーダル　*/}
