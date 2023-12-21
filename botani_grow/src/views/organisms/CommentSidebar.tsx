@@ -176,6 +176,6 @@ export const CommentSidebar: React.FC<CommentSidebarProps> = ({
         </div>
       </div>
     </div>,
-    document.getElementById('comment-sidebar-root')!
+    document.getElementById('comment-sidebar')! // nullを返す可能性があるのでうしろに!が必要
   );
 };

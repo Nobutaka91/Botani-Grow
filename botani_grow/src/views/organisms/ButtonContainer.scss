@@ -89,7 +89,7 @@
   .edit__icon {
     width: auto;
     height: 40px;
-    margin-right: 40px;
+    // margin-right: 40px;
     margin-top: 10px;
     display: flex;
     align-items: center;
@@ -113,11 +113,15 @@
   }
 
   .delete__icon {
+    position: fixed;
+    right: 91px; // 上のinformationボタンと横の位置揃えた
+    bottom: 0px;
     height: 40px;
     width: auto;
     margin-right: 40px;
     margin-top: 10px;
     display: flex;
+    z-index: 1;
 
     align-items: center;
     cursor: pointer;
