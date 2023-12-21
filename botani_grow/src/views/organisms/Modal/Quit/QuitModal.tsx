@@ -84,10 +84,14 @@ export const QuitModal: React.FC<QuitModalProps> = ({
     <>
       {/* Quitボタン　*/}
       <div className="relative delete__icon " onClick={handleOpen}>
-        <button className="delete__button relative overflow-visible">
-          <TbPlantOff className="icon fa-solid fa-plus" />
-        </button>
-        <div className=" text-gray-700 my-1.5">Quit</div>
+        <span className="relative group">
+          <button className="delete__button relative overflow-visible">
+            <TbPlantOff className="icon fa-solid fa-plus" />
+          </button>
+          <span className="whitespace-nowrap bg-slate-700 text-white rounded-lg px-2 py-1 text-sm absolute -top-8 -left-0.5 pointer-events-none opacity-0 group-hover:opacity-100 transition">
+            Quit
+          </span>
+        </span>
       </div>
       <div className="m-8">
         <Modal show={show}>
