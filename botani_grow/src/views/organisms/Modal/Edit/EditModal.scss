@@ -1,11 +1,5 @@
 .editModalContainer {
-  position: fixed;
-  top: 300px;
-  left: 270px;
-  width: 430px;
-  z-index: 60;
-  background-color: var(--inputColor);
-  padding-top: 10px;
-  border-radius: 8px;
+  background-color: var(--whiteColor);
+  border-radius: 13px;
   box-shadow: 0px 9px 20px rgba(0, 0, 0, 0.15);
 }
