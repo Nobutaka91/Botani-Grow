@@ -9,6 +9,7 @@ import { MdEditDocument } from 'react-icons/md';
 import { PiLeafDuotone, PiPottedPlantFill } from 'react-icons/pi';
 import { BsFillCameraFill } from 'react-icons/bs';
 import { FaTags } from 'react-icons/fa';
+import { VscEdit } from 'react-icons/vsc';
 
 type EditModalProps = {
   toggleEditModal: () => void;
@@ -57,7 +58,7 @@ export const EditModal: React.FC<EditModalProps> = ({
                 <div className="formDiv flex flex-col md:flex-row">
                   <form action="" className="form" onSubmit={onSubmit}>
                     <div className="headerDiv">
-                      <h1 className="modalTitle">Edit</h1>
+                      <h1 className="modalTitle">Edit Plant</h1>
                       <div
                         className="upload-img-container relative group"
                         onClick={() => {
@@ -75,9 +76,12 @@ export const EditModal: React.FC<EditModalProps> = ({
                             <PiPottedPlantFill className="plant-picture-icon" />
                           )}
                         </div>
-                        <BsFillCameraFill className="camera-icon" />
+                        <div className="edit-plantPhoto-icon">
+                          <VscEdit />
+                          <span className="text-xs">Edit</span>
+                        </div>
                         <span className="whitespace-nowrap rounded-lg bg-slate-700 px-2 py-1 text-xs text-white absolute -bottom-3 -left-5 opacity-0 group-hover:opacity-100 transition pointer-events-none">
-                          Add plant img
+                          Upload plant photo
                         </span>
                       </div>
                       <input
@@ -146,7 +150,7 @@ export const EditModal: React.FC<EditModalProps> = ({
                       <FaTags className="icon" />
                       <span className="text-base opacity-75">Tags</span>
                     </label>
-                    <div className="tagsInputDiv w-10/12 md:w-1/2 mt-4 md:mt-0 flex">
+                    <div className="tagsInputDiv">
                       <TagsInput tags={tags} setTags={setTags} />
                     </div>
                     <div className="btn-container flex  mt-1">

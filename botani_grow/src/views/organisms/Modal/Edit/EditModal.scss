@@ -2,4 +2,34 @@
   background-color: var(--whiteColor);
   border-radius: 13px;
   box-shadow: 0px 9px 20px rgba(0, 0, 0, 0.15);
+
+  .formDiv {
+  }
+
+  .modalTitle {
+  }
+
+  .upload-img-container {
+    .icon-container {
+      border-radius: 35% !important;
+    }
+
+    .edit-plantPhoto-icon {
+      display: flex;
+      position: absolute;
+      bottom: 12%;
+      right: -15%;
+      width: 46px;
+      height: 22px;
+      padding: 3px;
+      color: var(--whiteColor);
+      color: var(--blackColor);
+      background-color: var(--whiteColor);
+      border-radius: 20px;
+      border: 1px solid var(--blackColor);
+      cursor: pointer;
+      opacity: 0.85;
+      gap: 1px;
+    }
+  }
 }
