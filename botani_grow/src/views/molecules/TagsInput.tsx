@@ -66,12 +66,12 @@ export const TagsInput: React.FC<TagProps> = ({ tags, setTags }) => {
           className="tags-input"
           placeholder="水たくさん飲む"
         />
-        <div className="tags-counter flex">
-          {exceedMaxTags && (
-            <div className="error-message">*Exceeded maximum tags</div>
-          )}
-          <div className="countTag">{(tags || []).length} / 10</div>
-        </div>
+      </div>
+      <div className="tags-counter flex">
+        {exceedMaxTags && (
+          <div className="error-message">*タグは最大10個まで</div>
+        )}
+        <div className="countTag">{(tags || []).length} / 10</div>
       </div>
     </>
   );
