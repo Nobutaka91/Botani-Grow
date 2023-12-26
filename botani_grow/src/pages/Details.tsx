@@ -205,7 +205,11 @@ export const Details: React.FC<InfoProps> = ({
             )}
 
             {/* Edit モーダル　*/}
-            <EditModal toggleEditModal={toggleEditModal} plant={plant} />
+            <EditModal
+              plantId={id}
+              toggleEditModal={toggleEditModal}
+              plant={plant}
+            />
 
             {/* Quit モーダル　*/}
             <QuitModal
