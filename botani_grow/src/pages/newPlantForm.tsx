@@ -44,6 +44,7 @@ export const NewPlantForm: React.FC<PlantProps> = () => {
     navigate(-1);
   };
 
+  // ファイルアップロードのロジック
   const handleFileUpload = async (file: File) => {
     const storageRef = ref(storage, 'images/' + file.name); // アップロードするパスを指定
     const uploadTask = uploadBytesResumable(storageRef, file); // ファイルのアップロード開始
