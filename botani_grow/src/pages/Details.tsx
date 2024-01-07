@@ -15,7 +15,7 @@ import { PlantInfo } from '../types/plantInfo';
 import { PlantMemo } from '../types/plantMemo';
 import { WateringInfo } from '../types/wateringInfo';
 import { PlantsLinks } from '../views/organisms/PlantsLinks';
-// import { EditModal } from '../views/organisms/Modal/Edit/EditModal';
+import { EditModal } from '../views/organisms/Modal/Edit/EditModal';
 
 import { WateringModal } from '../views/organisms/Modal/Watering/WateringModal';
 import { QuitModal } from '../views/organisms/Modal/Quit/QuitModal';
@@ -205,11 +205,11 @@ export const Details: React.FC<InfoProps> = ({
             )}
 
             {/* Edit モーダル　*/}
-            {/* <EditModal
+            <EditModal
               plantId={id}
               toggleEditModal={toggleEditModal}
               plant={plant}
-            /> */}
+            />
 
             {/* Quit モーダル　*/}
             <QuitModal

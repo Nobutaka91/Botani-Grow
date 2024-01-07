@@ -1,7 +1,3 @@
-import { useModal } from '../hooks/useModal';
-import { Link } from 'react-router-dom';
-import { IoIosAdd } from 'react-icons/io';
-
 import './Plants.scss';
 import { Card } from '../views/organisms/Card';
 import { ArchivedCard } from '../views/organisms/ArchivedCard';
@@ -13,8 +9,6 @@ type PlantProps = {
 
 export const Plants: React.FC<PlantProps> = ({ plantsData }) => {
   console.log(plantsData);
-
-  const { Modal, openModal, closeModal, show } = useModal(); // 後ほど, 新規登録フォームをmodalで表示させる
 
   return (
     <div className="plants-list pt-14">

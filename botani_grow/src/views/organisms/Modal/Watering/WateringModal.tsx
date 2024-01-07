@@ -11,6 +11,7 @@ import { ThirdStepContent } from './ThirdStep/ThirdStepContent';
 import { TbPlant, TbChevronRight } from 'react-icons/tb';
 import { MdWaterDrop } from 'react-icons/md';
 import { IoIosClose } from 'react-icons/io';
+import { Modal } from '../../../../components/organizums/modal';
 
 type WateringModalProps = {
   plantId: string;
@@ -23,7 +24,7 @@ export const WateringModal: React.FC<WateringModalProps> = ({
   plant,
   toggleWateringModal,
 }) => {
-  const { Modal, openModal, closeModal, show } = useModal();
+  const { openModal, closeModal, show } = useModal();
   const [step, setStep] = useState(1);
 
   // 次のステップへ進む処理
@@ -68,7 +69,7 @@ export const WateringModal: React.FC<WateringModalProps> = ({
         <div className=" text-gray-700 my-1.5">Watering</div>
       </div>
       <div className="m-8">
-        <Modal show={show}>
+        <Modal show={show} onClose={closeModal}>
           <div className="wateringModal text-center w-72">
             {(step == 1 || step == 2) && (
               <span className="currentPage">step {step} / 2</span>

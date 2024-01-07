@@ -10,6 +10,7 @@ import { SecondStepQuitContent } from './SecondStep/SecondStepQuitContent';
 
 import { IoIosClose } from 'react-icons/io';
 import { TbPlantOff } from 'react-icons/tb';
+import { Modal } from '../../../../components/organizums/modal';
 
 type QuitModalProps = {
   plantId: string;
@@ -28,7 +29,7 @@ export const QuitModal: React.FC<QuitModalProps> = ({
 }) => {
   const [isArchived, setIsArchived] = useState<boolean>(false);
   const navigate = useNavigate();
-  const { Modal, openModal, closeModal, show } = useModal();
+  const { openModal, closeModal, show } = useModal();
   const [step, setStep] = useState(1);
 
   // 次のステップへ進む処理
@@ -94,7 +95,7 @@ export const QuitModal: React.FC<QuitModalProps> = ({
         </span>
       </div>
       <div className="m-8">
-        <Modal show={show}>
+        <Modal show={show} onClose={closeModal}>
           <div className="modal text-center w-72">
             {/* ステップに応じたコンテンツの描画 */}
             {renderQuitModalContent()}
