@@ -10,7 +10,7 @@ import { SecondStepQuitContent } from './SecondStep/SecondStepQuitContent';
 
 import { IoIosClose } from 'react-icons/io';
 import { TbPlantOff } from 'react-icons/tb';
-import { Modal } from '../../../../components/organizums/modal';
+import { Modal } from '../../../../components/organisms/Modal';
 
 type QuitModalProps = {
   plantId: string;

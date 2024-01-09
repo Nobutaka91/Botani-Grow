@@ -21,6 +21,7 @@ import { WateringModal } from '../views/organisms/Modal/Watering/WateringModal';
 import { QuitModal } from '../views/organisms/Modal/Quit/QuitModal';
 import './Details.scss';
 import '../views/organisms/ButtonContainer.scss';
+import { useModal } from '../hooks/useModal';
 
 type InfoProps = {
   plantsData: PlantInfo[];
@@ -45,6 +46,7 @@ export const Details: React.FC<InfoProps> = ({
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isQuitModalOpen, setIsQuitModalOpen] = useState(false);
   const [memos, setMemos] = useState<PlantMemo[]>([]);
+  const { openModal, closeModal, show } = useModal();
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -209,6 +211,9 @@ export const Details: React.FC<InfoProps> = ({
               plantId={id}
               toggleEditModal={toggleEditModal}
               plant={plant}
+              onClose={closeModal}
+              onOpen={openModal}
+              isShow={show}
             />
 
             {/* Quit モーダル　*/}
