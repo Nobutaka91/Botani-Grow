@@ -26,13 +26,16 @@ import {
 import { useNavigate } from 'react-router';
 
 import NameInput from '../../../molecules/NameInput';
-import { Modal } from '../../../../components/organizums/modal';
+import { Modal } from '../../../../components/organisms/Modal';
 
 type EditModalProps = {
   toggleEditModal: () => void;
   plant: PlantInfo;
   plantId: string;
   // handleIconChange: () => void;
+  onClose: () => void;
+  isShow: boolean;
+  onOpen: () => void;
 };
 
 export const EditModal: React.FC<EditModalProps> = ({
@@ -40,8 +43,11 @@ export const EditModal: React.FC<EditModalProps> = ({
   plant,
   plantId,
   // handleIconChange,
+  onClose,
+  isShow,
+  onOpen,
 }) => {
-  const { openModal, closeModal, show } = useModal();
+  // const { openModal, closeModal, show } = useModal();
   const [iconUrl, setIconUrl] = useState(plant.iconUrl);
   const [tempIconUrl, setTempIconUrl] = useState(plant.iconUrl);
   const [name, setName] = useState(plant.name);
@@ -65,11 +71,11 @@ export const EditModal: React.FC<EditModalProps> = ({
   // Editモーダルを開く処理
   const handleOpen = () => {
     toggleEditModal();
-    openModal(); // show -> true
+    onOpen();
   };
 
   const handleClose = () => {
-    closeModal(); // show -> false
+    onClose();
     // setIconUrl(tempIconUrl); // 編集前のiconUrlに戻す
     // setName(tempName); // 編集前のnameに戻す
     // setTags(tempTags); // 編集前のtagsに戻す
@@ -132,6 +138,23 @@ export const EditModal: React.FC<EditModalProps> = ({
     }
   };
 
+  const updatePlantInfo = async (plantId: string) => {
+    // 送信処理での更新のロジックを運用
+    try {
+      const docRef = doc(db, 'plants', plantId);
+
+      await updateDoc(docRef, {
+        iconUrl,
+        name,
+        // leafCount: Number(leafCount),
+        tags,
+      });
+      onClose();
+    } catch (e) {
+      console.log('Error updating document:', e);
+    }
+  };
+
   // Updateボタンのクリック時の処理
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -164,39 +187,7 @@ export const EditModal: React.FC<EditModalProps> = ({
       await handleFileUpload(selectedFile);
     }
 
-    // const updatePlantInfo = async (plantId: string) => {
-    //   // 送信処理での更新のロジックを運用
-    //   try {
-    //     const docRef = doc(db, 'plants', plantId);
-
-    //     await updateDoc(docRef, {
-    //       iconUrl,
-    //       name,
-    //       // leafCount: Number(leafCount),
-    //       tags,
-    //     });
-    //   } catch (e) {
-    //     console.log('Error updating document:', e);
-    //   }
-    // };
-
-    // // TODO: 新規データを登録する処理
-    // try {
-    //   const plantDocRef = await addDoc(collection(db, 'plants'), {
-    //     iconUrl,
-    //     startDate: new Date(),
-    //     name,
-    //     leafCount: Number(leafCount),
-    //     tags,
-    //     isArchived: false,
-    //   });
-
-    //   navigate('/Plants/id');
-    // } catch (e) {
-    //   console.error('Error adding document: ', e);
-    // }
-
-    handleClose();
+    updatePlantInfo(plantId);
   };
 
   return (
@@ -209,7 +200,7 @@ export const EditModal: React.FC<EditModalProps> = ({
         <div className=" text-gray-700 my-1.5">Edit</div>
       </div>
 
-      <Modal show={show} onClose={closeModal}>
+      <Modal show={isShow} onClose={onClose}>
         <div className="editModalContainer">
           <div className="">
             <div className="registerForm flex flex-col md:flex-row">

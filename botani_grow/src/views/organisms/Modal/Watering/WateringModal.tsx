@@ -11,7 +11,7 @@ import { ThirdStepContent } from './ThirdStep/ThirdStepContent';
 import { TbPlant, TbChevronRight } from 'react-icons/tb';
 import { MdWaterDrop } from 'react-icons/md';
 import { IoIosClose } from 'react-icons/io';
-import { Modal } from '../../../../components/organizums/modal';
+import { Modal } from '../../../../components/organisms/Modal';
 
 type WateringModalProps = {
   plantId: string;
