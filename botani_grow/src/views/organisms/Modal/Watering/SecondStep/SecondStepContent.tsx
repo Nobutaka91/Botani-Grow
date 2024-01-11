@@ -17,11 +17,11 @@ export const SecondStepContent = () => {
 
   // 絵文字に応じて表示するテキストを定義するオブジェクト
   const emojiMessages = {
-    soBad: '枯れる寸前',
+    // soBad: '枯れる寸前',
     bad: 'わるい',
     normal: 'ふつう',
     good: '良い',
-    soGood: 'とても良い',
+    // soGood: 'とても良い',
   };
 
   return (
@@ -31,9 +31,9 @@ export const SecondStepContent = () => {
         <div className="wrapper">
           <p className="text">植物の状態</p>
           <div className="emoji">
-            <button onClick={() => handleEmojiClick('🤕')} className="so bad">
+            {/* <button onClick={() => handleEmojiClick('🤕')} className="so bad">
               🤕
-            </button>
+            </button> */}
             <button onClick={() => handleEmojiClick('😖')} className="bad">
               😖
             </button>
@@ -43,9 +43,9 @@ export const SecondStepContent = () => {
             <button onClick={() => handleEmojiClick('😊')} className="good">
               😊
             </button>
-            <button onClick={() => handleEmojiClick('😍')} className="so good">
+            {/* <button onClick={() => handleEmojiClick('😍')} className="so good">
               😍
-            </button>
+            </button> */}
           </div>
         </div>
 
