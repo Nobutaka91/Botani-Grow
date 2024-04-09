@@ -21,6 +21,7 @@ import {
   ref,
   uploadBytesResumable,
   getDownloadURL,
+  uploadBytes,
 } from 'firebase/storage';
 
 import { useNavigate } from 'react-router';
@@ -102,25 +103,10 @@ export const EditModal: React.FC<EditModalProps> = ({
   // ファイルアップロードのロジック
   const handleFileUpload = async (file: File) => {
     const storageRef = ref(storage, 'images/' + file.name); // アップロードするパスを指定
-    const uploadTask = uploadBytesResumable(storageRef, file); // ファイルのアップロード開始
-
-    uploadTask.on(
-      'state_changed',
-      (snapshot) => {
-        // 進捗の管理がここでできる
-      },
-      (error) => {
-        // エラーハンドリング
-      },
-      () => {
-        // アップロード開始
-        setUploadError(null);
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          console.log('File available at', downloadURL);
-          setIconUrl(downloadURL); // Firebase StorageのURLを設定
-        });
-      }
-    );
+    const uploadSnapShot = await uploadBytes(storageRef, file); // ファイルのアップロード開始
+    console.log(uploadSnapShot);
+    const url = await getDownloadURL(uploadSnapShot.ref);
+    return url;
   };
 
   // ファイル選択時にファイルを状態にセットする
@@ -138,13 +124,13 @@ export const EditModal: React.FC<EditModalProps> = ({
     }
   };
 
-  const updatePlantInfo = async (plantId: string) => {
+  const updatePlantInfo = async (plantId: string, url: string) => {
     // 送信処理での更新のロジックを運用
     try {
       const docRef = doc(db, 'plants', plantId);
 
       await updateDoc(docRef, {
-        iconUrl,
+        iconUrl: url,
         name,
         // leafCount: Number(leafCount),
         tags,
@@ -181,13 +167,14 @@ export const EditModal: React.FC<EditModalProps> = ({
     }
 
     if (hasError) return;
+    let url = iconUrl;
 
     if (selectedFile) {
       // 選択されたファイルがある場合、アップロードする
-      await handleFileUpload(selectedFile);
+      url = await handleFileUpload(selectedFile);
     }
 
-    updatePlantInfo(plantId);
+    updatePlantInfo(plantId, url || '');
   };
 
   return (

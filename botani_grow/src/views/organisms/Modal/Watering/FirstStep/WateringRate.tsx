@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import {FaStar} from "react-icons/fa"
 import { IoMdWater } from 'react-icons/io';
 
 import './WateringRate.scss';
