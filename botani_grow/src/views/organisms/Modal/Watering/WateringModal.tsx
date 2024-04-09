@@ -40,7 +40,7 @@ export const WateringModal: React.FC<WateringModalProps> = ({
       case 2:
         return <SecondStepContent />;
       case 3:
-        return <ThirdStepContent />;
+        return <ThirdStepContent plant={plant} />;
       default:
         return null;
     }
@@ -92,7 +92,7 @@ export const WateringModal: React.FC<WateringModalProps> = ({
                   <span>
                     {step == 1 && 'Next'}
                     {step == 2 && 'Submit'}
-                    {step > 2 && 'Okay'}
+                    {step > 2 && 'Done'}
                   </span>
                   {step == 1 && <TbChevronRight />}
                 </div>

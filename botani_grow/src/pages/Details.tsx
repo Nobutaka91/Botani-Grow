@@ -230,7 +230,7 @@ export const Details: React.FC<InfoProps> = ({
           </div>
 
           {/* メイン画面 */}
-          <div className="plant-detail-main flex-grow h-screen overflow-y-auto z-0">
+          <div className="plant-detail-main flex-grow h-screen z-0">
             {/* 植物ステータス　*/}
             <div className="flex justify-center gap-12 border-b pt-12 pb-8">
               {/* 水やりデータ + コンディション + メモ　*/}
