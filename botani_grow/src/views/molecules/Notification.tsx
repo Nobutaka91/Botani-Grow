@@ -45,32 +45,27 @@ export const Notification = () => {
           </div>
 
           <div className="absolute -top-1 -right-1 bg-red-500 w-5 h-5 rounded-full flex justify-center items-center text-white ">
-            4
+            1
           </div>
           {open && (
             <div
-              className="w-48 h-120 bg-white shadow-lg absolute rounded-lg top-14 right-12 overflow-y-auto"
+              className="w-48 h-120 bg-white shadow-lg absolute rounded-lg top-14 right-5 overflow-y-auto"
               ref={menuRef}
             >
               <div className="bg-green mx-auto my-1  py-1 w-11/12 rounded-lg text-white">
                 <p className="text-center">
                   {/* <LocalFloristTwoToneIcon /> */}
-                  <span className="text-black">Forgot watering?</span>
+                  <span className="text-gray-800 text-sm pt-2">
+                    水やり忘れてませんか?
+                  </span>
                 </p>
               </div>
-              <div className="">
-                <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100/75 cursor-pointer">
-                  🥀Ficus bambino
-                </p>
-                <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100/75 cursor-pointer">
-                  🌿 Unberata
-                </p>
-                <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100/75 cursor-pointer">
-                  🍀七福神
-                </p>
-                <p className="p-2 m-2 text-lg block rounded-lg hover:bg-lime-100/75 cursor-pointer">
-                  🌿 Glauca
-                </p>
+              <div className="hover:bg-lime-100/75 cursor-pointer flex rounded-lg p-2 m-2">
+                <img
+                  src="/thumbnail_image3.jpg"
+                  className="w-9 h-9 object-cover rounded-lg mr-1"
+                />
+                <p className=" text-gray-700 text-sm">Pachypodium</p>
               </div>
             </div>
           )}

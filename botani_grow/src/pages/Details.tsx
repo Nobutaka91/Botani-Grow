@@ -81,8 +81,6 @@ export const Details: React.FC<InfoProps> = ({
   const plant = plantsData.find((plant) => plant.id === id);
   const watering = wateringsData.find((watering) => watering.plantId === id);
 
-  console.log(plant);
-
   const toggleCommentSidebar = () => {
     setIsCommentSidebarOpen(!isCommentSidebarOpen);
     if (isLeafSidebarOpen) setIsLeafSidebarOpen(false);
